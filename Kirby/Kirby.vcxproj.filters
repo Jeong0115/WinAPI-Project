@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{3ecd3704-08d5-45f1-935a-8cb8ac63c092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Application">
+      <UniqueIdentifier>{751f087a-d2ea-4a56-9f07-a1f50d289b27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene">
+      <UniqueIdentifier>{c06ab9e5-1b1c-4845-899e-f3fcbf35326a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{a778165f-c022-4bf7-92f9-858b346d7513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Layer">
+      <UniqueIdentifier>{1f3022ff-f8d5-4fe0-a742-85faad423771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject">
+      <UniqueIdentifier>{3dfb598e-feaf-4086-af87-1eb587cd3436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\SceneType">
+      <UniqueIdentifier>{34cc68a2-7bc4-4b49-b4fc-f7116fc8c0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component">
+      <UniqueIdentifier>{1d443f16-055d-494e-88b3-3dff6c6eb662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\SceneType\PlayScene">
+      <UniqueIdentifier>{ca5cedef-1f26-4695-ae2e-2da65323d368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player">
+      <UniqueIdentifier>{683fe9af-6f54-411a-8297-b9e3b874666b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby">
+      <UniqueIdentifier>{cc2089b2-cfea-42e7-b7cf-8227564b182f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{1d31c4e6-d700-486f-b442-acb6336d507f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Time">
+      <UniqueIdentifier>{bccfdd48-ee61-4e71-a215-b5994b7cc14e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Key">
+      <UniqueIdentifier>{a4aa6645-750b-4ead-99c3-00bc9abea3d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Kirby.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="zzApplication.h">
+      <Filter>01. Application</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonInclude.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEnum.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEngine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEntity.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSceneMgr.h">
+      <Filter>02. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzScene.h">
+      <Filter>02. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzLayer.h">
+      <Filter>03. Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="zzGameObject.h">
+      <Filter>04. GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="zzPlayScene.h">
+      <Filter>02. Scene\SceneType\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzKirby.h">
+      <Filter>04. GameObject\Player\Kirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTime.h">
+      <Filter>Manager\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="zzKey.h">
+      <Filter>Manager\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="zzComponent.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Kirby.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Kirby.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="zzApplication.cpp">
+      <Filter>01. Application</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="zzSceneMgr.cpp">
+      <Filter>02. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzScene.cpp">
+      <Filter>02. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzLayer.cpp">
+      <Filter>03. Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="zzGameObject.cpp">
+      <Filter>04. GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="zzEntity.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="zzPlayScene.cpp">
+      <Filter>02. Scene\SceneType\PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzKirby.cpp">
+      <Filter>04. GameObject\Player\Kirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTime.cpp">
+      <Filter>Manager\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="zzKey.cpp">
+      <Filter>Manager\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="zzComponent.cpp">
+      <Filter>05. Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
