@@ -11,21 +11,22 @@ namespace zz
 		virtual ~Application();
 
 	public:
-		int Initialize(HWND hWnd, POINT resolution);
-		void Run();
-		inline HWND GetHwnd() { return mHwnd; }
+		static int Initialize(HWND hWnd, POINT resolution);
+		static void  Run();
+		inline static HWND GetHwnd() { return mHwnd; }
+		inline static POINT GetResolution() { return mResolution; }
 
 	private:
-		void Update();
-		void Render();
+		static void Update();
+		static void Render();
 	
 	private:
-		HWND	mHwnd;
-		HDC		mHdc;
-		POINT	mResolution;
+		static HWND		mHwnd;
+		static HDC		mHdc;
+		static POINT	mResolution;
 
-		HBITMAP mHBit;
-		HDC		mHBitDc;
+		static HBITMAP  mHBit;
+		static HDC		mHBitDc;
 	};
 
 }

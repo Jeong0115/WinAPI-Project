@@ -5,16 +5,15 @@
 
 namespace zz
 {
-	Application::Application()
-		: mHwnd(0)
-		, mHdc(0)
-		, mResolution{}
-		, mHBitDc(0)
-		, mHBit(0)
-	{}
+	HWND	Application::mHwnd = 0;
+	HDC		Application::mHdc = 0;
+	POINT	Application::mResolution = {};
+	HDC		Application::mHBitDc = 0;
+	HBITMAP	Application::mHBit = 0;
 
 	Application::~Application()
 	{
+
 	}
 
 	int Application::Initialize(HWND hWnd, POINT resolution)

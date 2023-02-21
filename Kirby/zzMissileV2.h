@@ -4,11 +4,11 @@
 
 namespace zz
 {
-	class Kirby : public GameObject
+	class MissileV2 : public GameObject
 	{
 	public:
-		Kirby();
-		virtual ~Kirby();
+		MissileV2();
+		virtual ~MissileV2();
 
 	public:
 		virtual void Initialize();
@@ -16,11 +16,16 @@ namespace zz
 		virtual void Render(HDC hdc);
 
 	public:
-		void CreateMissile();
-		void CreateMissileV2();
+		void SetDir(bool bUp)
+		{
+			if (bUp)
+				mDir = -1.f;
+			else
+				mDir = 1.f;
+		}
 
 	private:
-		bool bMissileType;
+		float mDir;
 	};
 }
 

@@ -16,7 +16,7 @@ namespace zz
 		virtual void Update();
 		virtual void Render(HDC hdc);
 
-	protected:
+	public:
 		void AddGameObject(GameObject* obj, eLayerType layer);
 
 	private:

@@ -11,6 +11,7 @@ namespace zz
 	{
 		for (UINT i = 0; i < (UINT)eSceneType::MAX; i++)
 		{
+			if (mScenes[i] == nullptr) continue;
 			delete mScenes[i];
 		}
 	}

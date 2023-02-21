@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="zzApplication.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Kirby.h" />
@@ -146,6 +147,9 @@
     <ClInclude Include="zzKirby.h" />
     <ClInclude Include="zzLayer.h" />
     <ClInclude Include="zzMath.h" />
+    <ClInclude Include="zzMissile.h" />
+    <ClInclude Include="zzMissileV2.h" />
+    <ClInclude Include="zzMonster.h" />
     <ClInclude Include="zzPlayScene.h" />
     <ClInclude Include="zzScene.h" />
     <ClInclude Include="zzSceneMgr.h" />
@@ -161,6 +165,9 @@
     <ClCompile Include="zzKirby.cpp" />
     <ClCompile Include="zzLayer.cpp" />
     <ClCompile Include="zzMath.cpp" />
+    <ClCompile Include="zzMissile.cpp" />
+    <ClCompile Include="zzMissileV2.cpp" />
+    <ClCompile Include="zzMonster.cpp" />
     <ClCompile Include="zzPlayScene.cpp" />
     <ClCompile Include="zzScene.cpp" />
     <ClCompile Include="zzSceneMgr.cpp" />

@@ -2,6 +2,7 @@
 
 #include "zzEntity.h"
 #include "zzComponent.h"
+#include "define.h"
 
 namespace zz
 {
@@ -17,8 +18,16 @@ namespace zz
 		virtual void Render(HDC hdc);
 		virtual void Release();
 
-	protected:
+	public:
+		void SetPos(Vector2 pos) { mPos = pos; }
+		void SetScale(Vector2 scale) { mScale = scale; }
+
+		Vector2 GetPos() { return mPos; }
+		Vector2 GetScale() { return mScale; }
+
+	private:
 		Vector2 mPos;
+		Vector2 mScale;
 
 	private:
 		std::vector<Component*> mComponents;

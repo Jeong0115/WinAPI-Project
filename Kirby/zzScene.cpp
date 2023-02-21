@@ -18,7 +18,12 @@ namespace zz
 
 	void Scene::Initialize()
 	{
-		
+		for (Layer* layer : mLayers)
+		{
+			if (layer == nullptr)
+				continue;
+			layer->Initialize();
+		}
 	}
 
 	void Scene::Update()

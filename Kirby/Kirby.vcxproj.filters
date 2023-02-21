@@ -47,6 +47,18 @@
     <Filter Include="Manager\Key">
       <UniqueIdentifier>{a4aa6645-750b-4ead-99c3-00bc9abea3d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. GameObject\Monster">
+      <UniqueIdentifier>{81242285-aaaf-45da-843c-dc7c8a5bbf7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Effect">
+      <UniqueIdentifier>{0129574d-80da-4f14-9523-8f43ff6f2a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Effect\Missile">
+      <UniqueIdentifier>{2311f6f0-7eaa-496e-84d0-1599ea2ff1f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Effect\MissileV2">
+      <UniqueIdentifier>{6c9810fc-1e90-46e4-bf66-0fbafa9b93d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -106,6 +118,18 @@
     <ClInclude Include="zzComponent.h">
       <Filter>05. Component</Filter>
     </ClInclude>
+    <ClInclude Include="zzMonster.h">
+      <Filter>04. GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzMissile.h">
+      <Filter>04. GameObject\Effect\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="zzMissileV2.h">
+      <Filter>04. GameObject\Effect\MissileV2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
@@ -159,6 +183,15 @@
     </ClCompile>
     <ClCompile Include="zzComponent.cpp">
       <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMonster.cpp">
+      <Filter>04. GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMissile.cpp">
+      <Filter>04. GameObject\Effect\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMissileV2.cpp">
+      <Filter>04. GameObject\Effect\MissileV2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

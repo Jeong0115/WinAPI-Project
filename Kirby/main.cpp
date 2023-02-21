@@ -9,8 +9,6 @@
 
 #define MAX_LOADSTRING 100
 
-zz::Application application;
-
 HINSTANCE hInst;                              
 WCHAR szTitle[MAX_LOADSTRING];                
 WCHAR szWindowClass[MAX_LOADSTRING];          
@@ -26,7 +24,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    _CrtSetBreakAlloc(219);
+    //_CrtSetBreakAlloc(222);
 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -58,7 +56,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
 		else
 		{
-			application.Run();
+            zz::Application::Run();
 		}
         
     }
@@ -99,7 +97,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   if (FAILED(application.Initialize(hWnd, POINT{ 1280,720 })))
+   if (FAILED(zz::Application::Initialize(hWnd, POINT{ 1280,720 })))
    {
        MessageBox(nullptr, L"core 객체 초기화 실패", L"ERROR", MB_OK);
 

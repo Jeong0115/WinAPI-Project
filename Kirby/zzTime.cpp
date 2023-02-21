@@ -1,8 +1,6 @@
 #include "zzTime.h"
 #include "zzApplication.h"
 
-extern zz::Application application;
-
 namespace zz
 {
 	double Time::mDeltaTime = 0.f;
@@ -29,7 +27,7 @@ namespace zz
 
 		if (mSecond >= 1.f)
 		{
-			HWND hWnd = application.GetHwnd();
+			HWND hWnd = Application::GetHwnd();
 
 			wchar_t szFPS[100] = {};
 			float FPS = 1.f / (float)mDeltaTime;
