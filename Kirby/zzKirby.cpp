@@ -6,6 +6,8 @@
 #include "zzMissileV2.h"
 #include "zzSceneMgr.h"
 #include "zzScene.h"
+#include "zzkirbyComponent.h"
+
 
 namespace zz
 {
@@ -20,9 +22,14 @@ namespace zz
 
 	void Kirby::Initialize()
 	{
-		GameObject::Initialize();
+		
+		//mComponents
+		mComponents.push_back(new kirbyComponent);
 
-		SetPos(Vector2(50, 50));
+		GameObject::Initialize();
+		kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Right", L"..\\Resources\\Kirby_Right.bmp");
+
+		SetPos(Vector2(10, 130));
 		SetScale(Vector2(100, 100));
 	}
 
@@ -34,12 +41,14 @@ namespace zz
 
 		if (KEY(LEFT, PRESSED))
 		{
+			kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Left", L"..\\Resources\\Kirby_Left.bmp");
 			vPos.x -= 100.f * Time::DeltaTime();
 		}
 
 		if (KEY(RIGHT, PRESSED))
 		{
 			vPos.x += 100.f * Time::DeltaTime();
+			kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Right", L"..\\Resources\\Kirby_Right.bmp");
 		}
 
 		if (KEY(UP, PRESSED))
@@ -52,7 +61,7 @@ namespace zz
 			vPos.y += 100.f * Time::DeltaTime();
 		}
 
-		if (KEY(Z, DOWN))
+		/*if (KEY(Z, DOWN))
 		{
 			bMissileType = !bMissileType;
 		}
@@ -63,7 +72,7 @@ namespace zz
 				CreateMissile();
 			else
 				CreateMissileV2();
-		}
+		}*/
 
 		SetPos(vPos);
 	}
@@ -78,8 +87,12 @@ namespace zz
 		HPEN pen = CreatePen(PS_SOLID, 5, RGB(30, 100, 20));
 		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 
-		Rectangle(hdc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f, 
-			vPos.x + vScale.x / 2.f, vPos.y + vScale.y / 2.f);
+		//BitBlt(hdc, vPos.x , vPos.y, kirbyTexture->GetWidth(), kirbyTexture->GetHeight(), kirbyTexture->GetHdc(), 0, 0, SRCCOPY);
+
+		TransparentBlt(hdc, vPos.x, vPos.y, kirbyTexture->GetWidth(), 
+			kirbyTexture->GetHeight(), kirbyTexture->GetHdc(), 0, 0, 
+			kirbyTexture->GetWidth(), kirbyTexture->GetHeight(), RGB(255, 255, 255));
+		
 
 		SelectObject(hdc, oldPen);
 		DeleteObject(pen);

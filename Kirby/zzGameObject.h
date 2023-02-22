@@ -3,6 +3,8 @@
 #include "zzEntity.h"
 #include "zzComponent.h"
 #include "define.h"
+#include "zzTexture.h"
+#include "zzResourceMgr.h"
 
 namespace zz
 {
@@ -29,7 +31,7 @@ namespace zz
 		Vector2 mPos;
 		Vector2 mScale;
 
-	private:
+	protected:
 		std::vector<Component*> mComponents;
 	};
 }

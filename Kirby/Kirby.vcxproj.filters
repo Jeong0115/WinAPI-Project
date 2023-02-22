@@ -59,6 +59,15 @@
     <Filter Include="04. GameObject\Effect\MissileV2">
       <UniqueIdentifier>{6c9810fc-1e90-46e4-bf66-0fbafa9b93d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Resource">
+      <UniqueIdentifier>{12ed9b59-4306-4945-88b6-c8ab9fa2b633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Resource\Texture">
+      <UniqueIdentifier>{eed06b70-dd7a-47d1-9ff6-6d179f00a7fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\BackGorund">
+      <UniqueIdentifier>{4ce3a5e8-9464-481c-ad28-58fb75224210}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -130,6 +139,21 @@
     <ClInclude Include="zzMissileV2.h">
       <Filter>04. GameObject\Effect\MissileV2</Filter>
     </ClInclude>
+    <ClInclude Include="zzResource.h">
+      <Filter>06. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="zzResourceMgr.h">
+      <Filter>06. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTexture.h">
+      <Filter>06. Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="zzBackGround.h">
+      <Filter>04. GameObject\BackGorund</Filter>
+    </ClInclude>
+    <ClInclude Include="zzkirbyComponent.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
@@ -192,6 +216,21 @@
     </ClCompile>
     <ClCompile Include="zzMissileV2.cpp">
       <Filter>04. GameObject\Effect\MissileV2</Filter>
+    </ClCompile>
+    <ClCompile Include="zzResource.cpp">
+      <Filter>06. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="zzResourceMgr.cpp">
+      <Filter>06. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTexture.cpp">
+      <Filter>06. Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="zzBackGround.cpp">
+      <Filter>04. GameObject\BackGorund</Filter>
+    </ClCompile>
+    <ClCompile Include="zzkirbyComponent.cpp">
+      <Filter>05. Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

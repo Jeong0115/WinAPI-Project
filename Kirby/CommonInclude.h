@@ -12,3 +12,6 @@
 #include <list>
 #include <map>
 
+#include <assert.h>
+
+#pragma comment(lib, "Msimg32.lib")

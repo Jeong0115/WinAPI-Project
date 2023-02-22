@@ -14,6 +14,8 @@ namespace zz
 		static int Initialize(HWND hWnd, POINT resolution);
 		static void  Run();
 		inline static HWND GetHwnd() { return mHwnd; }
+		inline static HDC  GetHdc() { return mHdc; }
+		inline static HDC  GetBitMapHdc() { return mBitMapHdc; }
 		inline static POINT GetResolution() { return mResolution; }
 
 	private:
@@ -25,8 +27,8 @@ namespace zz
 		static HDC		mHdc;
 		static POINT	mResolution;
 
-		static HBITMAP  mHBit;
-		static HDC		mHBitDc;
+		static HBITMAP  mBitMap;
+		static HDC		mBitMapHdc;
 	};
 
 }

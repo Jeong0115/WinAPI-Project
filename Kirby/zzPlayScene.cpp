@@ -2,6 +2,7 @@
 #include "zzKirby.h"
 #include "zzMonster.h"
 #include "zzApplication.h"
+#include "zzBackGround.h"
 
 namespace zz
 {
@@ -20,12 +21,22 @@ namespace zz
 
 		AddGameObject(kirby, eLayerType::PLAYER);
 
+		BackGround* bk = new BackGround();
+		bk->SetName(L"stage1");
+
+		AddGameObject(bk, eLayerType::BACKGROUND);
+
+		Monster* monster = new Monster();
+		monster->SetName(L"monster");
+
+		AddGameObject(monster, eLayerType::MONSTER);
+
 		/*Monster* monster = new Monster();
 		monster->SetName(L"monster");
 
 		AddGameObject(monster, eLayerType::MONSTER);*/
 
-		Vector2 resolution = Application::GetResolution();
+		/*Vector2 resolution = Application::GetResolution();
 
 		int cnt = 6;
 
@@ -37,7 +48,7 @@ namespace zz
 			monster->SetPos(Vector2(50.f + term * i, 500.f));
 			monster->SetCenterPos(Vector2(monster->GetPos().x + 50, monster->GetPos().y));
 			AddGameObject(monster, eLayerType::MONSTER);
-		}
+		}*/
 
 		Scene::Initialize();
 	}

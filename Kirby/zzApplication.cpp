@@ -8,8 +8,8 @@ namespace zz
 	HWND	Application::mHwnd = 0;
 	HDC		Application::mHdc = 0;
 	POINT	Application::mResolution = {};
-	HDC		Application::mHBitDc = 0;
-	HBITMAP	Application::mHBit = 0;
+	HDC		Application::mBitMapHdc = 0;
+	HBITMAP	Application::mBitMap = 0;
 
 	Application::~Application()
 	{
@@ -27,10 +27,10 @@ namespace zz
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, true);
 		SetWindowPos(mHwnd, nullptr, 100, 100, rect.right - rect.left, rect.bottom - rect.top, 0);
 
-		mHBit = CreateCompatibleBitmap(mHdc, mResolution.x, mResolution.y);
-		mHBitDc = CreateCompatibleDC(mHdc);
+		mBitMap = CreateCompatibleBitmap(mHdc, mResolution.x, mResolution.y);
+		mBitMapHdc = CreateCompatibleDC(mHdc);
 
-		HBITMAP hOldBit = (HBITMAP)SelectObject(mHBitDc, mHBit);
+		HBITMAP hOldBit = (HBITMAP)SelectObject(mBitMapHdc, mBitMap);
 		DeleteObject(hOldBit);
 
 		Time::Initialize();
@@ -55,10 +55,10 @@ namespace zz
 
 	void Application::Render()
 	{
-		Rectangle(mHBitDc, -1, -1, mResolution.x, mResolution.y);
+		//Rectangle(mBitMapHdc, -1, -1, mResolution.x, mResolution.y);
 
-		SceneMgr::Render(mHBitDc);
+		SceneMgr::Render(mBitMapHdc);
 
-		BitBlt(mHdc, 0, 0, mResolution.x, mResolution.y, mHBitDc, 0, 0, SRCCOPY);
+		BitBlt(mHdc, 0, 0, mResolution.x, mResolution.y, mBitMapHdc, 0, 0, SRCCOPY);
 	}
 }

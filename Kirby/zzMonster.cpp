@@ -4,9 +4,9 @@
 namespace zz
 {
 	Monster::Monster()
-		: mSpeed(200.f)
+		: mSpeed(100.f)
 		, mCenterPos{ Vector2(0.f,0.f) }
-		, mMaxDistance(100.f)
+		, mMaxDistance(80.f)
 		, mDir(1)
 	{
 	}
@@ -19,8 +19,10 @@ namespace zz
 	{
 		GameObject::Initialize();
 
-		//SetPos(Vector2( 500.f, 500.f ));
-		//SetCenterPos(Vector2(GetPos().x +50 , GetPos().y));
+		monsterTexture = ResourceMgr::Load<Texture>(L"monsetr", L"..\\Resources\\Monster_Right.bmp");
+
+		SetPos(Vector2( 500.f, 95.f ));
+		SetCenterPos(Vector2(GetPos().x +50 , GetPos().y));
 	}
 
 	void Monster::Update()
@@ -37,6 +39,15 @@ namespace zz
 		{
 			mDir *= -1;
 			curPos.x += dist * mDir;
+			if (mDir > 0)
+			{
+				monsterTexture = ResourceMgr::Load<Texture>(L"Monster_Right", L"..\\Resources\\Monster_Right.bmp");
+			}
+			else
+			{
+				monsterTexture = ResourceMgr::Load<Texture>(L"Monster_Left", L"..\\Resources\\Monster_Left.bmp");
+
+			}
 		}
 
 		SetPos(curPos);
@@ -48,12 +59,8 @@ namespace zz
 
 		Vector2 vPos = GetPos();
 
-		HPEN pen = CreatePen(PS_SOLID, 5, RGB(200, 100, 150));
-		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
-
-		Rectangle(hdc, vPos.x, vPos.y, vPos.x + 100, vPos.y + 100);
-
-		SelectObject(hdc, oldPen);
-		DeleteObject(pen);
+		TransparentBlt(hdc, vPos.x, vPos.y, monsterTexture->GetWidth(),
+			monsterTexture->GetHeight(), monsterTexture->GetHdc(), 0, 0,
+			monsterTexture->GetWidth(), monsterTexture->GetHeight(), RGB(0, 255, 0));
 	}
 }

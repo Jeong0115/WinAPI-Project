@@ -138,6 +138,7 @@
     <ClInclude Include="Kirby.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="zzBackGround.h" />
     <ClInclude Include="zzComponent.h" />
     <ClInclude Include="zzEngine.h" />
     <ClInclude Include="zzEntity.h" />
@@ -145,32 +146,41 @@
     <ClInclude Include="zzGameObject.h" />
     <ClInclude Include="zzKey.h" />
     <ClInclude Include="zzKirby.h" />
+    <ClInclude Include="zzkirbyComponent.h" />
     <ClInclude Include="zzLayer.h" />
     <ClInclude Include="zzMath.h" />
     <ClInclude Include="zzMissile.h" />
     <ClInclude Include="zzMissileV2.h" />
     <ClInclude Include="zzMonster.h" />
     <ClInclude Include="zzPlayScene.h" />
+    <ClInclude Include="zzResource.h" />
+    <ClInclude Include="zzResourceMgr.h" />
     <ClInclude Include="zzScene.h" />
     <ClInclude Include="zzSceneMgr.h" />
+    <ClInclude Include="zzTexture.h" />
     <ClInclude Include="zzTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="zzApplication.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="zzBackGround.cpp" />
     <ClCompile Include="zzComponent.cpp" />
     <ClCompile Include="zzEntity.cpp" />
     <ClCompile Include="zzGameObject.cpp" />
     <ClCompile Include="zzKey.cpp" />
     <ClCompile Include="zzKirby.cpp" />
+    <ClCompile Include="zzkirbyComponent.cpp" />
     <ClCompile Include="zzLayer.cpp" />
     <ClCompile Include="zzMath.cpp" />
     <ClCompile Include="zzMissile.cpp" />
     <ClCompile Include="zzMissileV2.cpp" />
     <ClCompile Include="zzMonster.cpp" />
     <ClCompile Include="zzPlayScene.cpp" />
+    <ClCompile Include="zzResource.cpp" />
+    <ClCompile Include="zzResourceMgr.cpp" />
     <ClCompile Include="zzScene.cpp" />
     <ClCompile Include="zzSceneMgr.cpp" />
+    <ClCompile Include="zzTexture.cpp" />
     <ClCompile Include="zzTime.cpp" />
   </ItemGroup>
   <ItemGroup>

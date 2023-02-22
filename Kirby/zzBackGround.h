@@ -4,24 +4,20 @@
 
 namespace zz
 {
-	class Kirby : public GameObject
+	class BackGround : public GameObject
 	{
 	public:
-		Kirby();
-		virtual ~Kirby();
+		BackGround();
+		virtual ~BackGround();
 
 	public:
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render(HDC hdc);
-
-	public:
-		void CreateMissile();
-		void CreateMissileV2();
+		virtual void Release();
 
 	private:
-		bool bMissileType;
-		Texture* kirbyTexture;
+		Texture* mBKTexture;
 	};
 }
 

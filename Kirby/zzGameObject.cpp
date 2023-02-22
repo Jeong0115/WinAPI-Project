@@ -42,7 +42,7 @@ namespace zz
 		{
 			if (comp == nullptr)
 				continue;
-			comp->Render(hdc);
+			comp->Render(hdc, mPos);
 		}
 	}
 

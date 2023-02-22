@@ -24,5 +24,6 @@ namespace zz
 		float		mSpeed;
 		float		mMaxDistance;
 		int			mDir;
+		Texture* monsterTexture;
 	};
 }
