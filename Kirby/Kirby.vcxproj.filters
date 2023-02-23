@@ -53,12 +53,6 @@
     <Filter Include="04. GameObject\Effect">
       <UniqueIdentifier>{0129574d-80da-4f14-9523-8f43ff6f2a05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. GameObject\Effect\Missile">
-      <UniqueIdentifier>{2311f6f0-7eaa-496e-84d0-1599ea2ff1f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Effect\MissileV2">
-      <UniqueIdentifier>{6c9810fc-1e90-46e4-bf66-0fbafa9b93d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06. Resource">
       <UniqueIdentifier>{12ed9b59-4306-4945-88b6-c8ab9fa2b633}</UniqueIdentifier>
     </Filter>
@@ -67,6 +61,15 @@
     </Filter>
     <Filter Include="04. GameObject\BackGorund">
       <UniqueIdentifier>{4ce3a5e8-9464-481c-ad28-58fb75224210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component\Collider">
+      <UniqueIdentifier>{d50aa4d8-9df2-4ccd-a90c-4d25ed5c38a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component\Transform">
+      <UniqueIdentifier>{49bb9e73-cf32-41d6-a3f1-dd89f373dfa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Collision">
+      <UniqueIdentifier>{e19e50c7-3e35-47c3-96c5-2b49880cc4b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,12 +136,6 @@
     <ClInclude Include="define.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="zzMissile.h">
-      <Filter>04. GameObject\Effect\Missile</Filter>
-    </ClInclude>
-    <ClInclude Include="zzMissileV2.h">
-      <Filter>04. GameObject\Effect\MissileV2</Filter>
-    </ClInclude>
     <ClInclude Include="zzResource.h">
       <Filter>06. Resource</Filter>
     </ClInclude>
@@ -151,8 +148,20 @@
     <ClInclude Include="zzBackGround.h">
       <Filter>04. GameObject\BackGorund</Filter>
     </ClInclude>
+    <ClInclude Include="zzCollider.h">
+      <Filter>05. Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTransform.h">
+      <Filter>05. Component\Transform</Filter>
+    </ClInclude>
     <ClInclude Include="zzkirbyComponent.h">
       <Filter>05. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSelectGDI.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCollisionMgr.h">
+      <Filter>Manager\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -211,12 +220,6 @@
     <ClCompile Include="zzMonster.cpp">
       <Filter>04. GameObject\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="zzMissile.cpp">
-      <Filter>04. GameObject\Effect\Missile</Filter>
-    </ClCompile>
-    <ClCompile Include="zzMissileV2.cpp">
-      <Filter>04. GameObject\Effect\MissileV2</Filter>
-    </ClCompile>
     <ClCompile Include="zzResource.cpp">
       <Filter>06. Resource</Filter>
     </ClCompile>
@@ -229,8 +232,17 @@
     <ClCompile Include="zzBackGround.cpp">
       <Filter>04. GameObject\BackGorund</Filter>
     </ClCompile>
+    <ClCompile Include="zzCollider.cpp">
+      <Filter>05. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTransform.cpp">
+      <Filter>05. Component\Transform</Filter>
+    </ClCompile>
     <ClCompile Include="zzkirbyComponent.cpp">
       <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCollisionMgr.cpp">
+      <Filter>Manager\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

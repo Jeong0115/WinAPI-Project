@@ -2,18 +2,35 @@
 #include "zzSceneMgr.h"
 #include "zzTime.h"
 #include "zzKey.h"
+#include "zzCollisionMgr.h"
 
 namespace zz
-{
-	HWND	Application::mHwnd = 0;
-	HDC		Application::mHdc = 0;
-	POINT	Application::mResolution = {};
-	HDC		Application::mBitMapHdc = 0;
-	HBITMAP	Application::mBitMap = 0;
+{	
+	HWND		Application::mHwnd			= 0;
+	HDC			Application::mHdc			= 0;
+	POINT		Application::mResolution	= {};
+	HDC			Application::mBitMapHdc		= 0;
+	HBITMAP		Application::mBitMap		= 0;
+
+	HBRUSH		Application::mHollowBrush	= (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+	HPEN		Application::mGreenPen		= (HPEN)CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	HPEN		Application::mRedPen		= (HPEN)CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	HPEN		Application::mPen			= mGreenPen;
+
+	Application::Application()
+	{
+
+	}
 
 	Application::~Application()
 	{
+		ReleaseDC(mHwnd, mHdc);
 
+		DeleteDC(mBitMapHdc);
+		DeleteObject(mBitMap);
+
+		DeleteObject(mGreenPen);
+		DeleteObject(mRedPen);
 	}
 
 	int Application::Initialize(HWND hWnd, POINT resolution)
@@ -51,6 +68,7 @@ namespace zz
 		Time::Update();
 		Key::Update();
 		SceneMgr::Update();
+		CollisionMgr::Update();
 	}
 
 	void Application::Render()

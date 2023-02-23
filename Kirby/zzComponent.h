@@ -2,21 +2,27 @@
 
 #include "zzEngine.h"
 #include "zzTexture.h"
+#include "zzEntity.h"
+
 
 namespace zz
 {
-	class Component
+	class Component : public Entity
 	{
 	public:
-		Component();
+		Component(eCompType type);
 		virtual ~Component();
 
 	public:
 		virtual void Initialize();
 		virtual void Update();
-		virtual void Render(HDC hdc, Vector2 pos);
+		virtual void Render(HDC hdc);
 		virtual void Release();
 
+	public:
+		eCompType GetType() { return mType; }
+
 	private:
+		const eCompType mType;
 	};
 }

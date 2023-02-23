@@ -2,7 +2,8 @@
 
 namespace zz
 {
-	Component::Component()
+	Component::Component(eCompType type)
+		: mType(type)
 	{
 	}
 
@@ -20,7 +21,7 @@ namespace zz
 		
 	}
 
-	void Component::Render(HDC hdc, Vector2 pos)
+	void Component::Render(HDC hdc)
 	{
 	}
 

@@ -16,12 +16,11 @@ namespace zz
 		virtual void Render(HDC hdc);
 
 	public:
-		void CreateMissile();
-		void CreateMissileV2();
-
+		
 	private:
-		bool bMissileType;
 		Texture* kirbyTexture;
+		Transform* mTr;
+		Collider* mColli;
 	};
 }
 

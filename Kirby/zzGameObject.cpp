@@ -4,11 +4,12 @@ namespace zz
 {
 	GameObject::GameObject()
 	{
+		mComponents.resize((UINT)eCompType::END);
 	}
 
 	GameObject::~GameObject()
 	{
-		for (UINT i = 0; i < mComponents.size(); i++)
+		for (UINT i = 0; i < (UINT)eCompType::END; i++)
 		{
 			if (mComponents[i] == nullptr)
 				continue;
@@ -42,7 +43,7 @@ namespace zz
 		{
 			if (comp == nullptr)
 				continue;
-			comp->Render(hdc, mPos);
+			comp->Render(hdc);
 		}
 	}
 

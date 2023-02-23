@@ -18,18 +18,26 @@ namespace zz
 	void Monster::Initialize()
 	{
 		GameObject::Initialize();
+		
+		mTr = AddComponent<Transform>();
+		mColli = AddComponent<Collider>();
 
 		monsterTexture = ResourceMgr::Load<Texture>(L"monsetr", L"..\\Resources\\Monster_Right.bmp");
 
-		SetPos(Vector2( 500.f, 95.f ));
-		SetCenterPos(Vector2(GetPos().x +50 , GetPos().y));
+		mTr->SetPos(Vector2( 500.f, 120.f ));
+		mTr->SetScale(Vector2(62.f, 55.f));
+
+		mColli->SetPos(mTr->GetPos());
+		mColli->SetScale(mTr->GetScale());
+
+		SetCenterPos(Vector2(mTr->GetPos().x +50 , mTr->GetPos().y));
 	}
 
 	void Monster::Update()
 	{
 		GameObject::Update();
 
-		Vector2 curPos = GetPos();
+		Vector2 curPos = mTr->GetPos();
 
 		curPos.x += Time::DeltaTime() * mSpeed * mDir;
 
@@ -50,17 +58,19 @@ namespace zz
 			}
 		}
 
-		SetPos(curPos);
+		mTr->SetPos(curPos);
+		mColli->SetPos(curPos);
 	}
 
 	void Monster::Render(HDC hdc)
 	{
-		GameObject::Render(hdc);
+		Vector2 vPos = mTr->GetPos();
+		Vector2 vScale = mTr->GetScale();
 
-		Vector2 vPos = GetPos();
-
-		TransparentBlt(hdc, vPos.x, vPos.y, monsterTexture->GetWidth(),
+		TransparentBlt(hdc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f, monsterTexture->GetWidth(),
 			monsterTexture->GetHeight(), monsterTexture->GetHdc(), 0, 0,
 			monsterTexture->GetWidth(), monsterTexture->GetHeight(), RGB(0, 255, 0));
+
+		GameObject::Render(hdc);
 	}
 }

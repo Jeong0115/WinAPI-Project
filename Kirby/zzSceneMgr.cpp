@@ -9,11 +9,7 @@ namespace zz
 
 	SceneMgr::~SceneMgr()
 	{
-		for (UINT i = 0; i < (UINT)eSceneType::MAX; i++)
-		{
-			if (mScenes[i] == nullptr) continue;
-			delete mScenes[i];
-		}
+		
 	}
 
 	void SceneMgr::Initialize()
@@ -54,5 +50,14 @@ namespace zz
 			scene->Render(hdc);
 		}*/
 		mNowScene->Render(hdc);
+	}
+
+	void SceneMgr::Release()
+	{
+		for (UINT i = 0; i < (UINT)eSceneType::MAX; i++)
+		{
+			if (mScenes[i] == nullptr) continue;
+			delete mScenes[i];
+		}
 	}
 }

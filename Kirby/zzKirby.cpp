@@ -12,7 +12,8 @@
 namespace zz
 {
 	Kirby::Kirby()
-		: bMissileType(true)
+		: kirbyTexture(nullptr)
+		, mTr(nullptr)
 	{
 	}
 
@@ -24,20 +25,26 @@ namespace zz
 	{
 		
 		//mComponents
-		mComponents.push_back(new kirbyComponent);
+		//mComponents.push_back(new kirbyComponent);
+		mTr = AddComponent<Transform>();
+		mColli = AddComponent<Collider>();
 
-		GameObject::Initialize();
 		kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Right", L"..\\Resources\\Kirby_Right.bmp");
 
-		SetPos(Vector2(10, 130));
-		SetScale(Vector2(100, 100));
+		mTr->SetPos(Vector2(10, 140));
+		mTr->SetScale(Vector2(20, 18));
+
+		mColli->SetPos(mTr->GetPos());
+		mColli->SetScale(mTr->GetScale());
+
+		GameObject::Initialize();
 	}
 
 	void Kirby::Update()
 	{
 		GameObject::Update();
 
-		Vector2 vPos = GetPos();
+		Vector2 vPos = mTr->GetPos();
 
 		if (KEY(LEFT, PRESSED))
 		{
@@ -61,84 +68,30 @@ namespace zz
 			vPos.y += 100.f * Time::DeltaTime();
 		}
 
-		/*if (KEY(Z, DOWN))
-		{
-			bMissileType = !bMissileType;
-		}
-
-		if (KEY(X, DOWN))
-		{
-			if (bMissileType)
-				CreateMissile();
-			else
-				CreateMissileV2();
-		}*/
-
-		SetPos(vPos);
+		mTr->SetPos(vPos);
+		mColli->SetPos(vPos);
+		
 	}
 
 	void Kirby::Render(HDC hdc)
 	{
-		GameObject::Render(hdc);
+		
 
-		Vector2 vPos = GetPos();
-		Vector2 vScale = GetScale();
+		Vector2 vPos = mTr->GetPos();
+		Vector2 vScale = mTr->GetScale();
 
-		HPEN pen = CreatePen(PS_SOLID, 5, RGB(30, 100, 20));
-		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
+	/*	HPEN pen = CreatePen(PS_SOLID, 5, RGB(30, 100, 20));
+		HPEN oldPen = (HPEN)SelectObject(hdc, pen);*/
 
 		//BitBlt(hdc, vPos.x , vPos.y, kirbyTexture->GetWidth(), kirbyTexture->GetHeight(), kirbyTexture->GetHdc(), 0, 0, SRCCOPY);
 
-		TransparentBlt(hdc, vPos.x, vPos.y, kirbyTexture->GetWidth(), 
+		TransparentBlt(hdc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f, kirbyTexture->GetWidth(), 
 			kirbyTexture->GetHeight(), kirbyTexture->GetHdc(), 0, 0, 
 			kirbyTexture->GetWidth(), kirbyTexture->GetHeight(), RGB(255, 255, 255));
 		
+		GameObject::Render(hdc);
 
-		SelectObject(hdc, oldPen);
-		DeleteObject(pen);
-	}
-
-	void Kirby::CreateMissile()
-	{
-		Vector2 vPos = GetPos();
-
-		vPos.x = GetPos().x;
-		vPos.y = GetPos().y + GetScale().y / 2.f;
-
-		Missile* missile = new Missile();
-
-		missile->SetPos(vPos);
-		missile->SetScale(Vector2(25.f, 25.f));
-		missile->SetDir(false);
-
-		SceneMgr::GetNowScene()->AddGameObject(missile, eLayerType::EFFECT);
-	}
-
-	void Kirby::CreateMissileV2()
-	{
-		Vector2 vPos = GetPos();
-
-		vPos.x = GetPos().x;
-		vPos.y = GetPos().y + GetScale().y / 2.f;
-
-		MissileV2* leftMissile	 = new MissileV2();
-		MissileV2* centerMissile = new MissileV2();
-		MissileV2* rightMissile  = new MissileV2();
-
-		leftMissile->SetPos(Vector2(vPos.x - 20, vPos . y));
-		leftMissile->SetScale(Vector2(25.f, 25.f));
-		leftMissile->SetDir(false);
-
-		centerMissile->SetPos(Vector2(vPos.x, vPos.y + 30));
-		centerMissile->SetScale(Vector2(25.f, 25.f));
-		centerMissile->SetDir(false);
-
-		rightMissile->SetPos(Vector2(vPos.x + 20, vPos.y));
-		rightMissile->SetScale(Vector2(25.f, 25.f));
-		rightMissile->SetDir(false);
-
-		SceneMgr::GetNowScene()->AddGameObject(leftMissile, eLayerType::EFFECT);
-		SceneMgr::GetNowScene()->AddGameObject(centerMissile, eLayerType::EFFECT);
-		SceneMgr::GetNowScene()->AddGameObject(rightMissile, eLayerType::EFFECT);
+		/*SelectObject(hdc, oldPen);
+		DeleteObject(pen);*/
 	}
 }

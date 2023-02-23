@@ -1,6 +1,7 @@
 #pragma once
 
 #include "zzGameObject.h"
+
 namespace zz
 {
 	class Monster : public GameObject
@@ -24,6 +25,9 @@ namespace zz
 		float		mSpeed;
 		float		mMaxDistance;
 		int			mDir;
+
 		Texture* monsterTexture;
+		Transform* mTr;
+		Collider* mColli;
 	};
 }

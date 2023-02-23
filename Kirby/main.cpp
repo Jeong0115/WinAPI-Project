@@ -6,6 +6,8 @@
 #include "Kirby.h"
 #include "zzApplication.h"
 #include "zzEngine.h"
+#include "zzResourceMgr.h"
+#include "zzSceneMgr.h"
 
 #define MAX_LOADSTRING 100
 
@@ -60,6 +62,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
         
     }
+
+    zz::SceneMgr::Release();
+    zz::ResourceMgr::Release();
+
     return (int) msg.wParam;
 }
 

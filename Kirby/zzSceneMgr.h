@@ -14,6 +14,7 @@ namespace zz
 		static void Initialize();
 		static void Update();
 		static void Render(HDC hdc);
+		static void Release();
 
 	public:
 		static Scene* GetNowScene() { return mNowScene; }

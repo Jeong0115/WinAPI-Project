@@ -5,6 +5,8 @@
 #include "define.h"
 #include "zzTexture.h"
 #include "zzResourceMgr.h"
+#include "zzTransform.h"
+#include "zzCollider.h"
 
 namespace zz
 {
@@ -21,17 +23,29 @@ namespace zz
 		virtual void Release();
 
 	public:
-		void SetPos(Vector2 pos) { mPos = pos; }
-		void SetScale(Vector2 scale) { mScale = scale; }
+		template <typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+			UINT compType = (UINT)comp->GetType();
+			mComponents[compType] = comp;
 
-		Vector2 GetPos() { return mPos; }
-		Vector2 GetScale() { return mScale; }
+			return comp;
+		}
+
+		template <typename T>
+		T* GetComponent()
+		{
+			for (Component* comp : mComponents)
+			{
+				if (dynamic_cast<T*>(comp))
+					return dynamic_cast<T*>(comp);
+			}
+
+			return nullptr;
+		}
 
 	private:
-		Vector2 mPos;
-		Vector2 mScale;
-
-	protected:
 		std::vector<Component*> mComponents;
 	};
 }
