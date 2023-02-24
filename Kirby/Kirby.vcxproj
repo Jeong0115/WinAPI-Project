@@ -133,6 +133,9 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="zzFireKirbySkill.h" />
+    <ClInclude Include="zzAnimation.h" />
+    <ClInclude Include="zzAnimator.h" />
     <ClInclude Include="zzApplication.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Kirby.h" />
@@ -152,6 +155,7 @@
     <ClInclude Include="zzLayer.h" />
     <ClInclude Include="zzMath.h" />
     <ClInclude Include="zzMonster.h" />
+    <ClInclude Include="zzPauseScene.h" />
     <ClInclude Include="zzPlayScene.h" />
     <ClInclude Include="zzResource.h" />
     <ClInclude Include="zzResourceMgr.h" />
@@ -160,9 +164,13 @@
     <ClInclude Include="zzSelectGDI.h" />
     <ClInclude Include="zzTexture.h" />
     <ClInclude Include="zzTime.h" />
+    <ClInclude Include="zzTitleScene.h" />
     <ClInclude Include="zzTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="zzFireKirbySkill.cpp" />
+    <ClCompile Include="zzAnimation.cpp" />
+    <ClCompile Include="zzAnimator.cpp" />
     <ClCompile Include="zzApplication.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="zzBackGround.cpp" />
@@ -177,6 +185,7 @@
     <ClCompile Include="zzLayer.cpp" />
     <ClCompile Include="zzMath.cpp" />
     <ClCompile Include="zzMonster.cpp" />
+    <ClCompile Include="zzPauseScene.cpp" />
     <ClCompile Include="zzPlayScene.cpp" />
     <ClCompile Include="zzResource.cpp" />
     <ClCompile Include="zzResourceMgr.cpp" />
@@ -184,6 +193,7 @@
     <ClCompile Include="zzSceneMgr.cpp" />
     <ClCompile Include="zzTexture.cpp" />
     <ClCompile Include="zzTime.cpp" />
+    <ClCompile Include="zzTitleScene.cpp" />
     <ClCompile Include="zzTransform.cpp" />
   </ItemGroup>
   <ItemGroup>

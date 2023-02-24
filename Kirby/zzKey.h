@@ -7,7 +7,7 @@ namespace zz
 	enum class eKeyCode
 	{
 		LEFT, RIGHT, UP, DOWN,
-		Z, X, Q, ENTER, ESC, LAST
+		Z, X, Q, P, ENTER, ESC, LAST
 	};
 
 	enum class eKeyState

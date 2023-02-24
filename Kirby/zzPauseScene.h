@@ -1,24 +1,23 @@
 #pragma once
 
 #include "zzScene.h"
-#include "zzTexture.h"
 
 namespace zz
 {
-	class PlayScene : public Scene
+	class PauseScene : public Scene
 	{
 	public:
-		PlayScene();
-		virtual ~PlayScene();
+		PauseScene();
+		virtual ~PauseScene();
 
 	public:
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render(HDC hdc);
-		virtual void Exit();
+		virtual void Release();
 
 	private:
-		Texture* mTex;
+		Texture* tex;
 	};
 }
 

@@ -69,6 +69,7 @@ namespace zz
 		Key::Update();
 		SceneMgr::Update();
 		CollisionMgr::Update();
+		
 	}
 
 	void Application::Render()

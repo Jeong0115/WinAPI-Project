@@ -43,4 +43,14 @@ struct Vector2
 		y = (float)pt.y;
 	}
 
+	Vector2 operator+ (Vector2 other)
+	{
+		return Vector2(x + other.x, y + other.y);
+	}
+
+	Vector2 operator* (int i)
+	{
+		return Vector2(x * (float)i, y * (float)i);
+	}
+
 };

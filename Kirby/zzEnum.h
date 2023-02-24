@@ -5,6 +5,7 @@ enum class eSceneType
 {
 	TITLE,
 	PLAY,
+	PAUSE,
 	ENDING,
 	MAX
 };

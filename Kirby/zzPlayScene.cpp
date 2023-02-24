@@ -4,6 +4,9 @@
 #include "zzApplication.h"
 #include "zzBackGround.h"
 #include "zzCollisionMgr.h"
+#include "zzKey.h"
+#include "zzSceneMgr.h"
+#include "zzFireKirbySkill.h"
 
 namespace zz
 {
@@ -32,19 +35,32 @@ namespace zz
 
 		AddGameObject(monster, eLayerType::MONSTER);
 
+		FireKirbySkill* fireSkill = new FireKirbySkill();
+		AddGameObject(fireSkill, eLayerType::EFFECT);
+
+
 		CollisionMgr::CheckCollision(eLayerType::PLAYER, eLayerType::MONSTER);
+		CollisionMgr::CheckCollision(eLayerType::EFFECT, eLayerType::MONSTER);
+
+		mTex = ResourceMgr::Load<Texture>(L"Controll", L"..\\Resources\\Controll.bmp");
 
 		Scene::Initialize();
 	}
 
 	void PlayScene::Update()
 	{
+		if (KEY(P, UP))
+		{
+			SceneMgr::LoadScene(eSceneType::PAUSE);
+		}
+
 		Scene::Update();
 	}
 
 	void PlayScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
+		BitBlt(hdc, 250 , 250, mTex->GetWidth(), mTex->GetHeight(), mTex->GetHdc(), 0, 0, SRCCOPY);
 	}
 
 	void PlayScene::Exit()

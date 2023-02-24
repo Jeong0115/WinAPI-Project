@@ -10,7 +10,7 @@ namespace zz
 	int ASCII[(UINT)eKeyCode::LAST] =
 	{
 		VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
-		'Z', 'X', 'Q', VK_RETURN, VK_RETURN
+		'Z', 'X', 'Q', 'P', VK_RETURN, VK_RETURN
 	};
 
 	void Key::Initialize()

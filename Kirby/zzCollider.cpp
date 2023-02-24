@@ -26,12 +26,16 @@ namespace zz
 
 	void Collider::Render(HDC hdc)
 	{
-		SelectGDI pen(hdc, Application::GetPen());
+		//SelectGDI pen(hdc, Application::GetPen());
 		SelectGDI brush(hdc, Application::GetHollowBrush());
 
+		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 
 		Rectangle(hdc, mPos.x - mScale.x / 2.f, mPos.y - mScale.y / 2.f
 			, mPos.x + mScale.x / 2.f, mPos.y + mScale.y / 2.f);
+
+		SelectObject(hdc, oldPen);
+		//Application::SetPen(Application::GetGreenPen());
 
 	}
 

@@ -17,11 +17,12 @@ namespace zz
 		static void Release();
 
 	public:
-		static Scene* GetNowScene() { return mNowScene; }
+		static Scene* GetNowScene() { return mCurScene; }
+		static void LoadScene(eSceneType type) { mCurScene = mScenes[(UINT)type]; }
 
 	private:
 		static std::vector<Scene*>	mScenes;
-		static Scene* mNowScene;
+		static Scene* mCurScene;
 	};
 }
 

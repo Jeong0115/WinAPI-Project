@@ -2,8 +2,6 @@
 #include "zzTime.h"
 #include "zzKey.h"
 
-#include "zzMissile.h"
-#include "zzMissileV2.h"
 #include "zzSceneMgr.h"
 #include "zzScene.h"
 #include "zzkirbyComponent.h"
@@ -12,7 +10,7 @@
 namespace zz
 {
 	Kirby::Kirby()
-		: kirbyTexture(nullptr)
+		: mTex(nullptr)
 		, mTr(nullptr)
 	{
 	}
@@ -28,48 +26,85 @@ namespace zz
 		//mComponents.push_back(new kirbyComponent);
 		mTr = AddComponent<Transform>();
 		mColli = AddComponent<Collider>();
+		//kir = AddComponent<kirbyComponent>();
+		mAni = AddComponent<Animator>();
 
-		kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Right", L"..\\Resources\\Kirby_Right.bmp");
 
-		mTr->SetPos(Vector2(10, 140));
+		mTex = ResourceMgr::Load<Texture>(L"Kirby_Right", L"..\\Resources\\Kirby_Right.bmp");
+
+		Texture* tex = ResourceMgr::Load<Texture>(L"Kirby", L"..\\Resources\\Kirby.bmp");
+
+		Texture* FireKirbyStayRight = ResourceMgr::Load<Texture>(L"FireKirbyStayRight", L"..\\Resources\\FireKirby_Staty_Right.bmp");
+		Texture* FireKirbyStayLeft = ResourceMgr::Load<Texture>(L"FireKirbyStayLeft", L"..\\Resources\\FireKirby_Staty_Left.bmp");
+		Texture* FireKirbyWalkRight = ResourceMgr::Load<Texture>(L"FireKirbyWalkRight", L"..\\Resources\\FireKirby_Walk_Right.bmp");
+		Texture* FireKirbyWalkLeft = ResourceMgr::Load<Texture>(L"FireKirbyWalkLeft", L"..\\Resources\\FireKirby_Walk_Left.bmp");
+
+
+
+
+		mAni->CreateAnimation(tex,L"Kirby", Vector2(0.f, 0.f), Vector2(21.6f, 31.f), Vector2(21.6f, 0.f), 0.13f, 10);
+		mAni->CreateAnimation(FireKirbyStayRight, L"FireKirbyStayRight", Vector2(0.f, 0.f), Vector2(26.375f, 33.f), Vector2(26.375f, 0.f), 0.2f, 8);
+		mAni->CreateAnimation(FireKirbyStayLeft, L"FireKirbyStayLeft", Vector2(184.625f, 0.f), Vector2(26.375f, 33.f), Vector2(-26.375f, 0.f), 0.2f, 8);
+		mAni->CreateAnimation(FireKirbyWalkRight, L"FireKirbyWalkRight", Vector2(0.f, 0.f), Vector2(27.3f, 37.f), Vector2(27.35f, 0.f), 0.05f, 20);
+		mAni->CreateAnimation(FireKirbyWalkLeft, L"FireKirbyWalkLeft", Vector2(518.7f, 0.f), Vector2(27.3f, 37.f), Vector2(-27.35f, 0.f), 0.05f, 20);
+
+		mTr->SetPos(Vector2(10, 130));
 		mTr->SetScale(Vector2(20, 18));
 
 		mColli->SetPos(mTr->GetPos());
 		mColli->SetScale(mTr->GetScale());
+
+		mAni->SetPos(mTr->GetPos());
+
+		//kir->SetPos(mTr->GetPos());
 
 		GameObject::Initialize();
 	}
 
 	void Kirby::Update()
 	{
-		GameObject::Update();
-
 		Vector2 vPos = mTr->GetPos();
 
 		if (KEY(LEFT, PRESSED))
 		{
-			kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Left", L"..\\Resources\\Kirby_Left.bmp");
 			vPos.x -= 100.f * Time::DeltaTime();
+			mAni->PlayAnimation(L"FireKirbyWalkLeft", true);
+		}
+
+
+		if (KEY(LEFT, UP))
+		{
+			mAni->PlayAnimation(L"FireKirbyStayLeft", true);
 		}
 
 		if (KEY(RIGHT, PRESSED))
 		{
 			vPos.x += 100.f * Time::DeltaTime();
-			kirbyTexture = ResourceMgr::Load<Texture>(L"Kirby_Right", L"..\\Resources\\Kirby_Right.bmp");
+			mAni->PlayAnimation(L"FireKirbyWalkRight", true);
 		}
 
-		if (KEY(UP, PRESSED))
+		if (KEY(RIGHT, UP))
 		{
-			vPos.y -= 100.f * Time::DeltaTime();
+			//mAni->StopAnimation(L"Kirby");
+			mAni->PlayAnimation(L"FireKirbyStayRight", true);
 		}
 
-		if (KEY(DOWN, PRESSED))
-		{
-			vPos.y += 100.f * Time::DeltaTime();
-		}
+		//if (KEY(UP, PRESSED))
+		//{
+		//	vPos.y -= 100.f * Time::DeltaTime();
+		//}
+
+		//if (KEY(DOWN, PRESSED))
+		//{
+		//	vPos.y += 100.f * Time::DeltaTime();
+		//}
 
 		mTr->SetPos(vPos);
+		//kir->SetPos(vPos);
 		mColli->SetPos(vPos);
+		mAni->SetPos(vPos);
+
+		GameObject::Update();
 		
 	}
 
@@ -77,17 +112,17 @@ namespace zz
 	{
 		
 
-		Vector2 vPos = mTr->GetPos();
-		Vector2 vScale = mTr->GetScale();
+		/*Vector2 vPos = mTr->GetPos();
+		Vector2 vScale = mTr->GetScale();*/
 
 	/*	HPEN pen = CreatePen(PS_SOLID, 5, RGB(30, 100, 20));
 		HPEN oldPen = (HPEN)SelectObject(hdc, pen);*/
 
-		//BitBlt(hdc, vPos.x , vPos.y, kirbyTexture->GetWidth(), kirbyTexture->GetHeight(), kirbyTexture->GetHdc(), 0, 0, SRCCOPY);
+		//BitBlt(hdc, vPos.x , vPos.y, mTex->GetWidth(), mTex->GetHeight(), mTex->GetHdc(), 0, 0, SRCCOPY);
 
-		TransparentBlt(hdc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f, kirbyTexture->GetWidth(), 
-			kirbyTexture->GetHeight(), kirbyTexture->GetHdc(), 0, 0, 
-			kirbyTexture->GetWidth(), kirbyTexture->GetHeight(), RGB(255, 255, 255));
+		/*TransparentBlt(hdc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f, mTex->GetWidth(), 
+			mTex->GetHeight(), mTex->GetHdc(), 0, 0, 
+			mTex->GetWidth(), mTex->GetHeight(), RGB(255, 255, 255));*/
 		
 		GameObject::Render(hdc);
 

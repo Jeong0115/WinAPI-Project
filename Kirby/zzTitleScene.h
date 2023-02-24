@@ -1,15 +1,15 @@
 #pragma once
 
 #include "zzScene.h"
-#include "zzTexture.h"
+#include "zzSceneMgr.h"
 
 namespace zz
 {
-	class PlayScene : public Scene
+	class TitleScene : public Scene
 	{
 	public:
-		PlayScene();
-		virtual ~PlayScene();
+		TitleScene();
+		virtual ~TitleScene();
 
 	public:
 		virtual void Initialize();

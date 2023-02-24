@@ -71,6 +71,21 @@
     <Filter Include="Manager\Collision">
       <UniqueIdentifier>{e19e50c7-3e35-47c3-96c5-2b49880cc4b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. Component\Animator">
+      <UniqueIdentifier>{2c0ffdf1-4d7c-4854-a10c-44b39e087dc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component\Animator\Animation">
+      <UniqueIdentifier>{701f054d-50ca-43e7-a268-6ee29ab7469f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\UI">
+      <UniqueIdentifier>{56b75431-9b97-43c9-b959-1e1a0b421acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\SceneType\PauseScene">
+      <UniqueIdentifier>{266efe16-eed8-4a2c-8ec0-cfb397d2865e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\SceneType\TitleScene">
+      <UniqueIdentifier>{0078107a-2d88-4d51-afab-3ab40dee6818}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -163,6 +178,21 @@
     <ClInclude Include="zzCollisionMgr.h">
       <Filter>Manager\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="zzAnimator.h">
+      <Filter>05. Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="zzAnimation.h">
+      <Filter>05. Component\Animator\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="zzPauseScene.h">
+      <Filter>02. Scene\SceneType\PauseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTitleScene.h">
+      <Filter>02. Scene\SceneType\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFireKirbySkill.h">
+      <Filter>04. GameObject\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
@@ -243,6 +273,21 @@
     </ClCompile>
     <ClCompile Include="zzCollisionMgr.cpp">
       <Filter>Manager\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="zzAnimator.cpp">
+      <Filter>05. Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="zzAnimation.cpp">
+      <Filter>05. Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="zzPauseScene.cpp">
+      <Filter>02. Scene\SceneType\PauseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTitleScene.cpp">
+      <Filter>02. Scene\SceneType\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFireKirbySkill.cpp">
+      <Filter>04. GameObject\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

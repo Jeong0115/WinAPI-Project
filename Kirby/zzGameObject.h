@@ -5,8 +5,7 @@
 #include "define.h"
 #include "zzTexture.h"
 #include "zzResourceMgr.h"
-#include "zzTransform.h"
-#include "zzCollider.h"
+
 
 namespace zz
 {
@@ -43,6 +42,13 @@ namespace zz
 			}
 
 			return nullptr;
+		}
+
+		template <typename T>
+		void SetComponent(T* comp)
+		{
+			UINT compType = (UINT)comp->GetType();
+			mComponents[compType] = comp;
 		}
 
 	private:

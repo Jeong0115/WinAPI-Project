@@ -41,6 +41,11 @@ namespace zz
 		Layer* leftLayer = nowScene->GetLayer((eLayerType)left);
 		Layer* rightLayer = nowScene->GetLayer((eLayerType)right);
 
+		if (leftLayer == nullptr || rightLayer == nullptr)
+			return;
+
+		
+
 		const std::vector<GameObject*>& vecLeft = leftLayer->GetGameObjects();
 		const std::vector<GameObject*>& vecRight = rightLayer->GetGameObjects();
 
@@ -62,11 +67,15 @@ namespace zz
 				if (IsCollision(vecLeft[i]->GetComponent<Collider>()
 					, vecRight[i]->GetComponent<Collider>()))
 				{
-					Application::SetPen(Application::GetRedPen());
+					vecRight[j]->GetComponent<Collider>()->GetPen() = Application::GetRedPen();
+					vecLeft[j]->GetComponent<Collider>()->GetPen() = Application::GetRedPen();
+					//Application::SetPen(Application::GetRedPen());
 				}
 				else
 				{
-					Application::SetPen(Application::GetGreenPen());
+					vecLeft[i]->GetComponent<Collider>()->GetPen() = Application::GetGreenPen();
+					vecRight[i]->GetComponent<Collider>()->GetPen() = Application::GetGreenPen();
+					//Application::SetPen(Application::GetGreenPen());
 				}
 			}
 		}

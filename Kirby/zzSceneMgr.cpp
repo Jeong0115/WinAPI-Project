@@ -1,11 +1,12 @@
 #include "zzSceneMgr.h"
 #include "zzPlayScene.h"
-
+#include "zzPauseScene.h"
+#include "zzTitleScene.h"
 
 namespace zz
 {
 	std::vector<Scene*> SceneMgr::mScenes = {};
-	Scene* SceneMgr::mNowScene = {};
+	Scene* SceneMgr::mCurScene = {};
 
 	SceneMgr::~SceneMgr()
 	{
@@ -15,19 +16,23 @@ namespace zz
 	void SceneMgr::Initialize()
 	{
 		mScenes.resize((UINT)eSceneType::MAX);
+
+		mScenes[(UINT)eSceneType::TITLE] = new TitleScene;
 		mScenes[(UINT)eSceneType::PLAY] = new PlayScene;
+		mScenes[(UINT)eSceneType::PAUSE] = new PauseScene;
+
 		mScenes[(UINT)eSceneType::PLAY]->SetName(L"Play Scene");
 
-		/*for (Scene* scene : mScenes)
+		for (Scene* scene : mScenes)
 		{
 			if (scene == nullptr)
 				continue;
 			scene->Initialize();
-		}*/
+		}
 
-		mNowScene = mScenes[(UINT)eSceneType::PLAY];
+		mCurScene = mScenes[(UINT)eSceneType::TITLE];
 
-		mNowScene->Initialize();
+		//mCurScene->Initialize();
 	}
 
 	void SceneMgr::Update()
@@ -38,7 +43,7 @@ namespace zz
 				continue;
 			scene->Update();
 		}*/
-		mNowScene->Update();
+		mCurScene->Update();
 	}
 
 	void SceneMgr::Render(HDC hdc)
@@ -49,7 +54,7 @@ namespace zz
 				continue;
 			scene->Render(hdc);
 		}*/
-		mNowScene->Render(hdc);
+		mCurScene->Render(hdc);
 	}
 
 	void SceneMgr::Release()

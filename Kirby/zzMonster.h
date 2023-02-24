@@ -1,6 +1,9 @@
 #pragma once
 
 #include "zzGameObject.h"
+#include "zzTransform.h"
+#include "zzCollider.h"
+#include "zzAnimator.h"
 
 namespace zz
 {

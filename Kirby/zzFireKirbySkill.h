@@ -2,31 +2,31 @@
 
 #include "zzGameObject.h"
 #include "zzTransform.h"
-#include "zzCollider.h"
-#include "zzkirbyComponent.h"
+#include "zzTexture.h"
 #include "zzAnimator.h"
+#include "zzCollider.h"
 
 namespace zz
 {
-	class Kirby : public GameObject
+	class FireKirbySkill : public GameObject
 	{
 	public:
-		Kirby();
-		virtual ~Kirby();
+		FireKirbySkill();
+		virtual ~FireKirbySkill();
 
 	public:
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render(HDC hdc);
+		virtual void Release();
 
-	public:
-		
 	private:
-		Texture* mTex;
+		Vector2 mPos;
 		Transform* mTr;
-		Collider* mColli;
 		Animator* mAni;
-		
+		Collider* mColli;
+		int mDir;
+		Collider* temp;
 	};
-}
 
+}

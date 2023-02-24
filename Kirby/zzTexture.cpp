@@ -9,7 +9,7 @@ namespace zz
 		, mWidth(0)
 		, mHeight(0)
 	{
-
+		int a = 0;
 	}
 
 	Texture::~Texture()

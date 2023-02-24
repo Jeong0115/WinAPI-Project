@@ -26,10 +26,14 @@ namespace zz
 		Vector2 GetScale() { return mScale; }
 		Vector2 GetPos() { return mPos; }
 
+
+		HPEN& GetPen() { return pen; }
+
 	private:
 		//Vector2 mOffsetPos;
 		Vector2 mPos;
 		Vector2 mScale;
+		HPEN pen;
 	};
 
 }
