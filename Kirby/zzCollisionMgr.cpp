@@ -131,9 +131,12 @@ namespace zz
 		{
 			return true;
 		}*/
+		GameObject* leftObj = left->GetOwner();
+		GameObject* RightObj = right->GetOwner();
 
-		if (abs(left->GetPos().x - right->GetPos().x) < (left->GetScale().x + right->GetScale().x) / 2.f
-			&& abs(left->GetPos().y - right->GetPos().y) < (left->GetScale().y + right->GetScale().y) / 2.f)
+		if (abs(leftObj->GetPos().x - RightObj->GetPos().x) < (leftObj->GetScale().x + RightObj->GetScale().x) / 2.f
+			&& abs((leftObj->GetPos().y - leftObj->GetScale().y / 2.f)
+				- (RightObj->GetPos().y - RightObj->GetScale().y / 2.f)) < (leftObj->GetScale().y + RightObj->GetScale().y) / 2.f)
 		{
 			return true;
 		}

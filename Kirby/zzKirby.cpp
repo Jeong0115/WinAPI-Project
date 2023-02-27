@@ -11,10 +11,10 @@ namespace zz
 {
 	Kirby::Kirby()
 		: mTex(nullptr)
-		, mTr(nullptr)
 		, mColli(nullptr)
 		, mAni(nullptr)
 		, state(0)
+		, mDir(1)
 	{
 	}
 
@@ -27,7 +27,6 @@ namespace zz
 		
 		//mComponents
 		//mComponents.push_back(new kirbyComponent);
-		mTr = AddComponent<Transform>();
 		mColli = AddComponent<Collider>();
 		//kir = AddComponent<kirbyComponent>();
 		mAni = AddComponent<Animator>();
@@ -66,21 +65,17 @@ namespace zz
 		mAni->CreateAnimation(FireKirbyWalkRight, L"FireKirbyWalkRight", Vector2(0.f, 0.f), Vector2(27.3f, 37.f), Vector2(27.35f, 0.f), 0.05f, 20);
 		mAni->CreateAnimation(FireKirbyWalkLeft, L"FireKirbyWalkLeft", Vector2(518.7f, 0.f), Vector2(27.3f, 37.f), Vector2(-27.35f, 0.f), 0.05f, 20);
 
-		mAni->CreateAnimation(IceKirbyStayRight, L"IceKirbyStayRight", Vector2(0.f, 0.f), Vector2(26.f, 29.f), Vector2(26.f, 0.f), 0.2f, 2);
-		mAni->CreateAnimation(IceKirbyStayLeft, L"IceKirbyStayLeft", Vector2(26.f, 0.f), Vector2(26.f, 29.f), Vector2(-26.f, 0.f), 0.2f, 2);
-		mAni->CreateAnimation(IceKirbyWalkRight, L"IceKirbyWalkRight", Vector2(0.f, 0.f), Vector2(26.f, 27.f), Vector2(26.f, 0.f), 0.05f, 10);
-		mAni->CreateAnimation(IceKirbyWalkLeft, L"IceKirbyWalkLeft", Vector2(234.f, 0.f), Vector2(26.f, 27.f), Vector2(-26.f, 0.f), 0.05f, 10);
+		mAni->CreateAnimation(IceKirbyStayRight, L"IceKirbyStayRight", Vector2(0.f, 0.f), Vector2(26.f, 29.f), Vector2(26.f, 0.f), 0.8f, 2);
+		mAni->CreateAnimation(IceKirbyStayLeft, L"IceKirbyStayLeft", Vector2(26.f, 0.f), Vector2(26.f, 29.f), Vector2(-26.f, 0.f), 0.8f, 2);
+		mAni->CreateAnimation(IceKirbyWalkRight, L"IceKirbyWalkRight", Vector2(0.f, 0.f), Vector2(26.f, 27.f), Vector2(26.f, 0.f), 0.1f, 10);
+		mAni->CreateAnimation(IceKirbyWalkLeft, L"IceKirbyWalkLeft", Vector2(234.f, 0.f), Vector2(26.f, 27.f), Vector2(-26.f, 0.f), 0.1f, 10);
 
 		
 
 
-		mTr->SetPos(Vector2(10, 130));
-		mTr->SetScale(Vector2(20, 18));
+		SetPos(Vector2(15, 150));
+		SetScale(Vector2(20, 18));
 
-		mColli->SetPos(mTr->GetPos());
-		mColli->SetScale(mTr->GetScale());
-
-		mAni->SetPos(mTr->GetPos());
 
 		//kir->SetPos(mTr->GetPos());
 
@@ -89,12 +84,22 @@ namespace zz
 
 	void Kirby::Update()
 	{
-		Vector2 vPos = mTr->GetPos();
+		Vector2 vPos = GetPos();
+
+		if (mDir == 1)
+		{
+			mAni->PlayAnimation(mStayRightKeys[state], true);
+		}
+		else
+		{
+			mAni->PlayAnimation(mStayLeftKeys[state], true);
+		}
 
 		if (KEY(LEFT, PRESSED))
 		{
 			vPos.x -= (float)(100.f * Time::DeltaTime());
 			mAni->PlayAnimation(mWalkLeftKeys[state], true);
+			mDir = -1;
 		}
 
 
@@ -107,6 +112,7 @@ namespace zz
 		{
 			vPos.x += (float)(100.f * Time::DeltaTime());
 			mAni->PlayAnimation(mWalkRightKeys[state], true);
+			mDir = 1;
 		}
 
 		if (KEY(RIGHT, UP))
@@ -123,6 +129,7 @@ namespace zz
 			//mAni->PlayAnimation(L"TransformEffect", true);
 		}
 
+		
 		//if (KEY(UP, PRESSED))
 		//{
 		//	vPos.y -= 100.f * Time::DeltaTime();
@@ -133,10 +140,9 @@ namespace zz
 		//	vPos.y += 100.f * Time::DeltaTime();
 		//}
 
-		mTr->SetPos(vPos);
 		//kir->SetPos(vPos);
-		mColli->SetPos(vPos);
-		mAni->SetPos(vPos);
+
+		SetPos(vPos);
 
 		GameObject::Update();
 		

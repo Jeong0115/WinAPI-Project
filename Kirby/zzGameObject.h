@@ -22,10 +22,15 @@ namespace zz
 		virtual void Release();
 
 	public:
-		bool IsDeactivate() { return !mActivate; }
+		Vector2 GetPos() { return mPos; }
+		Vector2 GetScale() { return mScale; }
+		void SetPos(Vector2 pos) { mPos = pos; }
+		void SetScale(Vector2 scale) { mScale = scale; }
+
+		bool IsDeactivate() { return !mbActivate; }
 
 	private:
-		void SetDeactivate() { mActivate = false; }
+		void SetDeactivate() { mbActivate = false; }
 
 		friend class EventMgr;
 
@@ -36,6 +41,7 @@ namespace zz
 			T* comp = new T();
 			UINT compType = (UINT)comp->GetType();
 			mComponents[compType] = comp;
+			comp->SetOwner(this);
 
 			return comp;
 		}
@@ -61,7 +67,9 @@ namespace zz
 
 	private:
 		std::vector<Component*> mComponents;
-		bool mActivate;
+		bool					mbActivate;
+		Vector2					mPos;
+		Vector2					mScale;
 	};
 }
 

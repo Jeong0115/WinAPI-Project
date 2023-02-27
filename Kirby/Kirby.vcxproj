@@ -167,7 +167,6 @@
     <ClInclude Include="zzTexture.h" />
     <ClInclude Include="zzTime.h" />
     <ClInclude Include="zzTitleScene.h" />
-    <ClInclude Include="zzTransform.h" />
     <ClInclude Include="zzTransformEffect.h" />
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +198,6 @@
     <ClCompile Include="zzTexture.cpp" />
     <ClCompile Include="zzTime.cpp" />
     <ClCompile Include="zzTitleScene.cpp" />
-    <ClCompile Include="zzTransform.cpp" />
     <ClCompile Include="zzTransformEffect.cpp" />
   </ItemGroup>
   <ItemGroup>

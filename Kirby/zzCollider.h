@@ -26,11 +26,6 @@ namespace zz
 		void OnCollisionExit();
 
 	public:
-		void SetScale(Vector2 scale) { mScale = scale; }
-		void SetPos(Vector2 pos) { mPos = pos; }
-
-		Vector2 GetScale() { return mScale; }
-		Vector2 GetPos() { return mPos; }
 
 		UINT GetID() { return mID; }
 
@@ -39,8 +34,6 @@ namespace zz
 
 	private:
 		//Vector2 mOffsetPos;
-		Vector2		mPos;
-		Vector2		mScale;
 		HPEN		pen;
 		UINT		mID;
 		int			mColliCnt;

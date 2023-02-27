@@ -7,6 +7,7 @@ namespace zz
 		: mCurFrame(0)
 		, mTime(0)
 		, mFinish(false)
+		, mTex(nullptr)
 	{
 	}
 
@@ -40,7 +41,7 @@ namespace zz
 			return;
 
 		TransparentBlt(hdc, (int)(mPos.x - mFrames[mCurFrame].texSize.x / 2.f)
-			, (int)(mPos.y - mFrames[mCurFrame].texSize.y / 2.f)
+			, (int)(mPos.y - mFrames[mCurFrame].texSize.y)
 			, (int)(mFrames[mCurFrame].texSize.x)	, (int)(mFrames[mCurFrame].texSize.y), mTex->GetHdc()
 			, (int)(mFrames[mCurFrame].pos.x)		, (int)(mFrames[mCurFrame].pos.y)
 			, (int)(mFrames[mCurFrame].texSize.x)	, (int)(mFrames[mCurFrame].texSize.y), RGB(255, 0, 255));
@@ -51,12 +52,16 @@ namespace zz
 	{
 		mTex = tex;
 
+		
 		FrameInfo frame;
 		for (UINT i = 0; i < texCnt; i++)
 		{
 			frame.delay = delay;
 			frame.texSize = texSize;
 			frame.pos = startPos + interval * i;
+
+			frame.offset.x = texSize.x / 2.f;
+			frame.offset.y = texSize.y;
 
 			mFrames.push_back(frame);
 		}

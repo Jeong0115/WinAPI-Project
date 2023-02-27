@@ -10,8 +10,6 @@ namespace zz
 
 	Collider::Collider()
 		: Component(eCompType::COLLIDER)
-		, mPos(Vector2(0.f, 0.f))
-		, mScale(Vector2(0.f, 0.f))
 		, pen(nullptr)
 		, mID(gNextID++)
 		, mColliCnt(0)
@@ -52,8 +50,11 @@ namespace zz
 		//pen = CreatePen(PS_SOLID, 10 ,RGB(13, 44, 33));
 		//HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 
-		Rectangle(hdc, (int)(mPos.x - mScale.x / 2.f), (int)(mPos.y - mScale.y / 2.f)
-			, (int)(mPos.x + mScale.x / 2.f), (int)(mPos.y + mScale.y / 2.f));
+		Vector2 pos = GetOwner()->GetPos();
+		Vector2 scale = GetOwner()->GetScale();
+
+		Rectangle(hdc, (int)(pos.x - scale.x / 2.f), (int)(pos.y - scale.y)
+			, (int)(pos.x + scale.x / 2.f), (int)(pos.y));
 
 		//SelectObject(hdc, oldPen);
 		//DeleteObject(pen);

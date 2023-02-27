@@ -1,11 +1,13 @@
 #include "zzAnimator.h"
+#include "zzGameObject.h"
 
 namespace zz
 {
+
 	Animator::Animator()
 		: Component(eCompType::ANIMATOR)
 		, mCurAnimation(nullptr)
-		, mRepeat(false)
+		, mbLoop(false)
 	{
 	}
 
@@ -22,9 +24,9 @@ namespace zz
 	{
 		if(mCurAnimation!=nullptr)
 		{
-			mCurAnimation->Update(mPos);
+			mCurAnimation->Update(GetOwner()->GetPos());
 
-			if (mRepeat && mCurAnimation->IsFinish())
+			if (mbLoop && mCurAnimation->IsFinish())
 			{
 				mCurAnimation->Repeat(0);
 			}
@@ -71,16 +73,17 @@ namespace zz
 		return iter->second;
 	}
 
-	void Animator::PlayAnimation(const std::wstring& key, bool repeat)
+	void Animator::PlayAnimation(const std::wstring& key, bool loop)
 	{
 		mCurAnimation = FindAnimation(key);
-		mRepeat = repeat;
+		mCurAnimation->ResetFnish();
+		mbLoop = loop;
 	}
 
 	void Animator::StopAnimation(const std::wstring& key)
 	{
 		mCurAnimation = FindAnimation(key);
 		mCurAnimation->SetFinish(true);
-		mRepeat = false;
+		mbLoop = false;
 	}
 }

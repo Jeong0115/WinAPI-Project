@@ -1,7 +1,6 @@
 #pragma once
 
 #include "zzGameObject.h"
-#include "zzTransform.h"
 #include "zzCollider.h"
 #include "zzkirbyComponent.h"
 #include "zzAnimator.h"
@@ -23,7 +22,6 @@ namespace zz
 		
 	private:
 		Texture* mTex;
-		Transform* mTr;
 		Collider* mColli;
 		Animator* mAni;
 
@@ -33,7 +31,7 @@ namespace zz
 		std::vector<std::wstring> mWalkLeftKeys;
 
 		int state;
-
+		int mDir;
 	};
 }
 

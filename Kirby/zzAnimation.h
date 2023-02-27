@@ -9,6 +9,7 @@ namespace zz
 	{
 		Vector2 pos;
 		Vector2 texSize;
+		Vector2 offset;
 		float delay;
 	};
 
@@ -27,6 +28,7 @@ namespace zz
 		const std::wstring& GetKey() { return mKey; }
 		bool IsFinish() { return mFinish; }
 		void SetFinish(bool b) { mFinish = b; }
+		void ResetFnish() { mFinish = false;}
 		void Repeat(int frame) 
 		{
 			mCurFrame = frame;

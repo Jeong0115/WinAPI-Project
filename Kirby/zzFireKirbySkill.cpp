@@ -7,7 +7,6 @@ namespace zz
 	FireKirbySkill::FireKirbySkill()
 		: mDir(1)
 		, obj(nullptr)
-		, mTr(nullptr)
 		, mAni(nullptr)
 		, mColli(nullptr)
 	{
@@ -20,7 +19,6 @@ namespace zz
 	{
 		GameObject::Initialize();
 
-		mTr = AddComponent<Transform>();
 		mAni = AddComponent<Animator>();
 		mColli = AddComponent<Collider>();
 
@@ -30,11 +28,8 @@ namespace zz
 		mAni->CreateAnimation(mSkillTex, L"FireSkill", Vector2(0.f, 0.f), Vector2(36.928f, 32.f), Vector2(36.928f, 0.f), 0.04f, 14);
 		mAni->CreateAnimation(mSkillTex1, L"FireSkill1", Vector2(0.f, 0.f), Vector2(36.928f, 32.f), Vector2(36.928f, 0.f), 0.04f, 14);
 
-		mTr->SetPos(Vector2(-20.f, -20.f));
-		mTr->SetScale(Vector2(36.928f, 32.f));
-		mAni->SetPos(mTr->GetPos());
-		mColli->SetPos(mTr->GetPos());
-		mColli->SetScale(mTr->GetScale());
+		SetPos(Vector2(-20.f, -20.f));
+		SetScale(Vector2(36.928f, 32.f));
 
 		
 		//temp = new Collider;
@@ -71,15 +66,15 @@ namespace zz
 		if (KEY(X, PRESSED))
 		{
 			//SetComponent<Collider>(mColli);
-			mTr->SetPos(obj->GetComponent<Transform>()->GetPos());
+			SetPos(obj->GetPos());
 			if (mDir == 1)
 			{
-				mTr->SetPos(Vector2(mTr->GetPos().x + 30.f, mTr->GetPos().y));
+				SetPos(Vector2(GetPos().x + 30.f, GetPos().y));
 				mAni->PlayAnimation(L"FireSkill", true);
 			}
 			else
 			{
-				mTr->SetPos(Vector2(mTr->GetPos().x - 30.f, mTr->GetPos().y));
+				SetPos(Vector2(GetPos().x - 30.f, GetPos().y));
 				mAni->PlayAnimation(L"FireSkill1", true);
 			}
 		}
@@ -88,7 +83,7 @@ namespace zz
 		{
 			mAni->StopAnimation(L"FireSkill1");
 			mAni->StopAnimation(L"FireSkill");
-			mTr->SetPos(Vector2(-20.f, -20.f));
+			SetPos(Vector2(-20.f, -20.f));
 			//SetComponent<Collider>(temp);
 		}
 
@@ -100,9 +95,7 @@ namespace zz
 		//		vPos.x -= 60.f;
 		//}
 
-		mColli->SetPos(mTr->GetPos());
 		//mTr->SetPos(vPos);
-		mAni->SetPos(mTr->GetPos());
 
 		GameObject::Update();
 	}

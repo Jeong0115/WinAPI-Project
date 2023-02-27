@@ -1,7 +1,6 @@
 #pragma once
 
 #include "zzGameObject.h"
-#include "zzTransform.h"
 #include "zzTexture.h"
 #include "zzAnimator.h"
 #include "zzCollider.h"
@@ -21,10 +20,8 @@ namespace zz
 		virtual void Release();
 
 		GameObject* obj;
-	private:
-		
 
-		Transform* mTr;
+	private:
 		Animator* mAni;
 		Collider* mColli;
 		int mDir;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "zzGameObject.h"
-#include "zzTransform.h"
 #include "zzCollider.h"
 #include "zzAnimator.h"
 #include "zzTexture.h"
@@ -31,7 +30,6 @@ namespace zz
 		int			mDir;
 
 		Texture* monsterTexture;
-		Transform* mTr;
 		Collider* mColli;
 		Animator* mAni;
 	};

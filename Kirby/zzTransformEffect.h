@@ -1,7 +1,6 @@
 #pragma once
 
 #include "zzGameObject.h"
-#include "zzTransform.h"
 #include "zzAnimator.h"
 
 namespace zz
@@ -21,7 +20,6 @@ namespace zz
 		GameObject* obj;
 
 	private:
-		Transform* mTr;
 		Animator* mAni;
 	};
 

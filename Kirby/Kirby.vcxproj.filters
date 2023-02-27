@@ -65,9 +65,6 @@
     <Filter Include="05. Component\Collider">
       <UniqueIdentifier>{d50aa4d8-9df2-4ccd-a90c-4d25ed5c38a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05. Component\Transform">
-      <UniqueIdentifier>{49bb9e73-cf32-41d6-a3f1-dd89f373dfa3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\Collision">
       <UniqueIdentifier>{e19e50c7-3e35-47c3-96c5-2b49880cc4b7}</UniqueIdentifier>
     </Filter>
@@ -171,9 +168,6 @@
     </ClInclude>
     <ClInclude Include="zzCollider.h">
       <Filter>05. Component\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="zzTransform.h">
-      <Filter>05. Component\Transform</Filter>
     </ClInclude>
     <ClInclude Include="zzkirbyComponent.h">
       <Filter>05. Component</Filter>
@@ -279,9 +273,6 @@
     </ClCompile>
     <ClCompile Include="zzCollider.cpp">
       <Filter>05. Component\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="zzTransform.cpp">
-      <Filter>05. Component\Transform</Filter>
     </ClCompile>
     <ClCompile Include="zzkirbyComponent.cpp">
       <Filter>05. Component</Filter>

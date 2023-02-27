@@ -6,7 +6,6 @@ namespace zz
 {
 	TransformEffect::TransformEffect()
 		: mAni(nullptr)
-		, mTr(nullptr)
 		, obj(nullptr)
 	{
 
@@ -19,7 +18,6 @@ namespace zz
 	void TransformEffect::Initialize()
 	{
 		mAni = AddComponent<Animator>();
-		mTr = AddComponent<Transform>();
 
 		Texture* TransformEffect = ResourceMgr::Load<Texture>(L"TransformEffect", L"..\\Resources\\TransformEffect.bmp");
 
@@ -28,10 +26,9 @@ namespace zz
 
 	void TransformEffect::Update()
 	{
-		mTr->SetPos(obj->GetComponent<Transform>()->GetPos());
-		mTr->SetScale(Vector2(81.714f, 59.f));
+		SetPos(Vector2(obj->GetPos().x, obj->GetPos().y + 10.f));
+		SetScale(Vector2(81.714f, 59.f));
 
-		mAni->SetPos(mTr->GetPos());
 		//mAni->SetPos(Vector2(100.f, 100.f));
 
 
