@@ -2,17 +2,15 @@
 
 #include "zzGameObject.h"
 #include "zzTransform.h"
-#include "zzTexture.h"
 #include "zzAnimator.h"
-#include "zzCollider.h"
 
 namespace zz
 {
-	class FireKirbySkill : public GameObject
+	class TransformEffect : public GameObject
 	{
 	public:
-		FireKirbySkill();
-		virtual ~FireKirbySkill();
+		TransformEffect();
+		virtual ~TransformEffect();
 
 	public:
 		virtual void Initialize();
@@ -21,14 +19,10 @@ namespace zz
 		virtual void Release();
 
 		GameObject* obj;
-	private:
-		
 
+	private:
 		Transform* mTr;
 		Animator* mAni;
-		Collider* mColli;
-		int mDir;
-		//Collider* temp;
 	};
 
 }

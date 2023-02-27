@@ -6,6 +6,10 @@ namespace zz
 {
 	FireKirbySkill::FireKirbySkill()
 		: mDir(1)
+		, obj(nullptr)
+		, mTr(nullptr)
+		, mAni(nullptr)
+		, mColli(nullptr)
 	{
 	}
 	FireKirbySkill::~FireKirbySkill()
@@ -26,35 +30,31 @@ namespace zz
 		mAni->CreateAnimation(mSkillTex, L"FireSkill", Vector2(0.f, 0.f), Vector2(36.928f, 32.f), Vector2(36.928f, 0.f), 0.04f, 14);
 		mAni->CreateAnimation(mSkillTex1, L"FireSkill1", Vector2(0.f, 0.f), Vector2(36.928f, 32.f), Vector2(36.928f, 0.f), 0.04f, 14);
 
-		mTr->SetPos(Vector2(40.f, 135.f));
+		mTr->SetPos(Vector2(-20.f, -20.f));
 		mTr->SetScale(Vector2(36.928f, 32.f));
 		mAni->SetPos(mTr->GetPos());
 		mColli->SetPos(mTr->GetPos());
 		mColli->SetScale(mTr->GetScale());
 
-
-		temp = new Collider;
-		SetComponent<Collider>(temp);
+		
+		//temp = new Collider;
+		//SetComponent<Collider>(temp);
 	}
 
 	void FireKirbySkill::Update()
 	{
 
-		int prevDir = mDir;
-		Vector2 vPos = mTr->GetPos();
-
+		//int prevDir = mDir;
 
 		
 
 		if (KEY(LEFT, PRESSED))
 		{
-			vPos.x -= 100.f * Time::DeltaTime();
 			mDir = -1;
 		}
 
 		if (KEY(RIGHT, PRESSED))
 		{
-			vPos.x += 100.f * Time::DeltaTime();
 			mDir = 1;
 		}
 
@@ -70,13 +70,16 @@ namespace zz
 
 		if (KEY(X, PRESSED))
 		{
-			SetComponent<Collider>(mColli);
+			//SetComponent<Collider>(mColli);
+			mTr->SetPos(obj->GetComponent<Transform>()->GetPos());
 			if (mDir == 1)
 			{
+				mTr->SetPos(Vector2(mTr->GetPos().x + 30.f, mTr->GetPos().y));
 				mAni->PlayAnimation(L"FireSkill", true);
 			}
 			else
 			{
+				mTr->SetPos(Vector2(mTr->GetPos().x - 30.f, mTr->GetPos().y));
 				mAni->PlayAnimation(L"FireSkill1", true);
 			}
 		}
@@ -85,21 +88,21 @@ namespace zz
 		{
 			mAni->StopAnimation(L"FireSkill1");
 			mAni->StopAnimation(L"FireSkill");
-
-			SetComponent<Collider>(temp);
+			mTr->SetPos(Vector2(-20.f, -20.f));
+			//SetComponent<Collider>(temp);
 		}
 
-		if (prevDir != mDir)
-		{
-			if (mDir == 1)
-				vPos.x += 60.f;
-			else
-				vPos.x -= 60.f;
-		}
+		//if (prevDir != mDir)
+		//{
+		//	if (mDir == 1)
+		//		vPos.x += 60.f;
+		//	else
+		//		vPos.x -= 60.f;
+		//}
 
-		mColli->SetPos(vPos);
-		mTr->SetPos(vPos);
-		mAni->SetPos(vPos);
+		mColli->SetPos(mTr->GetPos());
+		//mTr->SetPos(vPos);
+		mAni->SetPos(mTr->GetPos());
 
 		GameObject::Update();
 	}

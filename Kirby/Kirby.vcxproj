@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="zzEventMgr.h" />
     <ClInclude Include="zzFireKirbySkill.h" />
     <ClInclude Include="zzAnimation.h" />
     <ClInclude Include="zzAnimator.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="zzEngine.h" />
     <ClInclude Include="zzEntity.h" />
     <ClInclude Include="zzEnum.h" />
+    <ClInclude Include="zzFunction.h" />
     <ClInclude Include="zzGameObject.h" />
     <ClInclude Include="zzKey.h" />
     <ClInclude Include="zzKirby.h" />
@@ -166,8 +168,10 @@
     <ClInclude Include="zzTime.h" />
     <ClInclude Include="zzTitleScene.h" />
     <ClInclude Include="zzTransform.h" />
+    <ClInclude Include="zzTransformEffect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="zzEventMgr.cpp" />
     <ClCompile Include="zzFireKirbySkill.cpp" />
     <ClCompile Include="zzAnimation.cpp" />
     <ClCompile Include="zzAnimator.cpp" />
@@ -178,6 +182,7 @@
     <ClCompile Include="zzCollisionMgr.cpp" />
     <ClCompile Include="zzComponent.cpp" />
     <ClCompile Include="zzEntity.cpp" />
+    <ClCompile Include="zzFunction.cpp" />
     <ClCompile Include="zzGameObject.cpp" />
     <ClCompile Include="zzKey.cpp" />
     <ClCompile Include="zzKirby.cpp" />
@@ -195,6 +200,7 @@
     <ClCompile Include="zzTime.cpp" />
     <ClCompile Include="zzTitleScene.cpp" />
     <ClCompile Include="zzTransform.cpp" />
+    <ClCompile Include="zzTransformEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc" />

@@ -39,7 +39,7 @@ namespace zz
 		Texture*					mTex;
 		std::vector<FrameInfo>		mFrames;
 		int							mCurFrame;
-		float						mTime;
+		double						mTime;
 		bool						mFinish;
 		Vector2						mPos;
 	};

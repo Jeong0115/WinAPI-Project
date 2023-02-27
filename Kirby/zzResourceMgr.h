@@ -49,7 +49,7 @@ namespace zz
 			for (auto pair : mResources)
 			{
 				delete pair.second;
-				pair.second == nullptr;
+				pair.second = nullptr;
 			}
 		}
 	private:

@@ -13,7 +13,7 @@ namespace zz
 			, mPen(nullptr)
 			, mHdc(hdc)
 		{
-			mBrush = (HBRUSH)SelectObject(hdc, brush);
+			mBrush = (HBRUSH)SelectObject(mHdc, brush);
 		}
 
 		SelectGDI(HDC hdc, HPEN pen)
@@ -21,7 +21,7 @@ namespace zz
 			, mPen(nullptr)
 			, mHdc(hdc)
 		{
-			mPen = (HPEN)SelectObject(hdc, pen);
+			mPen = (HPEN)SelectObject(mHdc, pen);
 		}
 
 		~SelectGDI()

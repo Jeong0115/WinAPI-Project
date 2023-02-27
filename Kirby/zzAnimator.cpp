@@ -11,6 +11,11 @@ namespace zz
 
 	Animator::~Animator()
 	{
+		for (auto pair : mAnimations)
+		{
+			delete pair.second;
+			pair.second = nullptr;
+		}
 	}
 
 	void Animator::Update()
@@ -39,7 +44,7 @@ namespace zz
 		for (auto pair : mAnimations)
 		{
 			delete pair.second;
-			pair.second == nullptr;
+			pair.second = nullptr;
 		}
 	}
 

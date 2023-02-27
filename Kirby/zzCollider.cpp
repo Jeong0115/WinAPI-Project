@@ -6,10 +6,21 @@
 
 namespace zz
 {
+	UINT Collider::gNextID = 0;
+
 	Collider::Collider()
 		: Component(eCompType::COLLIDER)
+		, mPos(Vector2(0.f, 0.f))
+		, mScale(Vector2(0.f, 0.f))
+		, pen(nullptr)
+		, mID(gNextID++)
+		, mColliCnt(0)
 	{
 	}
+
+	/*Collider::Collider(const Collider& origin)
+	{
+	}*/
 
 	Collider::~Collider()
 	{
@@ -21,25 +32,47 @@ namespace zz
 
 	void Collider::Update()
 	{
-
+		if (mColliCnt < 0)
+			assert(false);
 	}
 
 	void Collider::Render(HDC hdc)
 	{
-		//SelectGDI pen(hdc, Application::GetPen());
-		SelectGDI brush(hdc, Application::GetHollowBrush());
+		pen = Application::GetGreenPen();
 
-		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
+		if(mColliCnt)
+		{
+			pen = Application::GetRedPen();
+		}
 
-		Rectangle(hdc, mPos.x - mScale.x / 2.f, mPos.y - mScale.y / 2.f
-			, mPos.x + mScale.x / 2.f, mPos.y + mScale.y / 2.f);
+		SelectGDI SelectPen(hdc, pen);
+		SelectGDI SelectBrush(hdc, Application::GetHollowBrush());
+		
 
-		SelectObject(hdc, oldPen);
+		//pen = CreatePen(PS_SOLID, 10 ,RGB(13, 44, 33));
+		//HPEN oldPen = (HPEN)SelectObject(hdc, pen);
+
+		Rectangle(hdc, (int)(mPos.x - mScale.x / 2.f), (int)(mPos.y - mScale.y / 2.f)
+			, (int)(mPos.x + mScale.x / 2.f), (int)(mPos.y + mScale.y / 2.f));
+
+		//SelectObject(hdc, oldPen);
+		//DeleteObject(pen);
 		//Application::SetPen(Application::GetGreenPen());
 
 	}
 
 	void Collider::Release()
 	{
+	}
+	void Collider::OnCollision()
+	{
+	}
+	void Collider::OnCollisionEnter()
+	{
+		mColliCnt++;
+	}
+	void Collider::OnCollisionExit()
+	{
+		mColliCnt--;
 	}
 }

@@ -3,6 +3,8 @@
 #include "zzTime.h"
 #include "zzKey.h"
 #include "zzCollisionMgr.h"
+#include "zzEventMgr.h"
+
 
 namespace zz
 {	
@@ -67,6 +69,7 @@ namespace zz
 	{
 		Time::Update();
 		Key::Update();
+
 		SceneMgr::Update();
 		CollisionMgr::Update();
 		
@@ -79,5 +82,7 @@ namespace zz
 		SceneMgr::Render(mBitMapHdc);
 
 		BitBlt(mHdc, 0, 0, mResolution.x, mResolution.y, mBitMapHdc, 0, 0, SRCCOPY);
+
+		EventMgr::Update();
 	}
 }

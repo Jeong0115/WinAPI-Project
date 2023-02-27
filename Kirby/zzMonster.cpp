@@ -8,6 +8,10 @@ namespace zz
 		, mCenterPos{ Vector2(0.f,0.f) }
 		, mMaxDistance(80.f)
 		, mDir(1)
+		, monsterTexture(nullptr)
+		, mTr(nullptr)
+		, mColli(nullptr)
+		, mAni(nullptr)
 	{
 	}
 
@@ -22,7 +26,9 @@ namespace zz
 		mTr = AddComponent<Transform>();
 		mColli = AddComponent<Collider>();
 
-		monsterTexture = ResourceMgr::Load<Texture>(L"monsetr", L"..\\Resources\\Monster_Right.bmp");
+		monsterTexture = ResourceMgr::Load<Texture>(L"Monster_Right", L"..\\Resources\\Monster_Right.bmp");
+
+		//mAni->CreateAnimation(monsterTexture, L"monster", Vector2(0.f, 0.f), Vector2(72.75f, 65.f), Vector2(72.75f, 0.f), 0.2f, 4);
 
 		mTr->SetPos(Vector2( 500.f, 120.f ));
 		mTr->SetScale(Vector2(62.f, 55.f));
@@ -39,7 +45,7 @@ namespace zz
 
 		Vector2 curPos = mTr->GetPos();
 
-		curPos.x += Time::DeltaTime() * mSpeed * mDir;
+		curPos.x += (float)Time::DeltaTime() * mSpeed * mDir;
 
 		float dist = abs(mCenterPos.x - curPos.x) - mMaxDistance;
 
@@ -54,6 +60,7 @@ namespace zz
 			else
 			{
 				monsterTexture = ResourceMgr::Load<Texture>(L"Monster_Left", L"..\\Resources\\Monster_Left.bmp");
+				//mAni->PlayAnimation(L"monster", true);
 
 			}
 		}
@@ -67,7 +74,7 @@ namespace zz
 		Vector2 vPos = mTr->GetPos();
 		Vector2 vScale = mTr->GetScale();
 
-		TransparentBlt(hdc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f, monsterTexture->GetWidth(),
+		TransparentBlt(hdc, (int)(vPos.x - vScale.x / 2.f), (int)(vPos.y - vScale.y / 2.f), monsterTexture->GetWidth(),
 			monsterTexture->GetHeight(), monsterTexture->GetHdc(), 0, 0,
 			monsterTexture->GetWidth(), monsterTexture->GetHeight(), RGB(0, 255, 0));
 

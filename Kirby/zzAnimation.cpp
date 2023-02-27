@@ -28,7 +28,7 @@ namespace zz
 			mCurFrame++;
 			if (mCurFrame >= mFrames.size())
 			{
-				mCurFrame = -1;
+				mCurFrame = 0;
 				mFinish = true;
 			}
 		}
@@ -39,10 +39,11 @@ namespace zz
 		if (mFinish)
 			return;
 
-		TransparentBlt(hdc, mPos.x - mFrames[mCurFrame].texSize.x / 2.f, mPos.y - mFrames[mCurFrame].texSize.y / 2.f
-			, mFrames[mCurFrame].texSize.x, mFrames[mCurFrame].texSize.y, mTex->GetHdc()
-			, mFrames[mCurFrame].pos.x, mFrames[mCurFrame].pos.y
-			, mFrames[mCurFrame].texSize.x, mFrames[mCurFrame].texSize.y, RGB(255, 0, 255));
+		TransparentBlt(hdc, (int)(mPos.x - mFrames[mCurFrame].texSize.x / 2.f)
+			, (int)(mPos.y - mFrames[mCurFrame].texSize.y / 2.f)
+			, (int)(mFrames[mCurFrame].texSize.x)	, (int)(mFrames[mCurFrame].texSize.y), mTex->GetHdc()
+			, (int)(mFrames[mCurFrame].pos.x)		, (int)(mFrames[mCurFrame].pos.y)
+			, (int)(mFrames[mCurFrame].texSize.x)	, (int)(mFrames[mCurFrame].texSize.y), RGB(255, 0, 255));
 	}
 
 	void Animation::CreateAnimation(Texture* tex, Vector2 startPos

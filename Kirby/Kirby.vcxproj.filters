@@ -86,6 +86,12 @@
     <Filter Include="02. Scene\SceneType\TitleScene">
       <UniqueIdentifier>{0078107a-2d88-4d51-afab-3ab40dee6818}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager\Event">
+      <UniqueIdentifier>{c721192b-8c3d-4115-a321-cce192c76a35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Effect\TransformEffect">
+      <UniqueIdentifier>{2579b06c-46c1-451b-bee8-ad6c4a7d07e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -193,6 +199,15 @@
     <ClInclude Include="zzFireKirbySkill.h">
       <Filter>04. GameObject\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="zzEventMgr.h">
+      <Filter>Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFunction.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTransformEffect.h">
+      <Filter>04. GameObject\Effect\TransformEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
@@ -288,6 +303,15 @@
     </ClCompile>
     <ClCompile Include="zzFireKirbySkill.cpp">
       <Filter>04. GameObject\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="zzEventMgr.cpp">
+      <Filter>Manager\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFunction.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTransformEffect.cpp">
+      <Filter>04. GameObject\Effect\TransformEffect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

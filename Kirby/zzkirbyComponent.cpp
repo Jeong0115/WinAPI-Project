@@ -12,6 +12,7 @@ namespace zz
 		, sec(0.f)
 		, bPress(false)
 		, Component(eCompType::ANIMATOR)
+		, ice(nullptr)
 	{
 	}
 	kirbyComponent::~kirbyComponent()
@@ -43,7 +44,7 @@ namespace zz
 		{
 			bPress = true;
 		}
-		sec += Time::DeltaTime();
+		sec += (float)Time::DeltaTime();
 		if(sec>0.08f)
 		{
 			ice = icy[idx];
@@ -58,7 +59,7 @@ namespace zz
 		
 		if(bPress)
 		{
-			TransparentBlt(hdc, mPos.x + 15, mPos.y - 10, ice->GetWidth(),
+			TransparentBlt(hdc, (int)(mPos.x + 15), (int)(mPos.y - 10), ice->GetWidth(),
 				ice->GetHeight(), ice->GetHdc(), 0, 0,
 				ice->GetWidth(), ice->GetHeight(), RGB(0, 0, 255));
 		}

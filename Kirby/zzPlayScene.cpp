@@ -7,6 +7,7 @@
 #include "zzKey.h"
 #include "zzSceneMgr.h"
 #include "zzFireKirbySkill.h"
+#include "zzTransformEffect.h"
 
 namespace zz
 {
@@ -35,12 +36,16 @@ namespace zz
 
 		AddGameObject(monster, eLayerType::MONSTER);
 
+		TransformEffect* effect = new TransformEffect();
+		effect->obj = kirby;
+		AddGameObject(effect, eLayerType::EFFECT);
+
 		FireKirbySkill* fireSkill = new FireKirbySkill();
-		AddGameObject(fireSkill, eLayerType::EFFECT);
+		fireSkill->obj = kirby;
+		AddGameObject(fireSkill, eLayerType::SKILL);
 
-
-		CollisionMgr::CheckCollision(eLayerType::PLAYER, eLayerType::MONSTER);
-		CollisionMgr::CheckCollision(eLayerType::EFFECT, eLayerType::MONSTER);
+		CollisionMgr::CheckCollision(eLayerType::SKILL, eLayerType::MONSTER);
+		CollisionMgr::CheckCollision(eLayerType::MONSTER, eLayerType::PLAYER);
 
 		mTex = ResourceMgr::Load<Texture>(L"Controll", L"..\\Resources\\Controll.bmp");
 

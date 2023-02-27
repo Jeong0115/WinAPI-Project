@@ -26,7 +26,14 @@ namespace zz
 		Transform* mTr;
 		Collider* mColli;
 		Animator* mAni;
-		
+
+		std::vector<std::wstring> mStayRightKeys;
+		std::vector<std::wstring> mStayLeftKeys;
+		std::vector<std::wstring> mWalkRightKeys;
+		std::vector<std::wstring> mWalkLeftKeys;
+
+		int state;
+
 	};
 }
 

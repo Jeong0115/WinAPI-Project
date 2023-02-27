@@ -4,6 +4,7 @@
 #include "zzTransform.h"
 #include "zzCollider.h"
 #include "zzAnimator.h"
+#include "zzTexture.h"
 
 namespace zz
 {
@@ -32,5 +33,6 @@ namespace zz
 		Texture* monsterTexture;
 		Transform* mTr;
 		Collider* mColli;
+		Animator* mAni;
 	};
 }

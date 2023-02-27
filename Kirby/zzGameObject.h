@@ -22,6 +22,14 @@ namespace zz
 		virtual void Release();
 
 	public:
+		bool IsDeactivate() { return !mActivate; }
+
+	private:
+		void SetDeactivate() { mActivate = false; }
+
+		friend class EventMgr;
+
+	public:
 		template <typename T>
 		T* AddComponent()
 		{
@@ -53,6 +61,7 @@ namespace zz
 
 	private:
 		std::vector<Component*> mComponents;
+		bool mActivate;
 	};
 }
 

@@ -17,6 +17,7 @@ enum class eLayerType
 	MONSTER,
 	PLAYER,
 	FOREGROUND,
+	SKILL,
 	EFFECT,
 	UI,
 	END
@@ -30,4 +31,12 @@ enum class eCompType
 	ANIMATOR,
 	AUDIO,
 	END,
+};
+
+enum class eEventType
+{
+	CREATE_OBJ,
+	DELETE_OBJ,
+	SCENE_CHANGE,
+	END
 };

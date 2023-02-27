@@ -3,6 +3,7 @@
 namespace zz
 {
 	GameObject::GameObject()
+		: mActivate(true)
 	{
 		mComponents.resize((UINT)eCompType::END);
 	}

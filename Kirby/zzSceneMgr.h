@@ -17,7 +17,7 @@ namespace zz
 		static void Release();
 
 	public:
-		static Scene* GetNowScene() { return mCurScene; }
+		static Scene* GetCurScene() { return mCurScene; }
 		static void LoadScene(eSceneType type) { mCurScene = mScenes[(UINT)type]; }
 
 	private:
