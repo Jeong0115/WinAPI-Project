@@ -133,8 +133,11 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="zzDefaultKirby.h" />
+    <ClInclude Include="zzDefaultSkill.h" />
     <ClInclude Include="zzEventMgr.h" />
-    <ClInclude Include="zzFireKirbySkill.h" />
+    <ClInclude Include="zzFireKirby.h" />
+    <ClInclude Include="zzFireSkill.h" />
     <ClInclude Include="zzAnimation.h" />
     <ClInclude Include="zzAnimator.h" />
     <ClInclude Include="zzApplication.h" />
@@ -151,6 +154,8 @@
     <ClInclude Include="zzEnum.h" />
     <ClInclude Include="zzFunction.h" />
     <ClInclude Include="zzGameObject.h" />
+    <ClInclude Include="zzIceKirby.h" />
+    <ClInclude Include="zzIceSkill.h" />
     <ClInclude Include="zzKey.h" />
     <ClInclude Include="zzKirby.h" />
     <ClInclude Include="zzkirbyComponent.h" />
@@ -164,14 +169,18 @@
     <ClInclude Include="zzScene.h" />
     <ClInclude Include="zzSceneMgr.h" />
     <ClInclude Include="zzSelectGDI.h" />
+    <ClInclude Include="zzSkill.h" />
     <ClInclude Include="zzTexture.h" />
     <ClInclude Include="zzTime.h" />
     <ClInclude Include="zzTitleScene.h" />
     <ClInclude Include="zzTransformEffect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="zzDefaultKirby.cpp" />
+    <ClCompile Include="zzDefaultSkill.cpp" />
     <ClCompile Include="zzEventMgr.cpp" />
-    <ClCompile Include="zzFireKirbySkill.cpp" />
+    <ClCompile Include="zzFireKirby.cpp" />
+    <ClCompile Include="zzFireSkill.cpp" />
     <ClCompile Include="zzAnimation.cpp" />
     <ClCompile Include="zzAnimator.cpp" />
     <ClCompile Include="zzApplication.cpp" />
@@ -183,6 +192,8 @@
     <ClCompile Include="zzEntity.cpp" />
     <ClCompile Include="zzFunction.cpp" />
     <ClCompile Include="zzGameObject.cpp" />
+    <ClCompile Include="zzIceKirby.cpp" />
+    <ClCompile Include="zzIceSkill.cpp" />
     <ClCompile Include="zzKey.cpp" />
     <ClCompile Include="zzKirby.cpp" />
     <ClCompile Include="zzkirbyComponent.cpp" />
@@ -195,6 +206,7 @@
     <ClCompile Include="zzResourceMgr.cpp" />
     <ClCompile Include="zzScene.cpp" />
     <ClCompile Include="zzSceneMgr.cpp" />
+    <ClCompile Include="zzSkill.cpp" />
     <ClCompile Include="zzTexture.cpp" />
     <ClCompile Include="zzTime.cpp" />
     <ClCompile Include="zzTitleScene.cpp" />

@@ -6,8 +6,8 @@
 #include "zzCollisionMgr.h"
 #include "zzKey.h"
 #include "zzSceneMgr.h"
-#include "zzFireKirbySkill.h"
 #include "zzTransformEffect.h"
+#include "zzSkill.h"
 
 namespace zz
 {
@@ -22,7 +22,7 @@ namespace zz
 	void PlayScene::Initialize()
 	{
 		Kirby* kirby = new Kirby();
-		kirby->SetName(L"kirby");
+		kirby->SetName(L"defaultKirby");
 
 		AddGameObject(kirby, eLayerType::PLAYER);
 
@@ -40,9 +40,9 @@ namespace zz
 		effect->obj = kirby;
 		AddGameObject(effect, eLayerType::EFFECT);
 
-		FireKirbySkill* fireSkill = new FireKirbySkill();
-		fireSkill->obj = kirby;
-		AddGameObject(fireSkill, eLayerType::SKILL);
+		Skill* skill = new Skill();
+		skill->kirby = kirby;
+		AddGameObject(skill, eLayerType::SKILL);
 
 		CollisionMgr::CheckCollision(eLayerType::SKILL, eLayerType::MONSTER);
 		CollisionMgr::CheckCollision(eLayerType::MONSTER, eLayerType::PLAYER);

@@ -40,3 +40,12 @@ enum class eEventType
 	SCENE_CHANGE,
 	END
 };
+
+enum class eTransformType
+{
+	DEFAULT,
+	FIRE,
+	ICE,
+	//CUTTER,
+	END
+};

@@ -89,6 +89,27 @@
     <Filter Include="04. GameObject\Effect\TransformEffect">
       <UniqueIdentifier>{2579b06c-46c1-451b-bee8-ad6c4a7d07e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\FireKirby">
+      <UniqueIdentifier>{9963ea4b-07d0-491b-b7ce-b84042878587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\IceKirby">
+      <UniqueIdentifier>{857af8c6-5ff9-4db3-8a00-78ab42882a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill">
+      <UniqueIdentifier>{97111b52-a8ae-4d41-abd4-4d19050df67e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\DefaultKirby">
+      <UniqueIdentifier>{48ff4d02-e5d9-4bf7-ac6f-beb9ba90c5fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\FireSkill">
+      <UniqueIdentifier>{6295aee0-6a26-4b71-aeeb-ae77edfd4cb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\DefaultSkill">
+      <UniqueIdentifier>{f9d0c5d5-1d40-4d72-9cb2-3ce69dcc3982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\IceSkill">
+      <UniqueIdentifier>{9fac2a28-c52a-4128-a519-bb983f560265}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -190,9 +211,6 @@
     <ClInclude Include="zzTitleScene.h">
       <Filter>02. Scene\SceneType\TitleScene</Filter>
     </ClInclude>
-    <ClInclude Include="zzFireKirbySkill.h">
-      <Filter>04. GameObject\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="zzEventMgr.h">
       <Filter>Manager\Event</Filter>
     </ClInclude>
@@ -201,6 +219,27 @@
     </ClInclude>
     <ClInclude Include="zzTransformEffect.h">
       <Filter>04. GameObject\Effect\TransformEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFireKirby.h">
+      <Filter>04. GameObject\Player\Kirby\FireKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzIceKirby.h">
+      <Filter>04. GameObject\Player\Kirby\IceKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSkill.h">
+      <Filter>04. GameObject\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzDefaultKirby.h">
+      <Filter>04. GameObject\Player\Kirby\DefaultKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFireSkill.h">
+      <Filter>04. GameObject\Skill\FireSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzDefaultSkill.h">
+      <Filter>04. GameObject\Skill\DefaultSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzIceSkill.h">
+      <Filter>04. GameObject\Skill\IceSkill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,9 +331,6 @@
     <ClCompile Include="zzTitleScene.cpp">
       <Filter>02. Scene\SceneType\TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="zzFireKirbySkill.cpp">
-      <Filter>04. GameObject\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="zzEventMgr.cpp">
       <Filter>Manager\Event</Filter>
     </ClCompile>
@@ -303,6 +339,27 @@
     </ClCompile>
     <ClCompile Include="zzTransformEffect.cpp">
       <Filter>04. GameObject\Effect\TransformEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFireKirby.cpp">
+      <Filter>04. GameObject\Player\Kirby\FireKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzIceKirby.cpp">
+      <Filter>04. GameObject\Player\Kirby\IceKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzSkill.cpp">
+      <Filter>04. GameObject\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzDefaultKirby.cpp">
+      <Filter>04. GameObject\Player\Kirby\DefaultKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFireSkill.cpp">
+      <Filter>04. GameObject\Skill\FireSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzDefaultSkill.cpp">
+      <Filter>04. GameObject\Skill\DefaultSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzIceSkill.cpp">
+      <Filter>04. GameObject\Skill\IceSkill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

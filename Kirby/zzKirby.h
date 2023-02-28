@@ -1,9 +1,7 @@
 #pragma once
 
 #include "zzGameObject.h"
-#include "zzCollider.h"
-#include "zzkirbyComponent.h"
-#include "zzAnimator.h"
+
 
 namespace zz
 {
@@ -14,24 +12,21 @@ namespace zz
 		virtual ~Kirby();
 
 	public:
-		virtual void Initialize();
-		virtual void Update();
-		virtual void Render(HDC hdc);
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
+		virtual void Release() override;
 
 	public:
-		
-	private:
-		Texture* mTex;
-		Collider* mColli;
-		Animator* mAni;
-
-		std::vector<std::wstring> mStayRightKeys;
-		std::vector<std::wstring> mStayLeftKeys;
-		std::vector<std::wstring> mWalkRightKeys;
-		std::vector<std::wstring> mWalkLeftKeys;
-
-		int state;
+		int GetType() { return temp; }
 		int mDir;
-	};
+
+	private:
+		eTransformType	type;
+		int temp;
+		int prevTemp;
+
+		std::vector<Kirby*> mKirbyTransforms;
+	};	
 }
 

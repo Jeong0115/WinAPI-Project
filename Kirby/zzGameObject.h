@@ -3,7 +3,6 @@
 #include "zzEntity.h"
 #include "zzComponent.h"
 #include "define.h"
-#include "zzTexture.h"
 #include "zzResourceMgr.h"
 
 

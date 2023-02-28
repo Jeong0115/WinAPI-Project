@@ -47,6 +47,12 @@ namespace zz
 
 	void Layer::Release()
 	{
+		for (GameObject* obj : mGameObjects)
+		{
+			if (obj == nullptr)
+				continue;
+			obj->Release();
+		}
 	}
 
 	void Layer::AddGameObject(GameObject* obj)

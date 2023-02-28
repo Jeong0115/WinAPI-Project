@@ -22,7 +22,7 @@ struct Vector2
 		, y(y)
 	{}*/
 
-	Vector2(const Vector2& other)
+	/*Vector2(const Vector2& other)
 		: x(other.x)
 		, y(other.y)
 	{}
@@ -30,7 +30,8 @@ struct Vector2
 	Vector2(Vector2& other)
 		: x(other.x)
 		, y(other.y)
-	{}
+	{}*/
+
 
 	Vector2 (const POINT& pt)
 		: x((float)pt.x)
@@ -46,6 +47,11 @@ struct Vector2
 	Vector2 operator+ (Vector2 other)
 	{
 		return Vector2(x + other.x, y + other.y);
+	}
+
+	Vector2 operator- (Vector2 other)
+	{
+		return Vector2(x - other.x, y - other.y);
 	}
 
 	Vector2 operator* (int i)
