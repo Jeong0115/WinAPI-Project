@@ -19,6 +19,7 @@ namespace zz
 
 	public:
 		void AddGameObject(GameObject* obj);
+		void ChangeGameObject(GameObject* prevObj, GameObject* curObj);
 		const std::vector<GameObject*>& GetGameObjects() { return mGameObjects; }
 
 	private:

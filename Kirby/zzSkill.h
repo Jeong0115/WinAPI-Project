@@ -26,7 +26,7 @@ namespace zz
 	private:
 		int type;
 		int mDir;
-		std::vector<Skill*> mKirbySkills;
+		std::vector<GameObject*> mKirbySkills;
 	};
 
 }

@@ -8,6 +8,10 @@ namespace zz
 	std::vector<Scene*> SceneMgr::mScenes = {};
 	Scene* SceneMgr::mCurScene = {};
 
+	SceneMgr::SceneMgr()
+	{
+	}
+
 	SceneMgr::~SceneMgr()
 	{
 		

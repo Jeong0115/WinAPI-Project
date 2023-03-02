@@ -12,6 +12,7 @@
 namespace zz
 {
 	PlayScene::PlayScene()
+		: mTex(nullptr)
 	{
 	}
 
@@ -22,7 +23,7 @@ namespace zz
 	void PlayScene::Initialize()
 	{
 		Kirby* kirby = new Kirby();
-		kirby->SetName(L"defaultKirby");
+		kirby->SetName(L"Kirby");
 
 		AddGameObject(kirby, eLayerType::PLAYER);
 

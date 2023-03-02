@@ -4,6 +4,7 @@ namespace zz
 {
 	Component::Component(eCompType type)
 		: mType(type)
+		, mOwner(nullptr)
 	{
 	}
 

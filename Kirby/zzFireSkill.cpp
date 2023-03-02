@@ -38,21 +38,21 @@ namespace zz
 
 	void FireSkill::Update()
 	{
-		
+		Vector2 vPos = GetPos();
 
 		if (KEY(X, PRESSED))
 		{
-			SetPos(mOwner->GetPos());
+			vPos = mOwner->GetPos();
 			mDir = mOwner->GetDir();
 
 			if (mDir == 1)
 			{
-				SetPos(GetPos() + mIntervalPos);
+				vPos += mIntervalPos;
 				mAni->PlayAnimation(L"Fire_Skill_Right", false);
 			}
 			else
 			{
-				SetPos(GetPos() - mIntervalPos);
+				vPos -= mIntervalPos;
 				mAni->PlayAnimation(L"Fire_Skill_Left", false);
 			}
 		}
@@ -61,8 +61,10 @@ namespace zz
 		{
 			mAni->StopAnimation(L"Fire_Skill_Left");
 			mAni->StopAnimation(L"Fire_Skill_Right");
-			SetPos(Vector2(-20.f, -20.f));
+			vPos = Vector2(-20.f, -20.f);
 		}
+
+		SetPos(vPos);
 
 		GameObject::Update();
 	}

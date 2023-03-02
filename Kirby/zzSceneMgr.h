@@ -18,6 +18,7 @@ namespace zz
 
 	public:
 		static Scene* GetCurScene() { return mCurScene; }
+		static Scene* GetPlayScene() { return mScenes[(UINT)eSceneType::PLAY]; }
 		static void LoadScene(eSceneType type) { mCurScene = mScenes[(UINT)type]; }
 
 	private:

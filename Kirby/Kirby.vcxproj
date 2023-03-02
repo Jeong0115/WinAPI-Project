@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="zzCutterKirby.h" />
+    <ClInclude Include="zzCutterSkill.h" />
     <ClInclude Include="zzDefaultKirby.h" />
     <ClInclude Include="zzDefaultSkill.h" />
     <ClInclude Include="zzEventMgr.h" />
@@ -176,6 +178,8 @@
     <ClInclude Include="zzTransformEffect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="zzCutterKirby.cpp" />
+    <ClCompile Include="zzCutterSkill.cpp" />
     <ClCompile Include="zzDefaultKirby.cpp" />
     <ClCompile Include="zzDefaultSkill.cpp" />
     <ClCompile Include="zzEventMgr.cpp" />

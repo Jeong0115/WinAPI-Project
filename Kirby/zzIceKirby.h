@@ -2,18 +2,19 @@
 
 #include "zzCollider.h"
 #include "zzAnimator.h"
+#include "zzGameObject.h"
 #include "zzKirby.h"
 
 namespace zz
 {
-	class IceKirby : public Kirby
+	class IceKirby : public GameObject
 	{
 	public:
 		IceKirby(Kirby* owner);
 		virtual ~IceKirby();
 
 	public:
-		virtual void Initialize();
+		virtual void Initialize() override;
 		virtual void Update();
 		virtual void Render(HDC hdc);
 

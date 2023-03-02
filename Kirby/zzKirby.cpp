@@ -8,6 +8,7 @@
 #include "zzIceKirby.h"
 #include "zzFireKirby.h"
 #include "zzDefaultKirby.h"
+#include "zzCutterKirby.h"
 
 namespace zz
 {
@@ -21,7 +22,18 @@ namespace zz
 
 	Kirby::~Kirby()
 	{
-		
+		SceneMgr::GetPlayScene()->ChangeGameObject(mKirbyTransforms[temp], nullptr, eLayerType::PLAYER);
+
+		for (auto kirby : mKirbyTransforms)
+		{
+			delete kirby;
+		}
+
+		/*for (int i = 0; i < mKirbyTransforms.size(); i++)
+		{
+			delete mKirbyTransforms[i];
+			mKirbyTransforms[i] = nullptr;
+		}	*/
 	}
 
 	void Kirby::Initialize()
@@ -34,16 +46,18 @@ namespace zz
 		mKirbyTransforms[(UINT)eTransformType::FIRE]->SetName(L"FireKirby");
 		mKirbyTransforms[(UINT)eTransformType::ICE] = new IceKirby(this);
 		mKirbyTransforms[(UINT)eTransformType::ICE]->SetName(L"IceKirby");
+		mKirbyTransforms[(UINT)eTransformType::CUTTER] = new CutterKirby(this);
+		mKirbyTransforms[(UINT)eTransformType::CUTTER]->SetName(L"CutterKirby");
 
 		SetPos(Vector2(15, 150));
-		SetScale(Vector2(20, 18));
+		SetScale(Vector2(24, 24));
 
 		for (UINT i = 0; i < (UINT)eTransformType::END; i++)
 		{
 			mKirbyTransforms[i]->Initialize();
 		}
 
-		
+		SceneMgr::GetPlayScene()->AddGameObject(mKirbyTransforms[temp], eLayerType::PLAYER);
 	}
 
 	void Kirby::Update()
@@ -58,23 +72,22 @@ namespace zz
 		}
 
 
-		mKirbyTransforms[temp]->Update();
-
+		
 
 		if (KEY(Z, DOWN))
 		{
 			temp++;
 			if (temp >= (UINT)eTransformType::END)
 				temp = 0;
-			//mAni->PlayAnimation(L"TransformEffect", true);
+			SceneMgr::GetCurScene()->ChangeGameObject(mKirbyTransforms[prevTemp], mKirbyTransforms[temp], eLayerType::PLAYER);
 		}
 
-
+		//mKirbyTransforms[temp]->Update();
 	}
 
 	void Kirby::Render(HDC hdc)
 	{
-		mKirbyTransforms[temp]->Render(hdc);
+		//mKirbyTransforms[temp]->Render(hdc);
 
 
 	}
@@ -84,6 +97,7 @@ namespace zz
 		for (auto kirby : mKirbyTransforms)
 		{
 			delete kirby;
+			kirby = nullptr;
 		}
 		GameObject::Release();
 	}

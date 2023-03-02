@@ -68,7 +68,7 @@ namespace zz
 				COLLIDER_ID ID;
 
 				ID.leftID = vecLeft[i]->GetComponent<Collider>()->GetID();
-				ID.rightID = vecRight[i]->GetComponent<Collider>()->GetID();
+				ID.rightID = vecRight[j]->GetComponent<Collider>()->GetID();
 
 				iter = mCollisionMap.find(ID.ID);
 
@@ -79,17 +79,17 @@ namespace zz
 				}
 
 				if (IsCollision(vecLeft[i]->GetComponent<Collider>()
-					, vecRight[i]->GetComponent<Collider>()))
+					, vecRight[j]->GetComponent<Collider>()))
 				{
 					if (iter->second)
 					{
 						vecLeft[i]->GetComponent<Collider>()->OnCollision();
-						vecRight[i]->GetComponent<Collider>()->OnCollision();
+						vecRight[j]->GetComponent<Collider>()->OnCollision();
 					}
 					else
 					{
 						vecLeft[i]->GetComponent<Collider>()->OnCollisionEnter();
-						vecRight[i]->GetComponent<Collider>()->OnCollisionEnter();
+						vecRight[j]->GetComponent<Collider>()->OnCollisionEnter();
 					}
 					//vecRight[j]->GetComponent<Collider>()->GetPen() = Application::GetRedPen();
 					//vecLeft[j]->GetComponent<Collider>()->GetPen() = Application::GetRedPen();
@@ -102,7 +102,7 @@ namespace zz
 					if (iter->second)
 					{
 						vecLeft[i]->GetComponent<Collider>()->OnCollisionExit();
-						vecRight[i]->GetComponent<Collider>()->OnCollisionExit();
+						vecRight[j]->GetComponent<Collider>()->OnCollisionExit();
 					}
 					//vecLeft[i]->GetComponent<Collider>()->GetPen() = Application::GetGreenPen();
 					//vecRight[i]->GetComponent<Collider>()->GetPen() = Application::GetGreenPen();

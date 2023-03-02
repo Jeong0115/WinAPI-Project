@@ -59,4 +59,10 @@ namespace zz
 
 		mLayers[(UINT)layer]->AddGameObject(obj);
 	}
+
+	void Scene::ChangeGameObject(GameObject* prevObj, GameObject* curObj, eLayerType layer)
+	{
+		mLayers[(UINT)layer]->ChangeGameObject(prevObj, curObj);
+	}
+
 }

@@ -46,6 +46,6 @@ enum class eTransformType
 	DEFAULT,
 	FIRE,
 	ICE,
-	//CUTTER,
+	CUTTER,
 	END
 };

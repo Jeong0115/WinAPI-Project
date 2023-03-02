@@ -7,11 +7,11 @@
 
 namespace zz
 {
-	class DefaultKirby : public GameObject
+	class CutterKirby : public GameObject
 	{
 	public:
-		DefaultKirby(Kirby* owner);
-		virtual ~DefaultKirby();
+		CutterKirby(Kirby* owner);
+		virtual ~CutterKirby();
 
 	public:
 		virtual void Initialize() override;
@@ -26,6 +26,8 @@ namespace zz
 		Kirby* mOwner;
 
 		float mPassedTime;
+
+		bool mbPressX;
 	};
 }
 

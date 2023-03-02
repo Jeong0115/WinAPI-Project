@@ -8,11 +8,11 @@
 
 namespace zz
 {
-	class FireSkill : public GameObject
+	class CutterSkill : public GameObject
 	{
 	public:
-		FireSkill(Skill* owner);
-		virtual ~FireSkill();
+		CutterSkill(Skill* owner);
+		virtual ~CutterSkill();
 
 	public:
 		virtual void Initialize();
@@ -20,13 +20,16 @@ namespace zz
 		virtual void Render(HDC hdc);
 		//virtual void Release();
 
-		
+
 
 	private:
 		Skill* mOwner;
 		Animator* mAni;
 		Collider* mColli;
 		Vector2 mIntervalPos;
+
+		bool mbPressX;
+		float mPassedTime;
 
 		int mDir;
 		//Collider* temp;

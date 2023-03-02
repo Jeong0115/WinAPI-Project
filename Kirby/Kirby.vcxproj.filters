@@ -110,6 +110,12 @@
     <Filter Include="04. GameObject\Skill\IceSkill">
       <UniqueIdentifier>{9fac2a28-c52a-4128-a519-bb983f560265}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\CutterKirby">
+      <UniqueIdentifier>{dd843c4e-6985-461d-9a31-d0ed32151e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\CutterSkill">
+      <UniqueIdentifier>{22c3dcca-92e7-468c-8532-cd2d39ef25a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -241,6 +247,12 @@
     <ClInclude Include="zzIceSkill.h">
       <Filter>04. GameObject\Skill\IceSkill</Filter>
     </ClInclude>
+    <ClInclude Include="zzCutterKirby.h">
+      <Filter>04. GameObject\Player\Kirby\CutterKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCutterSkill.h">
+      <Filter>04. GameObject\Skill\CutterSkill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
@@ -360,6 +372,12 @@
     </ClCompile>
     <ClCompile Include="zzIceSkill.cpp">
       <Filter>04. GameObject\Skill\IceSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCutterKirby.cpp">
+      <Filter>04. GameObject\Player\Kirby\CutterKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCutterSkill.cpp">
+      <Filter>04. GameObject\Skill\CutterSkill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

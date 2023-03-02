@@ -19,6 +19,7 @@ namespace zz
 
 	public:
 		void AddGameObject(GameObject* obj, eLayerType layer);
+		void ChangeGameObject(GameObject* prevObj, GameObject* curObj, eLayerType layer);
 		Layer* GetLayer(eLayerType type) { return mLayers[(UINT)type]; }
 
 	private:

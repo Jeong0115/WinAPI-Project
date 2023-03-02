@@ -3,10 +3,11 @@
 #include "zzSkill.h"
 #include "zzAnimator.h"
 #include "zzCollider.h"
+#include "zzGameObject.h"
 
 namespace zz
 {
-	class IceSkill : public Skill
+	class IceSkill : public GameObject
 	{
 	public:
 		IceSkill(Skill* owner);

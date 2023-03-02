@@ -19,14 +19,15 @@ namespace zz
 
 	public:
 		int GetType() { return temp; }
-		int mDir;
+		int GetDir() { return mDir; }
+		void SetDir(int dir) { mDir = dir; }
 
 	private:
 		eTransformType	type;
 		int temp;
 		int prevTemp;
-
-		std::vector<Kirby*> mKirbyTransforms;
+		int mDir;
+		std::vector<GameObject*> mKirbyTransforms;
 	};	
 }
 
