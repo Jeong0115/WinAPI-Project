@@ -14,10 +14,13 @@ namespace zz
 		virtual ~Monster();
 
 	public:
-		virtual void Initialize();
-		virtual void Update();
-		virtual void Render(HDC hdc);
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
 
+		virtual void OnCollisionEnter(GameObject* other) override;
+		virtual void OnCollision(GameObject* other) override;
+		virtual void OnCollisionExit(GameObject* other) override;
 	public:
 		float GetSpeed() { return mSpeed; }
 		void SetSpeed(float speed) { mSpeed = speed; }
@@ -29,8 +32,14 @@ namespace zz
 		float		mMaxDistance;
 		int			mDir;
 
-		Texture* monsterTexture;
-		Collider* mColli;
-		Animator* mAni;
+		Collider*	mColli;
+		Animator*	mAni;
+
+		bool		mbHit;
+		bool		mbCadaver;
+		float		mHitTime;
+		float		mDeadTime;
+
+		int			mHp;
 	};
 }

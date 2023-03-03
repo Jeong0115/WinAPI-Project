@@ -10,6 +10,7 @@ namespace zz
 		, mColli(nullptr)
 		, mbPressX(false)
 		, mPassedTime(0.f)
+		, mState(eCutterKirby::IDLE)
 	{
 	}
 
@@ -46,83 +47,147 @@ namespace zz
 
 	void CutterKirby::Update()
 	{
-		Vector2 vPos = GetPos();
-
 		int dir = mOwner->GetDir();
 
-		if (mbPressX)
+		switch (mState)
 		{
-			mPassedTime += (float)Time::DeltaTime();
-			if (mPassedTime >= 0.48f)
-			{
-				mPassedTime = 0.f;
-				mbPressX = false;
-			/*	if (dir == 1)
-					mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
-				else
-					mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);*/
-			}
+		case CutterKirby::eCutterKirby::IDLE:
+			idle(dir);
+			break;
+
+		case CutterKirby::eCutterKirby::MOVE:
+			move(dir);
+			break;
+
+		case CutterKirby::eCutterKirby::SKILL:
+			skill(dir);
+			break;
+
+		case CutterKirby::eCutterKirby::DOWN:
+			down(dir);
+			break;
+
+		default:
+			break;
 		}
-		else
-		{
-			if (dir == 1)
-				mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
-			else
-				mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);
-
-
-
-			if (KEY(LEFT, PRESSED))
-			{
-				vPos.x -= (float)(100.f * Time::DeltaTime());
-				mAni->PlayAnimation(L"CutterKirby_Left_Walk", true);
-				dir = -1;
-			}
-
-			if (KEY(RIGHT, PRESSED))
-			{
-				vPos.x += (float)(100.f * Time::DeltaTime());
-				mAni->PlayAnimation(L"CutterKirby_Right_Walk", true);
-				dir = 1;
-			}
-
-			if (KEY(DOWN, PRESSED))
-			{
-				if (dir == 1)
-					mAni->PlayAnimation(L"CutterKirby_Right_Down", true);
-				else
-					mAni->PlayAnimation(L"CutterKirby_Left_Down", true);
-				SetScale(Vector2(24.f, 15.f));
-			}
-
-			if (KEY(DOWN, UP))
-			{
-				SetScale(mOwner->GetScale());
-			}
-
-			if (KEY(X, DOWN))
-			{
-				if (dir == 1)
-					mAni->PlayAnimation(L"CutterKirby_Right_X", false);
-				else
-					mAni->PlayAnimation(L"CutterKirby_Left_X", false);
-				mPassedTime = 0.f;
-				mbPressX = true;
-			}
-		}
-
-		mOwner->SetPos(vPos);
-		mOwner->SetDir(dir);
-		SetPos(vPos);
 
 		GameObject::Update();
-
 	}
 
 	void CutterKirby::Render(HDC hdc)
 	{
-
 		GameObject::Render(hdc);
+	}
 
+	void CutterKirby::idle(int dir)
+	{
+		if (dir == 1)
+			mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
+		else
+			mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);
+
+		if (KEY(LEFT, DOWN) || KEY(RIGHT, DOWN))
+		{
+			mState = eCutterKirby::MOVE;
+			//move(dir);
+		}
+
+		if (KEY(X, DOWN))
+		{
+			mState = eCutterKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"CutterKirby_Right_X", true);
+			else
+				mAni->PlayAnimation(L"CutterKirby_Left_X", true);
+			//skill(dir);
+		}
+
+
+		if (KEY(DOWN, PRESSED))
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"CutterKirby_Right_Down", true);
+			else
+				mAni->PlayAnimation(L"CutterKirby_Left_Down", true);
+			SetScale(Vector2(24.f, 15.f));
+
+			mState = eCutterKirby::DOWN;
+			//down(dir);
+		}
+
+	}
+
+	void CutterKirby::move(int dir)
+	{
+		Vector2 vPos = GetPos();
+		int prevDir = mOwner->GetDir();
+
+		if (KEY(LEFT, PRESSED))
+		{
+			vPos.x -= (float)(100.f * Time::DeltaTime());
+			mAni->PlayAnimation(L"CutterKirby_Left_Walk", true);
+			dir = -1;
+		}
+
+		if (KEY(RIGHT, PRESSED))
+		{
+			vPos.x += (float)(100.f * Time::DeltaTime());
+			mAni->PlayAnimation(L"CutterKirby_Right_Walk", true);
+			dir = 1;
+		}
+
+		if (vPos == GetPos())
+		{
+			if (prevDir == 1)
+				mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);
+		}
+		else
+		{
+			mOwner->SetDir(dir);
+		}
+
+		if (KEY(X, DOWN))
+		{
+			mState = eCutterKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"CutterKirby_Right_X", true);
+			else
+				mAni->PlayAnimation(L"CutterKirby_Left_X", true);
+			//skill(dir);
+		}
+
+
+		if (!(KEY(LEFT, PRESSED)) && !(KEY(RIGHT, PRESSED)))
+			//&& !(KEY(LEFT, DOWN)) && !(KEY(RIGHT, DOWN)))
+		{
+			mState = eCutterKirby::IDLE;
+			idle(dir);
+		}
+
+		mOwner->SetPos(vPos);
+		SetPos(vPos);
+	}
+
+	void CutterKirby::skill(int dir)
+	{
+		mPassedTime += Time::DeltaTime();
+		if (mPassedTime >= 0.48f)
+		{
+			mPassedTime = 0.f;
+			mState = eCutterKirby::MOVE;
+			//move(dir);
+		}
+	}
+
+	void CutterKirby::down(int dir)
+	{
+		if ((KEY(DOWN, UP)))
+		{
+			mState = eCutterKirby::IDLE;
+			SetScale(mOwner->GetScale());
+			//idle(dir);
+		}
 	}
 }

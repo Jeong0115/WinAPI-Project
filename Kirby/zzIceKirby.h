@@ -15,8 +15,8 @@ namespace zz
 
 	public:
 		virtual void Initialize() override;
-		virtual void Update();
-		virtual void Render(HDC hdc);
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
 
 	public:
 

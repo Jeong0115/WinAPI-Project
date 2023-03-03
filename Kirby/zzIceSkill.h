@@ -14,9 +14,9 @@ namespace zz
 		virtual ~IceSkill();
 
 	public:
-		virtual void Initialize();
-		virtual void Update();
-		virtual void Render(HDC hdc);
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
 		//virtual void Release();
 
 

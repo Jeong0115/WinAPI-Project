@@ -57,6 +57,7 @@ namespace zz
 			mLayers[(UINT)layer] = new Layer;
 		}
 
+		obj->SetLayerType(layer);
 		mLayers[(UINT)layer]->AddGameObject(obj);
 	}
 

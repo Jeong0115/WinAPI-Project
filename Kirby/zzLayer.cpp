@@ -42,11 +42,19 @@ namespace zz
 
 	void Layer::Render(HDC hdc)
 	{
-		for (GameObject* obj : mGameObjects)
+		std::vector<GameObject*>::iterator iter = mGameObjects.begin();
+
+		for (; iter != mGameObjects.end(); )
 		{
-			if (obj == nullptr)
-				continue;
-			obj->Render(hdc);
+			if ((*iter)->IsDead())
+			{
+				iter = mGameObjects.erase(iter);
+			}
+			else
+			{
+				(*iter)->Render(hdc);
+				iter++;
+			}
 		}
 	}
 
@@ -73,7 +81,10 @@ namespace zz
 		for (int i = 0; i < mGameObjects.size(); i++)
 		{
 			if (mGameObjects[i] == prevObj)
+			{
 				mGameObjects[i] = curObj;
+				break;
+			}
 		}
 	}
 }

@@ -72,6 +72,7 @@ namespace zz
 
 		SceneMgr::Update();
 		CollisionMgr::Update();
+		//EventMgr::Update();
 		
 	}
 

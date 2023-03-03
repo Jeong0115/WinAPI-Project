@@ -2,6 +2,7 @@
 #include "zzSceneMgr.h"
 #include "zzScene.h"
 
+
 namespace zz
 {
 	std::vector<EventInfo> EventMgr::mEventsInfo = {};
@@ -15,8 +16,14 @@ namespace zz
 	{
 	}
 
-	void EventMgr::Update()
+	void EventMgr::Update() 
 	{
+		for (UINT i = 0; i < mDeactivateList.size(); i++)
+		{
+			delete mDeactivateList[i];
+		}
+		mDeactivateList.clear();
+
 		for (UINT i = 0; i < mEventsInfo.size(); i++)
 		{
 			Execute(mEventsInfo[i]);
@@ -38,7 +45,8 @@ namespace zz
 		case eEventType::DELETE_OBJ:
 		{
 			GameObject* obj = (GameObject*)event.objPointer;
-			obj->SetDeactivate();
+			obj->SetDead();
+			mDeactivateList.push_back(obj);
 		}
 			break;
 		case eEventType::SCENE_CHANGE:

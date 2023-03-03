@@ -55,6 +55,7 @@ namespace zz
 		for (UINT i = 0; i < (UINT)eTransformType::END; i++)
 		{
 			mKirbyTransforms[i]->Initialize();
+			mKirbyTransforms[i]->SetLayerType(eLayerType::PLAYER);
 		}
 
 		SceneMgr::GetPlayScene()->AddGameObject(mKirbyTransforms[temp], eLayerType::PLAYER);

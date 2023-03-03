@@ -42,6 +42,7 @@ namespace zz
 		for (UINT i = 0; i < (UINT)eTransformType::END; i++)
 		{
 			mKirbySkills[i]->Initialize();
+			mKirbySkills[i]->SetLayerType(eLayerType::SKILL);
 		}
 
 		SetScale(Vector2(20, 18));

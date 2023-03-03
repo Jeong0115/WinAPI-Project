@@ -64,6 +64,14 @@ struct Vector2
 		return Vector2(x - other.x, y - other.y);
 	}
 
+	bool operator== (Vector2 other)
+	{
+		if (x == other.x && y == other.y)
+			return true;
+		else
+			return false;
+	}
+
 	Vector2 operator* (int i)
 	{
 		return Vector2(x * (float)i, y * (float)i);

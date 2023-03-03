@@ -15,15 +15,15 @@ namespace zz
 		virtual ~Collider();
 
 	public:
-		virtual void Initialize();
-		virtual void Update();
-		virtual void Render(HDC hdc);
-		virtual void Release();
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
+		virtual void Release() override;
 
 	public:
-		void OnCollision();
-		void OnCollisionEnter();
-		void OnCollisionExit();
+		void OnCollisionEnter(GameObject* other);
+		void OnCollision(GameObject* other);
+		void OnCollisionExit(GameObject* other);
 
 	public:
 

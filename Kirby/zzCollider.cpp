@@ -16,9 +16,6 @@ namespace zz
 	{
 	}
 
-	/*Collider::Collider(const Collider& origin)
-	{
-	}*/
 
 	Collider::~Collider()
 	{
@@ -46,35 +43,32 @@ namespace zz
 
 		SelectGDI SelectPen(hdc, pen);
 		SelectGDI SelectBrush(hdc, Application::GetHollowBrush());
-		
-
-		//pen = CreatePen(PS_SOLID, 10 ,RGB(13, 44, 33));
-		//HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 
 		Vector2 pos = GetOwner()->GetPos();
 		Vector2 scale = GetOwner()->GetScale();
 
 		Rectangle(hdc, (int)(pos.x - scale.x / 2.f), (int)(pos.y - scale.y)
 			, (int)(pos.x + scale.x / 2.f), (int)(pos.y));
-
-		//SelectObject(hdc, oldPen);
-		//DeleteObject(pen);
-		//Application::SetPen(Application::GetGreenPen());
-
 	}
 
 	void Collider::Release()
 	{
 	}
-	void Collider::OnCollision()
-	{
-	}
-	void Collider::OnCollisionEnter()
+
+	void Collider::OnCollisionEnter(GameObject* other)
 	{
 		mColliCnt++;
+		GetOwner()->OnCollisionEnter(other);
 	}
-	void Collider::OnCollisionExit()
+
+	void Collider::OnCollision(GameObject* other)
+	{
+		GetOwner()->OnCollision(other);
+	}
+
+	void Collider::OnCollisionExit(GameObject* other)
 	{
 		mColliCnt--;
+		GetOwner()->OnCollisionExit(other);
 	}
 }

@@ -36,6 +36,12 @@ namespace zz
 
 			mSecond = 0.f;
 		}
+
+#ifdef _DEBUG
+		if (mDeltaTime > (1. / 60.))
+			mDeltaTime = (1. / 60.);
+#endif
+
 	}
 
 }

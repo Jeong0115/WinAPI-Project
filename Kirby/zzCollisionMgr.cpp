@@ -37,10 +37,10 @@ namespace zz
 
 	void CollisionMgr::Update2(eLayerType left, eLayerType right)
 	{
-		Scene* nowScene = SceneMgr::GetCurScene();
+		Scene* curScene = SceneMgr::GetCurScene();
 
-		Layer* leftLayer = nowScene->GetLayer((eLayerType)left);
-		Layer* rightLayer = nowScene->GetLayer((eLayerType)right);
+		Layer* leftLayer = curScene->GetLayer((eLayerType)left);
+		Layer* rightLayer = curScene->GetLayer((eLayerType)right);
 
 		if (leftLayer == nullptr || rightLayer == nullptr)
 			return;
@@ -83,32 +83,38 @@ namespace zz
 				{
 					if (iter->second)
 					{
-						vecLeft[i]->GetComponent<Collider>()->OnCollision();
-						vecRight[j]->GetComponent<Collider>()->OnCollision();
+						if (vecLeft[i]->IsDead() || vecRight[i]->IsDead())
+						{
+							vecLeft[i]->GetComponent<Collider>()->OnCollisionExit(vecRight[j]);
+							vecRight[j]->GetComponent<Collider>()->OnCollisionExit(vecLeft[i]);
+							iter->second = false;
+						}
+						else
+						{
+							vecLeft[i]->GetComponent<Collider>()->OnCollision(vecRight[j]);
+							vecRight[j]->GetComponent<Collider>()->OnCollision(vecLeft[i]);
+							iter->second = true;
+						}
 					}
 					else
 					{
-						vecLeft[i]->GetComponent<Collider>()->OnCollisionEnter();
-						vecRight[j]->GetComponent<Collider>()->OnCollisionEnter();
+						if (!vecLeft[i]->IsDead() || !vecRight[i]->IsDead())
+						{
+							vecLeft[i]->GetComponent<Collider>()->OnCollisionEnter(vecRight[j]);
+							vecRight[j]->GetComponent<Collider>()->OnCollisionEnter(vecLeft[i]);
+							iter->second = true;
+						}
 					}
-					//vecRight[j]->GetComponent<Collider>()->GetPen() = Application::GetRedPen();
-					//vecLeft[j]->GetComponent<Collider>()->GetPen() = Application::GetRedPen();
-					//Application::SetPen(Application::GetRedPen());
-
-					iter->second = true;
 				}
+
 				else
 				{
 					if (iter->second)
 					{
-						vecLeft[i]->GetComponent<Collider>()->OnCollisionExit();
-						vecRight[j]->GetComponent<Collider>()->OnCollisionExit();
-					}
-					//vecLeft[i]->GetComponent<Collider>()->GetPen() = Application::GetGreenPen();
-					//vecRight[i]->GetComponent<Collider>()->GetPen() = Application::GetGreenPen();
-					//Application::SetPen(Application::GetGreenPen());
-
-					iter->second = false;
+						vecLeft[i]->GetComponent<Collider>()->OnCollisionExit(vecRight[j]);
+						vecRight[j]->GetComponent<Collider>()->OnCollisionExit(vecLeft[i]);
+						iter->second = false;
+					}	
 				}
 			}
 		}

@@ -20,16 +20,22 @@ namespace zz
 		virtual void Render(HDC hdc);
 		virtual void Release();
 
+		virtual void OnCollisionEnter(GameObject* other) {}
+		virtual void OnCollision(GameObject* other) {}
+		virtual void OnCollisionExit(GameObject* other) {}
+
 	public:
 		Vector2 GetPos() { return mPos; }
 		Vector2 GetScale() { return mScale; }
 		void SetPos(Vector2 pos) { mPos = pos; }
 		void SetScale(Vector2 scale) { mScale = scale; }
+		eLayerType GetLayerType() { return mLayerType; }
+		void SetLayerType(eLayerType type) { mLayerType = type; }
 
-		bool IsDeactivate() { return !mbActivate; }
+		bool IsDead() { return !mbDead; }
 
-	private:
-		void SetDeactivate() { mbActivate = false; }
+	protected:
+		void SetDead() { mbDead = false; }
 
 		friend class EventMgr;
 
@@ -66,9 +72,10 @@ namespace zz
 
 	private:
 		std::vector<Component*> mComponents;
-		bool					mbActivate;
+		bool					mbDead;
 		Vector2					mPos;
 		Vector2					mScale;
+		eLayerType				mLayerType;
 	};
 }
 

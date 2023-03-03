@@ -42,16 +42,39 @@ namespace zz
 	{
 		Vector2 vPos = GetPos();
 
+	
+
 		if(mbPressX)
 		{
 			mPassedTime += (float)Time::DeltaTime();
 
-			if(mPassedTime <= 0.4f)
+			if (mPassedTime >= 0.23f)
+			{
+				if(x)
+				{
+					vPos = mOwner->GetPos();
+					mDir = mOwner->GetDir();
+
+					if (mDir == 1)
+					{
+						vPos += mIntervalPos;
+						mAni->PlayAnimation(L"CutterKirby_Right_X", true);
+					}
+					else
+					{
+						vPos -= mIntervalPos;
+						mAni->PlayAnimation(L"CutterKirby_Left_X", true);
+					}
+					x = false;
+				}
+			}
+	
+			if (mPassedTime <= 0.6f && mPassedTime >= 0.2f)
 			{
 				vPos.x += (float)(200.f * Time::DeltaTime()) * mDir;
 				vPos.y -= (float)(50.f * Time::DeltaTime());
 			}
-			else if (mPassedTime <= 0.8f)
+			else if (mPassedTime <= 1.f)
 			{
 				vPos.x -= (float)(500.f * Time::DeltaTime()) * mDir;
 				vPos.y -= (float)(50.f * Time::DeltaTime());
@@ -64,29 +87,20 @@ namespace zz
 				mAni->StopAnimation(L"CutterKirby_Left_X");
 				vPos = Vector2(-20.f, -20.f);
 			}
+			SetPos(vPos);
+		
 		}
 		else
 		{
 			if (KEY(X, DOWN))
 			{
-				vPos = mOwner->GetPos();
-				mDir = mOwner->GetDir();
 
-				if (mDir == 1)
-				{
-					vPos += mIntervalPos;
-					mAni->PlayAnimation(L"CutterKirby_Right_X", true);
-				}
-				else
-				{
-					vPos -= mIntervalPos;
-					mAni->PlayAnimation(L"CutterKirby_Left_X", true);
-				}
 				mbPressX = true;
+				x = true;
 			}
 		}
 		
-		SetPos(vPos);
+
 
 		GameObject::Update();
 	}

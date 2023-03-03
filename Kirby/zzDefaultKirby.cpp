@@ -9,6 +9,7 @@ namespace zz
 		, mAni(nullptr)
 		, mColli(nullptr)
 		, mPassedTime(0.f)
+		, mState(eDefaultKirby::IDLE)
 	{
 	}
 
@@ -47,90 +48,161 @@ namespace zz
 
 	void DefaultKirby::Update()
 	{
-		Vector2 vPos = GetPos();
-
 		int dir = mOwner->GetDir();
 
-		if (dir == 1)
+		switch (mState)
 		{
-			mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
+		case DefaultKirby::eDefaultKirby::IDLE:
+			idle(dir);
+			break;
+
+		case DefaultKirby::eDefaultKirby::MOVE:
+			move(dir);
+			break;
+
+		case DefaultKirby::eDefaultKirby::SKILL:
+			skill(dir);
+			break;
+
+		case DefaultKirby::eDefaultKirby::DOWN:
+			down(dir);
+			break;
+
+		default:
+			break;
 		}
-		else
-		{
-			mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
-		}
-
-		if (KEY(X, PRESSED))
-		{
-			mPassedTime += (float)Time::DeltaTime();
-
-			if (mPassedTime <= 1.f)
-			{
-				if (dir == 1)
-					mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
-				else
-					mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
-			}
-			else
-			{
-				if (dir == 1)
-					mAni->PlayAnimation(L"DefaultKirby_Right_X_2", true);
-				else
-					mAni->PlayAnimation(L"DefaultKirby_Left_X_2", true);
-			}
-		}
-
-		else if (KEY(X, UP))
-		{
-			mPassedTime = 0.f;
-		}
-
-		else
-
-		{
-			if (KEY(LEFT, PRESSED))
-			{
-				vPos.x -= (float)(100.f * Time::DeltaTime());
-				mAni->PlayAnimation(L"DefaultKirby_Left_Walk", true);
-				dir = -1;
-			}
-
-			if (KEY(RIGHT, PRESSED))
-			{
-				vPos.x += (float)(100.f * Time::DeltaTime());
-				mAni->PlayAnimation(L"DefaultKirby_Right_Walk", true);
-				dir = 1;
-			}
-
-			if (KEY(DOWN, PRESSED))
-			{
-				if (dir == 1)
-					mAni->PlayAnimation(L"DefaultKirby_Right_Down", true);
-				else
-					mAni->PlayAnimation(L"DefaultKirby_Left_Down", true);
-				SetScale(Vector2(24.f, 15.f));
-			}
-
-			else if (KEY(DOWN, UP))
-			{
-				SetScale(mOwner->GetScale());
-			}
-		}
-
-		
-
-		mOwner->SetPos(vPos);
-		mOwner->SetDir(dir);
-		SetPos(vPos);
 
 		GameObject::Update();
-
 	}
 
 	void DefaultKirby::Render(HDC hdc)
 	{
-		
 		GameObject::Render(hdc);
+	}
 
+	void DefaultKirby::idle(int dir)
+	{
+		if (dir == 1)
+			mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
+		else
+			mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
+
+		if (KEY(LEFT, DOWN) || KEY(RIGHT, DOWN))
+		{
+			mState = eDefaultKirby::MOVE;
+			//move(dir);
+		}
+
+		if (KEY(X, DOWN))
+		{
+			mState = eDefaultKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
+			//skill(dir);
+		}
+
+
+		if (KEY(DOWN, PRESSED))
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_Down", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_Down", true);
+			SetScale(Vector2(24.f, 15.f));
+
+			mState = eDefaultKirby::DOWN;
+			//down(dir);
+		}
+
+	}
+
+	void DefaultKirby::move(int dir)
+	{
+		Vector2 vPos = GetPos();
+		int prevDir = mOwner->GetDir();
+
+		if (KEY(LEFT, PRESSED))
+		{
+			vPos.x -= (float)(100.f * Time::DeltaTime());
+			mAni->PlayAnimation(L"DefaultKirby_Left_Walk", true);
+			dir = -1;
+		}
+
+		if (KEY(RIGHT, PRESSED))
+		{
+			vPos.x += (float)(100.f * Time::DeltaTime());
+			mAni->PlayAnimation(L"DefaultKirby_Right_Walk", true);
+			dir = 1;
+		}
+
+		if (vPos == GetPos())
+		{
+			if (prevDir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
+		}
+		else
+		{
+			mOwner->SetDir(dir);
+		}
+
+		if (KEY(X, DOWN))
+		{
+			mState = eDefaultKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
+			//skill(dir);
+		}
+
+
+		if (!(KEY(LEFT, PRESSED)) && !(KEY(RIGHT, PRESSED)))
+			//&& !(KEY(LEFT, DOWN)) && !(KEY(RIGHT, DOWN)))
+		{
+			mState = eDefaultKirby::IDLE;
+			//idle(dir);
+		}
+
+		mOwner->SetPos(vPos);
+		SetPos(vPos);
+	}
+
+	void DefaultKirby::skill(int dir)
+	{
+		mPassedTime += (float)Time::DeltaTime();
+		if (mPassedTime <= 1.f)
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
+		}
+		else
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_X_2", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_X_2", true);
+		}
+
+		if (KEY(X, UP))
+		{
+			mPassedTime = 0.f;
+			mState = eDefaultKirby::MOVE;
+		}
+	}
+
+	void DefaultKirby::down(int dir)
+	{
+		if ((KEY(DOWN, UP)))
+		{
+			mState = eDefaultKirby::IDLE;
+			SetScale(mOwner->GetScale());
+			//idle(dir);
+		}
 	}
 }

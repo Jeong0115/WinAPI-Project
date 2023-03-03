@@ -12,9 +12,9 @@ namespace zz
 		virtual ~Animator();
 
 	public:
-		virtual void Update();
-		virtual void Render(HDC hdc);
-		virtual void Release();
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
+		virtual void Release() override;
 
 	public:
 		void CreateAnimation(Texture* tex, const std::wstring& key

@@ -31,7 +31,7 @@ namespace zz
 		static void Initialize();
 		static void Update();
 
-		inline static eKeyState GetKeyState(eKeyCode keyCode) { return mVecKeyInfo[(UINT)keyCode].state; }
+		__forceinline static eKeyState GetKeyState(eKeyCode keyCode) { return mVecKeyInfo[(UINT)keyCode].state; }
 
 	private:
 		static std::vector<KeyInfo> mVecKeyInfo;

@@ -19,13 +19,29 @@ namespace zz
 		virtual void Render(HDC hdc) override;
 
 	public:
+		enum class eDefaultKirby
+		{
+			IDLE,
+			MOVE,
+			SKILL,
+			DOWN,
+			END
+		};
+		
+	private:
+		void idle(int dir);
+		void move(int dir);
+		void skill(int dir);
+		void down(int dir);
 
 	private:
-		Collider* mColli;
-		Animator* mAni;
-		Kirby* mOwner;
+		Collider*		mColli;
+		Animator*		mAni;
+		Kirby*			mOwner;
 
-		float mPassedTime;
+		eDefaultKirby	mState;
+
+		float			mPassedTime;
 	};
 }
 

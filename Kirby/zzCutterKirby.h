@@ -19,15 +19,30 @@ namespace zz
 		virtual void Render(HDC hdc) override;
 
 	public:
+		enum class eCutterKirby
+		{
+			IDLE,
+			MOVE,
+			SKILL,
+			DOWN,
+			END
+		};
 
 	private:
-		Collider* mColli;
-		Animator* mAni;
-		Kirby* mOwner;
+		void idle(int dir);
+		void move(int dir);
+		void skill(int dir);
+		void down(int dir);
 
-		float mPassedTime;
+	private:
+		Collider*		mColli;
+		Animator*		mAni;
+		Kirby*			mOwner;
 
-		bool mbPressX;
+		eCutterKirby	mState;
+
+		float			mPassedTime;
+		bool			mbPressX;
 	};
 }
 
