@@ -4,7 +4,7 @@
 #include "zzKey.h"
 #include "zzCollisionMgr.h"
 #include "zzEventMgr.h"
-
+#include "zzCamera.h"
 
 namespace zz
 {	
@@ -69,6 +69,7 @@ namespace zz
 	{
 		Time::Update();
 		Key::Update();
+		Camera::Update();
 
 		SceneMgr::Update();
 		CollisionMgr::Update();
@@ -78,11 +79,18 @@ namespace zz
 
 	void Application::Render()
 	{
-		//Rectangle(mBitMapHdc, -1, -1, mResolution.x, mResolution.y);
+		Rectangle(mBitMapHdc, -1, -1, mResolution.x + 1, mResolution.y + 1);
 
 		SceneMgr::Render(mBitMapHdc);
 
+		RECT rect;
+
 		BitBlt(mHdc, 0, 0, mResolution.x, mResolution.y, mBitMapHdc, 0, 0, SRCCOPY);
+
+		SetMapMode(mHdc, MM_ISOTROPIC);
+		SetWindowExtEx(mHdc, mResolution.x, mResolution.y, NULL);
+		GetClientRect(mHwnd, &rect);
+		SetViewportExtEx(mHdc, rect.right, rect.bottom, NULL);
 
 		EventMgr::Update();
 	}

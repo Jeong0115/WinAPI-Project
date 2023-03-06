@@ -46,6 +46,10 @@ namespace zz
 		}
 	}
 
+	void Scene::Enter()
+	{
+	}
+
 	void Scene::Exit()
 	{
 	}

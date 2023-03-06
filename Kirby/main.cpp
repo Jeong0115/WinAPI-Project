@@ -103,7 +103,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   if (FAILED(zz::Application::Initialize(hWnd, POINT{ 1280,720 })))
+   if (FAILED(zz::Application::Initialize(hWnd, POINT{ 256,384 }))) // 512, 192 // 256, 192
    {
        MessageBox(nullptr, L"core 객체 초기화 실패", L"ERROR", MB_OK);
 

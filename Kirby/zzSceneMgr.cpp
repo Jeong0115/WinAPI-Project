@@ -2,7 +2,7 @@
 #include "zzPlayScene.h"
 #include "zzPauseScene.h"
 #include "zzTitleScene.h"
-
+#include "zzToolScene.h"
 namespace zz
 {
 	std::vector<Scene*> SceneMgr::mScenes = {};
@@ -22,6 +22,7 @@ namespace zz
 		mScenes.resize((UINT)eSceneType::MAX);
 
 		mScenes[(UINT)eSceneType::TITLE] = new TitleScene;
+		mScenes[(UINT)eSceneType::TOOL] = new ToolScene;
 		mScenes[(UINT)eSceneType::PLAY] = new PlayScene;
 		mScenes[(UINT)eSceneType::PAUSE] = new PauseScene;
 
@@ -68,5 +69,12 @@ namespace zz
 			if (mScenes[i] == nullptr) continue;
 			delete mScenes[i];
 		}
+	}
+
+	void SceneMgr::LoadScene(eSceneType type)
+	{
+		mCurScene->Exit();
+		mCurScene = mScenes[(UINT)type];
+		mCurScene->Enter();
 	}
 }

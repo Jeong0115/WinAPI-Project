@@ -49,7 +49,7 @@ namespace zz
 
 	void IceKirby::Update()
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = mOwner->GetPos();
 		int dir = mOwner->GetDir();
 
 		if (dir == 1)

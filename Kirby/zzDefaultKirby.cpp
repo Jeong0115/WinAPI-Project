@@ -120,7 +120,7 @@ namespace zz
 
 	void DefaultKirby::move(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = mOwner->GetPos();
 		int prevDir = mOwner->GetDir();
 
 		if (KEY(LEFT, PRESSED))

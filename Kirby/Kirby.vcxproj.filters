@@ -116,6 +116,18 @@
     <Filter Include="04. GameObject\Skill\CutterSkill">
       <UniqueIdentifier>{22c3dcca-92e7-468c-8532-cd2d39ef25a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{80ebdfa8-7aeb-4cc5-ad06-107093f67921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Stage">
+      <UniqueIdentifier>{ad1eeb89-e689-4468-9383-f1670c5ed5b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\SceneType\ToolScene">
+      <UniqueIdentifier>{9bfd7ee1-b1f4-4636-863d-ed0887302369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Tile">
+      <UniqueIdentifier>{fe3f1c88-4e2e-4371-9b11-034573225bfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -190,9 +202,6 @@
     <ClInclude Include="zzTexture.h">
       <Filter>06. Resource\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="zzBackGround.h">
-      <Filter>04. GameObject\BackGorund</Filter>
-    </ClInclude>
     <ClInclude Include="zzCollider.h">
       <Filter>05. Component\Collider</Filter>
     </ClInclude>
@@ -252,6 +261,21 @@
     </ClInclude>
     <ClInclude Include="zzCutterSkill.h">
       <Filter>04. GameObject\Skill\CutterSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="zzStage1.h">
+      <Filter>04. GameObject\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="zzBK_Stage1.h">
+      <Filter>04. GameObject\BackGorund</Filter>
+    </ClInclude>
+    <ClInclude Include="zzToolScene.h">
+      <Filter>02. Scene\SceneType\ToolScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTile.h">
+      <Filter>04. GameObject\Tile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -319,9 +343,6 @@
     <ClCompile Include="zzTexture.cpp">
       <Filter>06. Resource\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="zzBackGround.cpp">
-      <Filter>04. GameObject\BackGorund</Filter>
-    </ClCompile>
     <ClCompile Include="zzCollider.cpp">
       <Filter>05. Component\Collider</Filter>
     </ClCompile>
@@ -378,6 +399,21 @@
     </ClCompile>
     <ClCompile Include="zzCutterSkill.cpp">
       <Filter>04. GameObject\Skill\CutterSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="zzStage1.cpp">
+      <Filter>04. GameObject\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="zzBK_Stage1.cpp">
+      <Filter>04. GameObject\BackGorund</Filter>
+    </ClCompile>
+    <ClCompile Include="zzToolScene.cpp">
+      <Filter>02. Scene\SceneType\ToolScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTile.cpp">
+      <Filter>04. GameObject\Tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

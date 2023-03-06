@@ -10,7 +10,7 @@ namespace zz
 		Vector2 pos;
 		Vector2 texSize;
 		Vector2 offset;
-		float delay;
+		float delay = 0.f;
 	};
 
 	class Animation

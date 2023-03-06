@@ -7,6 +7,7 @@
 namespace zz
 {
 	TitleScene::TitleScene()
+		: mTex(nullptr)
 	{
 	}
 	TitleScene::~TitleScene()
@@ -14,27 +15,30 @@ namespace zz
 	}
 	void TitleScene::Initialize()
 	{
-		mTex= ResourceMgr::Load<Texture>(L"Title", L"..\\Resources\\TitleScene.bmp");
+		mTex= ResourceMgr::Load<Texture>(L"Title", L"..\\Resources\\Title.bmp");
 	}
 
 	void TitleScene::Update()
 	{
 		if (KEY(ENTER, UP))
 		{
-			SceneMgr::LoadScene(eSceneType::PLAY);
+			SceneMgr::LoadScene(eSceneType::TOOL);
 		}
-		Exit();
 	}
 
 	void TitleScene::Render(HDC hdc)
 	{
 		BitBlt(hdc, 0, 0, mTex->GetWidth(),
-			mTex->GetHeight(), mTex->GetHdc(), 8, 0, SRCCOPY);
+			mTex->GetHeight(), mTex->GetHdc(), 0, 0, SRCCOPY);
+	}
+
+	void TitleScene::Enter()
+	{
 	}
 
 	void TitleScene::Exit()
 	{
 		HDC mBitMapHdc = Application::GetBitMapHdc();
-		Rectangle(mBitMapHdc, -1, -1, 1280, 720);
+		Rectangle(mBitMapHdc, -1, -1, 257, 385);
 	}
 }
