@@ -41,7 +41,7 @@ namespace zz
 	{
 		Vector2 vPos = GetPos();
 
-		if (KEY(X, PRESSED))
+		if (KEY(X, DOWN))
 		{
 			vPos = mOwner->GetPos();
 			mDir = mOwner->GetDir();
@@ -49,19 +49,19 @@ namespace zz
 			if (mDir == 1)
 			{
 				vPos += mIntervalPos;
-				mAni->PlayAnimation(L"IceSkill_Right_X", false);
+				mAni->PlayAnimation(L"IceSkill_Right_X", true);
 			}
 			else
 			{
 				vPos -= mIntervalPos;
-				mAni->PlayAnimation(L"IceSkill_Left_X", false);
+				mAni->PlayAnimation(L"IceSkill_Left_X", true);
 			}
 		}
 
 		if (KEY(X, UP))
 		{
-			/*mAni->StopAnimation(L"FireSkill1");
-			mAni->StopAnimation(L"FireSkill");*/
+			mAni->StopAnimation(L"FireSkill1");
+			mAni->StopAnimation(L"FireSkill");
 			vPos = Vector2(-20.f, -20.f);
 		}
 		

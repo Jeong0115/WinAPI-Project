@@ -5,6 +5,7 @@ namespace zz
 	GameObject::GameObject()
 		: mbDead(true)
 		, mLayerType(eLayerType::END)
+		, mPos(Vector2(0.f, 0.f))
 	{
 		mComponents.resize((UINT)eCompType::END);
 	}
@@ -41,6 +42,7 @@ namespace zz
 
 	void GameObject::Render(HDC hdc)
 	{
+		Vector2 renderPos = Camera::GetRenderPos(mPos);
 		for (Component* comp : mComponents)
 		{
 			if (comp == nullptr)
@@ -58,5 +60,7 @@ namespace zz
 
 			comp->Release();
 		}
+
+		
 	}
 }

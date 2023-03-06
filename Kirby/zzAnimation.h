@@ -10,10 +10,10 @@ namespace zz
 		Vector2 pos;
 		Vector2 texSize;
 		Vector2 offset;
-		float delay;
+		float delay = 0.f;
 	};
 
-	class Animation
+	class Animation : public Entity
 	{
 	public:
 		Animation();
@@ -24,8 +24,6 @@ namespace zz
 		void Render(HDC hdc);
 
 		void CreateAnimation(Texture* tex, Vector2 startPos, Vector2 texSize, Vector2 interval, float delay,  UINT texCnt);
-		void SetKey(const std::wstring& key) { mKey = key; }
-		const std::wstring& GetKey() { return mKey; }
 		bool IsFinish() { return mFinish; }
 		void SetFinish(bool b) { mFinish = b; }
 		void ResetFnish() { mFinish = false;}
@@ -37,7 +35,6 @@ namespace zz
 		}
 
 	private:
-		std::wstring				mKey;
 		Texture*					mTex;
 		std::vector<FrameInfo>		mFrames;
 		int							mCurFrame;

@@ -1,5 +1,6 @@
 #include "zzScene.h"
-
+#include "zzTile.h"
+#include "zzCollider.h"
 
 namespace zz
 {
@@ -46,6 +47,10 @@ namespace zz
 		}
 	}
 
+	void Scene::Enter()
+	{
+	}
+
 	void Scene::Exit()
 	{
 	}
@@ -64,6 +69,29 @@ namespace zz
 	void Scene::ChangeGameObject(GameObject* prevObj, GameObject* curObj, eLayerType layer)
 	{
 		mLayers[(UINT)layer]->ChangeGameObject(prevObj, curObj);
+	}
+
+	void Scene::DeleteLayer(eLayerType layer)
+	{
+		delete mLayers[(UINT)layer];
+		mLayers[(UINT)layer] = nullptr;
+	}
+
+	void Scene::CreateTile(UINT xCnt, UINT yCnt)
+	{
+		for (UINT i = 0; i < yCnt; i++)
+		{
+			for (UINT j = 0; j < xCnt; j++)
+			{
+				Tile* tile = new Tile();
+				tile->SetPos(Vector2(j * TILE_SIZE.x, i * TILE_SIZE.y));
+				tile->SetScale(Vector2(TILE_SIZE.x, TILE_SIZE.y));
+
+				tile->AddComponent<Collider>();
+
+				AddGameObject(tile, eLayerType::TILE);
+			}
+		}
 	}
 
 }

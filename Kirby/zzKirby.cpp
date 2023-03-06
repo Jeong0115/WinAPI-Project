@@ -49,7 +49,7 @@ namespace zz
 		mKirbyTransforms[(UINT)eTransformType::CUTTER] = new CutterKirby(this);
 		mKirbyTransforms[(UINT)eTransformType::CUTTER]->SetName(L"CutterKirby");
 
-		SetPos(Vector2(15, 150));
+		SetPos(Vector2(50, 145));
 		SetScale(Vector2(24, 24));
 
 		for (UINT i = 0; i < (UINT)eTransformType::END; i++)
@@ -58,11 +58,23 @@ namespace zz
 			mKirbyTransforms[i]->SetLayerType(eLayerType::PLAYER);
 		}
 
+		//dynamic_cast
 		SceneMgr::GetPlayScene()->AddGameObject(mKirbyTransforms[temp], eLayerType::PLAYER);
+		Camera::SetTarget(mKirbyTransforms[temp]);
+		Camera::SetLookPos(Vector2(20.f, 96.f));
+		//Camera::SetLookPos(GetPos());
 	}
 
 	void Kirby::Update()
 	{
+		if (GetPos().x < 10.f)
+		{
+			SetPos(Vector2(10.f, GetPos().y));
+		}
+		if (GetPos().x >1575.f)
+		{
+			SetPos(Vector2(1575.f, GetPos().y));
+		}
 
 		if (prevTemp != temp)
 		{
@@ -81,6 +93,7 @@ namespace zz
 			if (temp >= (UINT)eTransformType::END)
 				temp = 0;
 			SceneMgr::GetCurScene()->ChangeGameObject(mKirbyTransforms[prevTemp], mKirbyTransforms[temp], eLayerType::PLAYER);
+			Camera::SetTarget(mKirbyTransforms[temp]);
 		}
 
 		//mKirbyTransforms[temp]->Update();

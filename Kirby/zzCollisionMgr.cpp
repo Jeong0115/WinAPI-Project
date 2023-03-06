@@ -52,14 +52,18 @@ namespace zz
 
 		for (UINT i = 0; i < vecLeft.size(); i++)
 		{
-			if (nullptr == vecLeft[i]->GetComponent<Collider>())
+			Collider* leftCollider = vecLeft[i]->GetComponent<Collider>();
+
+			if (nullptr == leftCollider)
 			{
 				continue;
 			}
 
 			for (UINT j = 0; j < vecRight.size(); j++)
 			{
-				if (nullptr == (vecRight[j]->GetComponent<Collider>())
+				Collider* rightCollider = vecRight[j]->GetComponent<Collider>();
+
+				if (nullptr == (rightCollider)
 					|| vecLeft[i] == vecRight[j])
 				{
 					continue;
@@ -67,8 +71,8 @@ namespace zz
 
 				COLLIDER_ID ID;
 
-				ID.leftID = vecLeft[i]->GetComponent<Collider>()->GetID();
-				ID.rightID = vecRight[j]->GetComponent<Collider>()->GetID();
+				ID.leftID = leftCollider->GetID();
+				ID.rightID = rightCollider->GetID();
 
 				iter = mCollisionMap.find(ID.ID);
 
@@ -78,21 +82,20 @@ namespace zz
 					iter = mCollisionMap.find(ID.ID);
 				}
 
-				if (IsCollision(vecLeft[i]->GetComponent<Collider>()
-					, vecRight[j]->GetComponent<Collider>()))
+				if (IsCollision(leftCollider, rightCollider))
 				{
 					if (iter->second)
 					{
 						if (vecLeft[i]->IsDead() || vecRight[i]->IsDead())
 						{
-							vecLeft[i]->GetComponent<Collider>()->OnCollisionExit(vecRight[j]);
-							vecRight[j]->GetComponent<Collider>()->OnCollisionExit(vecLeft[i]);
+							leftCollider->OnCollisionExit(vecRight[j]);
+							rightCollider->OnCollisionExit(vecLeft[i]);
 							iter->second = false;
 						}
 						else
 						{
-							vecLeft[i]->GetComponent<Collider>()->OnCollision(vecRight[j]);
-							vecRight[j]->GetComponent<Collider>()->OnCollision(vecLeft[i]);
+							leftCollider->OnCollision(vecRight[j]);
+							rightCollider->OnCollision(vecLeft[i]);
 							iter->second = true;
 						}
 					}
@@ -100,19 +103,18 @@ namespace zz
 					{
 						if (!vecLeft[i]->IsDead() || !vecRight[i]->IsDead())
 						{
-							vecLeft[i]->GetComponent<Collider>()->OnCollisionEnter(vecRight[j]);
-							vecRight[j]->GetComponent<Collider>()->OnCollisionEnter(vecLeft[i]);
+							leftCollider->OnCollisionEnter(vecRight[j]);
+							rightCollider->OnCollisionEnter(vecLeft[i]);
 							iter->second = true;
 						}
 					}
 				}
-
 				else
 				{
 					if (iter->second)
 					{
-						vecLeft[i]->GetComponent<Collider>()->OnCollisionExit(vecRight[j]);
-						vecRight[j]->GetComponent<Collider>()->OnCollisionExit(vecLeft[i]);
+						leftCollider->OnCollisionExit(vecRight[j]);
+						rightCollider->OnCollisionExit(vecLeft[i]);
 						iter->second = false;
 					}	
 				}
@@ -140,8 +142,8 @@ namespace zz
 		GameObject* leftObj = left->GetOwner();
 		GameObject* RightObj = right->GetOwner();
 
-		if (abs(leftObj->GetPos().x - RightObj->GetPos().x) < (leftObj->GetScale().x + RightObj->GetScale().x) / 2.f
-			&& abs((leftObj->GetPos().y - leftObj->GetScale().y / 2.f)
+		if (fabs(leftObj->GetPos().x - RightObj->GetPos().x) < (leftObj->GetScale().x + RightObj->GetScale().x) / 2.f
+			&& fabs((leftObj->GetPos().y - leftObj->GetScale().y / 2.f)
 				- (RightObj->GetPos().y - RightObj->GetScale().y / 2.f)) < (leftObj->GetScale().y + RightObj->GetScale().y) / 2.f)
 		{
 			return true;

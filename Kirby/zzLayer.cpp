@@ -56,6 +56,8 @@ namespace zz
 				iter++;
 			}
 		}
+
+
 	}
 
 	void Layer::Release()
@@ -66,6 +68,8 @@ namespace zz
 				continue;
 			obj->Release();
 		}
+		
+		
 	}
 
 	void Layer::AddGameObject(GameObject* obj)

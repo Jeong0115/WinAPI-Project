@@ -7,7 +7,7 @@ namespace zz
 	enum class eKeyCode
 	{
 		LEFT, RIGHT, UP, DOWN,
-		Z, X, Q, P, ENTER, ESC, LAST
+		Z, X, Q, P, ENTER, ESC, LBTN, RBTN, LAST
 	};
 
 	enum class eKeyState
@@ -31,10 +31,12 @@ namespace zz
 		static void Initialize();
 		static void Update();
 
-		__forceinline static eKeyState GetKeyState(eKeyCode keyCode) { return mVecKeyInfo[(UINT)keyCode].state; }
+		__forceinline static eKeyState GetKeyState(eKeyCode keyCode) { return mKeysInfo[(UINT)keyCode].state; }
+		__forceinline static Vector2 GetMousePos() { return mMousePos; }
 
 	private:
-		static std::vector<KeyInfo> mVecKeyInfo;
+		static std::vector<KeyInfo> mKeysInfo;
+		static Vector2				mMousePos;
 	};
 }
 

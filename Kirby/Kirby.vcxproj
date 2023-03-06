@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="zzBK_Stage1.h" />
+    <ClInclude Include="zzCamera.h" />
     <ClInclude Include="zzCutterKirby.h" />
     <ClInclude Include="zzCutterSkill.h" />
     <ClInclude Include="zzDefaultKirby.h" />
@@ -147,7 +149,7 @@
     <ClInclude Include="Kirby.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="zzBackGround.h" />
+    <ClInclude Include="zzStage1.h" />
     <ClInclude Include="zzCollider.h" />
     <ClInclude Include="zzCollisionMgr.h" />
     <ClInclude Include="zzComponent.h" />
@@ -160,7 +162,6 @@
     <ClInclude Include="zzIceSkill.h" />
     <ClInclude Include="zzKey.h" />
     <ClInclude Include="zzKirby.h" />
-    <ClInclude Include="zzkirbyComponent.h" />
     <ClInclude Include="zzLayer.h" />
     <ClInclude Include="zzMath.h" />
     <ClInclude Include="zzMonster.h" />
@@ -173,11 +174,15 @@
     <ClInclude Include="zzSelectGDI.h" />
     <ClInclude Include="zzSkill.h" />
     <ClInclude Include="zzTexture.h" />
+    <ClInclude Include="zzTile.h" />
     <ClInclude Include="zzTime.h" />
     <ClInclude Include="zzTitleScene.h" />
+    <ClInclude Include="zzToolScene.h" />
     <ClInclude Include="zzTransformEffect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="zzBK_Stage1.cpp" />
+    <ClCompile Include="zzCamera.cpp" />
     <ClCompile Include="zzCutterKirby.cpp" />
     <ClCompile Include="zzCutterSkill.cpp" />
     <ClCompile Include="zzDefaultKirby.cpp" />
@@ -189,7 +194,7 @@
     <ClCompile Include="zzAnimator.cpp" />
     <ClCompile Include="zzApplication.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="zzBackGround.cpp" />
+    <ClCompile Include="zzStage1.cpp" />
     <ClCompile Include="zzCollider.cpp" />
     <ClCompile Include="zzCollisionMgr.cpp" />
     <ClCompile Include="zzComponent.cpp" />
@@ -200,7 +205,6 @@
     <ClCompile Include="zzIceSkill.cpp" />
     <ClCompile Include="zzKey.cpp" />
     <ClCompile Include="zzKirby.cpp" />
-    <ClCompile Include="zzkirbyComponent.cpp" />
     <ClCompile Include="zzLayer.cpp" />
     <ClCompile Include="zzMath.cpp" />
     <ClCompile Include="zzMonster.cpp" />
@@ -212,8 +216,10 @@
     <ClCompile Include="zzSceneMgr.cpp" />
     <ClCompile Include="zzSkill.cpp" />
     <ClCompile Include="zzTexture.cpp" />
+    <ClCompile Include="zzTile.cpp" />
     <ClCompile Include="zzTime.cpp" />
     <ClCompile Include="zzTitleScene.cpp" />
+    <ClCompile Include="zzToolScene.cpp" />
     <ClCompile Include="zzTransformEffect.cpp" />
   </ItemGroup>
   <ItemGroup>

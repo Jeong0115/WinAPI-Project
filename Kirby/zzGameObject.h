@@ -4,6 +4,7 @@
 #include "zzComponent.h"
 #include "define.h"
 #include "zzResourceMgr.h"
+#include "zzCamera.h"
 
 
 namespace zz

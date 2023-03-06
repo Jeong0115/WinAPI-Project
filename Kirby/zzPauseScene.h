@@ -16,6 +16,9 @@ namespace zz
 		virtual void Render(HDC hdc);
 		virtual void Release();
 
+		virtual void Enter();
+		virtual void Exit();
+
 	private:
 		Texture* tex;
 	};

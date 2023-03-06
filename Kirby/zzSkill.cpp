@@ -8,16 +8,16 @@
 
 namespace zz
 {
-	Skill::Skill()
-		: type(0)
+	Skill::Skill(Kirby* kirby)
+		: mType(0)
 		, mDir(1)
-		, kirby(nullptr)
+		, mKirby(kirby)
 	{
 	}
 
 	Skill::~Skill()
 	{
-		SceneMgr::GetPlayScene()->ChangeGameObject(mKirbySkills[type], nullptr, eLayerType::SKILL);
+		SceneMgr::GetPlayScene()->ChangeGameObject(mKirbySkills[mType], nullptr, eLayerType::SKILL);
 
 		for (auto kirby : mKirbySkills)
 		{
@@ -52,22 +52,22 @@ namespace zz
 
 	void Skill::Update()
 	{
-		SetPos(kirby->GetPos());
+		SetPos(mKirby->GetPos());
 
-		if (type != kirby->GetType())
+		if (mType != mKirby->GetType())
 		{
-			SceneMgr::GetCurScene()->ChangeGameObject(mKirbySkills[type], mKirbySkills[kirby->GetType()], eLayerType::SKILL);
-			type = kirby->GetType();
+			SceneMgr::GetCurScene()->ChangeGameObject(mKirbySkills[mType], mKirbySkills[mKirby->GetType()], eLayerType::SKILL);
+			mType = mKirby->GetType();
 		}
 		
-		mDir = kirby->GetDir();
+		mDir = mKirby->GetDir();
 
-		//mKirbySkills[type]->Update();
+		//mKirbySkills[mType]->Update();
 	}
 
 	void Skill::Render(HDC hdc)
 	{
-		//mKirbySkills[type]->Render(hdc);
+		//mKirbySkills[mType]->Render(hdc);
 	}
 
 	/*void Skill::Release()

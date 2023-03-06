@@ -44,7 +44,8 @@ namespace zz
 		SelectGDI SelectPen(hdc, pen);
 		SelectGDI SelectBrush(hdc, Application::GetHollowBrush());
 
-		Vector2 pos = GetOwner()->GetPos();
+		Vector2 pos = Camera::GetRenderPos(GetOwner()->GetPos());
+		//Vector2 pos = GetOwner()->GetPos();
 		Vector2 scale = GetOwner()->GetScale();
 
 		Rectangle(hdc, (int)(pos.x - scale.x / 2.f), (int)(pos.y - scale.y)

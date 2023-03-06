@@ -18,6 +18,9 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		void Enter();
+		void Exit();
+
 	public:
 		enum class eDefaultKirby
 		{
@@ -34,6 +37,7 @@ namespace zz
 		void skill(int dir);
 		void down(int dir);
 
+		void jump();
 	private:
 		Collider*		mColli;
 		Animator*		mAni;
@@ -42,6 +46,9 @@ namespace zz
 		eDefaultKirby	mState;
 
 		float			mPassedTime;
+		bool			mbPressX;
+
+		int a = 0;
 	};
 }
 

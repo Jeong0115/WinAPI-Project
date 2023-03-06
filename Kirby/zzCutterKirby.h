@@ -18,6 +18,9 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		void Enter();
+		void Exit();
+
 	public:
 		enum class eCutterKirby
 		{

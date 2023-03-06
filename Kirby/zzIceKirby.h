@@ -18,13 +18,30 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-	public:
+		void Enter();
+		void Exit();
+
+		enum class eIceKirby
+		{
+			IDLE,
+			MOVE,
+			SKILL,
+			DOWN,
+			END
+		};
 
 	private:
-		Texture* mTex;
-		Collider* mColli;
-		Animator* mAni;
-		Kirby* mOwner;
+		void idle(int dir);
+		void move(int dir);
+		void skill(int dir);
+		void down(int dir);
+
+	private:
+		Texture*	mTex;
+		Collider*	mColli;
+		Animator*	mAni;
+		Kirby*		mOwner;
+		eIceKirby	mState;
 	};
 
 }

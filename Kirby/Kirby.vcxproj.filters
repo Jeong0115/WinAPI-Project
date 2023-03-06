@@ -1,142 +1,171 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{3ecd3704-08d5-45f1-935a-8cb8ac63c092}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Application">
-      <UniqueIdentifier>{751f087a-d2ea-4a56-9f07-a1f50d289b27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. Scene">
-      <UniqueIdentifier>{c06ab9e5-1b1c-4845-899e-f3fcbf35326a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{a778165f-c022-4bf7-92f9-858b346d7513}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03. Layer">
-      <UniqueIdentifier>{1f3022ff-f8d5-4fe0-a742-85faad423771}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject">
-      <UniqueIdentifier>{3dfb598e-feaf-4086-af87-1eb587cd3436}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. Scene\SceneType">
-      <UniqueIdentifier>{34cc68a2-7bc4-4b49-b4fc-f7116fc8c0e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05. Component">
-      <UniqueIdentifier>{1d443f16-055d-494e-88b3-3dff6c6eb662}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. Scene\SceneType\PlayScene">
-      <UniqueIdentifier>{ca5cedef-1f26-4695-ae2e-2da65323d368}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player">
-      <UniqueIdentifier>{683fe9af-6f54-411a-8297-b9e3b874666b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\Kirby">
-      <UniqueIdentifier>{cc2089b2-cfea-42e7-b7cf-8227564b182f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{1d31c4e6-d700-486f-b442-acb6336d507f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Time">
-      <UniqueIdentifier>{bccfdd48-ee61-4e71-a215-b5994b7cc14e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Key">
-      <UniqueIdentifier>{a4aa6645-750b-4ead-99c3-00bc9abea3d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Monster">
-      <UniqueIdentifier>{81242285-aaaf-45da-843c-dc7c8a5bbf7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Effect">
-      <UniqueIdentifier>{0129574d-80da-4f14-9523-8f43ff6f2a05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06. Resource">
-      <UniqueIdentifier>{12ed9b59-4306-4945-88b6-c8ab9fa2b633}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06. Resource\Texture">
-      <UniqueIdentifier>{eed06b70-dd7a-47d1-9ff6-6d179f00a7fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\BackGorund">
-      <UniqueIdentifier>{4ce3a5e8-9464-481c-ad28-58fb75224210}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05. Component\Collider">
-      <UniqueIdentifier>{d50aa4d8-9df2-4ccd-a90c-4d25ed5c38a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Collision">
-      <UniqueIdentifier>{e19e50c7-3e35-47c3-96c5-2b49880cc4b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05. Component\Animator">
-      <UniqueIdentifier>{2c0ffdf1-4d7c-4854-a10c-44b39e087dc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05. Component\Animator\Animation">
-      <UniqueIdentifier>{701f054d-50ca-43e7-a268-6ee29ab7469f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\UI">
-      <UniqueIdentifier>{56b75431-9b97-43c9-b959-1e1a0b421acb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. Scene\SceneType\PauseScene">
-      <UniqueIdentifier>{266efe16-eed8-4a2c-8ec0-cfb397d2865e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. Scene\SceneType\TitleScene">
-      <UniqueIdentifier>{0078107a-2d88-4d51-afab-3ab40dee6818}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Event">
-      <UniqueIdentifier>{c721192b-8c3d-4115-a321-cce192c76a35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Effect\TransformEffect">
-      <UniqueIdentifier>{2579b06c-46c1-451b-bee8-ad6c4a7d07e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\Kirby\FireKirby">
-      <UniqueIdentifier>{9963ea4b-07d0-491b-b7ce-b84042878587}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\Kirby\IceKirby">
-      <UniqueIdentifier>{857af8c6-5ff9-4db3-8a00-78ab42882a91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Skill">
-      <UniqueIdentifier>{97111b52-a8ae-4d41-abd4-4d19050df67e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\Kirby\DefaultKirby">
-      <UniqueIdentifier>{48ff4d02-e5d9-4bf7-ac6f-beb9ba90c5fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Skill\FireSkill">
-      <UniqueIdentifier>{6295aee0-6a26-4b71-aeeb-ae77edfd4cb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Skill\DefaultSkill">
-      <UniqueIdentifier>{f9d0c5d5-1d40-4d72-9cb2-3ce69dcc3982}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Skill\IceSkill">
-      <UniqueIdentifier>{9fac2a28-c52a-4128-a519-bb983f560265}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\Kirby\CutterKirby">
-      <UniqueIdentifier>{dd843c4e-6985-461d-9a31-d0ed32151e60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Skill\CutterSkill">
-      <UniqueIdentifier>{22c3dcca-92e7-468c-8532-cd2d39ef25a7}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="zzApplication.cpp">
+      <Filter>01.Application</Filter>
+    </ClCompile>
+    <ClCompile Include="zzScene.cpp">
+      <Filter>02. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzSceneMgr.cpp">
+      <Filter>02. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzAnimation.cpp">
+      <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzAnimator.cpp">
+      <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCollider.cpp">
+      <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCollisionMgr.cpp">
+      <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzComponent.cpp">
+      <Filter>05. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="zzEntity.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFunction.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="zzGameObject.cpp">
+      <Filter>04. GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="zzLayer.cpp">
+      <Filter>03. Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="zzBK_Stage1.cpp">
+      <Filter>04. GameObject\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCutterKirby.cpp">
+      <Filter>04. GameObject\Player\CutterKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzIceKirby.cpp">
+      <Filter>04. GameObject\Player\IceKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCutterSkill.cpp">
+      <Filter>04. GameObject\Skill\CutterSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzDefaultKirby.cpp">
+      <Filter>04. GameObject\Player\DefaultKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzDefaultSkill.cpp">
+      <Filter>04. GameObject\Skill\DefaultSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFireKirby.cpp">
+      <Filter>04. GameObject\Player\FireKirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFireSkill.cpp">
+      <Filter>04. GameObject\Skill\FireSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzIceSkill.cpp">
+      <Filter>04. GameObject\Skill\IceSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMonster.cpp">
+      <Filter>04. GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTransformEffect.cpp">
+      <Filter>04. GameObject\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="zzResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="zzKirby.cpp">
+      <Filter>04. GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="zzSkill.cpp">
+      <Filter>04. GameObject\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="zzStage1.cpp">
+      <Filter>04. GameObject\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTexture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTile.cpp">
+      <Filter>04. GameObject\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTitleScene.cpp">
+      <Filter>02. Scene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzToolScene.cpp">
+      <Filter>02. Scene\ToolScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzPlayScene.cpp">
+      <Filter>02. Scene\PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzPauseScene.cpp">
+      <Filter>02. Scene\PauseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="zzResourceMgr.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="zzTime.cpp">
+      <Filter>06. Manager\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="zzEventMgr.cpp">
+      <Filter>06. Manager\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="zzKey.cpp">
+      <Filter>06. Manager\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Kirby.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="zzApplication.h">
-      <Filter>01. Application</Filter>
+    <ClInclude Include="define.h">
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="CommonInclude.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="zzMath.h">
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Kirby.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="zzApplication.h">
+      <Filter>01.Application</Filter>
+    </ClInclude>
+    <ClInclude Include="zzScene.h">
+      <Filter>02. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSceneMgr.h">
+      <Filter>02. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzAnimation.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="zzAnimator.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCollider.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="zzComponent.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCollisionMgr.h">
+      <Filter>05. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEntity.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="zzEnum.h">
@@ -145,239 +174,209 @@
     <ClInclude Include="zzEngine.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="zzEntity.h">
+    <ClInclude Include="zzFunction.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzSceneMgr.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="zzScene.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="zzLayer.h">
-      <Filter>03. Layer</Filter>
     </ClInclude>
     <ClInclude Include="zzGameObject.h">
       <Filter>04. GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="zzPlayScene.h">
-      <Filter>02. Scene\SceneType\PlayScene</Filter>
+    <ClInclude Include="zzLayer.h">
+      <Filter>03. Layer</Filter>
     </ClInclude>
-    <ClInclude Include="zzKirby.h">
-      <Filter>04. GameObject\Player\Kirby</Filter>
-    </ClInclude>
-    <ClInclude Include="zzTime.h">
-      <Filter>Manager\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="zzKey.h">
-      <Filter>Manager\Key</Filter>
-    </ClInclude>
-    <ClInclude Include="zzComponent.h">
-      <Filter>05. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="zzMonster.h">
-      <Filter>04. GameObject\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzResource.h">
-      <Filter>06. Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="zzResourceMgr.h">
-      <Filter>06. Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="zzTexture.h">
-      <Filter>06. Resource\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="zzBackGround.h">
-      <Filter>04. GameObject\BackGorund</Filter>
-    </ClInclude>
-    <ClInclude Include="zzCollider.h">
-      <Filter>05. Component\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="zzkirbyComponent.h">
-      <Filter>05. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="zzSelectGDI.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzCollisionMgr.h">
-      <Filter>Manager\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="zzAnimator.h">
-      <Filter>05. Component\Animator</Filter>
-    </ClInclude>
-    <ClInclude Include="zzAnimation.h">
-      <Filter>05. Component\Animator\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="zzPauseScene.h">
-      <Filter>02. Scene\SceneType\PauseScene</Filter>
-    </ClInclude>
-    <ClInclude Include="zzTitleScene.h">
-      <Filter>02. Scene\SceneType\TitleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="zzEventMgr.h">
-      <Filter>Manager\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="zzFunction.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzTransformEffect.h">
-      <Filter>04. GameObject\Effect\TransformEffect</Filter>
-    </ClInclude>
-    <ClInclude Include="zzFireKirby.h">
-      <Filter>04. GameObject\Player\Kirby\FireKirby</Filter>
-    </ClInclude>
-    <ClInclude Include="zzIceKirby.h">
-      <Filter>04. GameObject\Player\Kirby\IceKirby</Filter>
-    </ClInclude>
-    <ClInclude Include="zzSkill.h">
-      <Filter>04. GameObject\Skill</Filter>
-    </ClInclude>
-    <ClInclude Include="zzDefaultKirby.h">
-      <Filter>04. GameObject\Player\Kirby\DefaultKirby</Filter>
-    </ClInclude>
-    <ClInclude Include="zzFireSkill.h">
-      <Filter>04. GameObject\Skill\FireSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="zzDefaultSkill.h">
-      <Filter>04. GameObject\Skill\DefaultSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="zzIceSkill.h">
-      <Filter>04. GameObject\Skill\IceSkill</Filter>
+    <ClInclude Include="zzBK_Stage1.h">
+      <Filter>04. GameObject\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="zzCutterKirby.h">
-      <Filter>04. GameObject\Player\Kirby\CutterKirby</Filter>
+      <Filter>04. GameObject\Player\CutterKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzIceKirby.h">
+      <Filter>04. GameObject\Player\IceKirby</Filter>
     </ClInclude>
     <ClInclude Include="zzCutterSkill.h">
       <Filter>04. GameObject\Skill\CutterSkill</Filter>
     </ClInclude>
+    <ClInclude Include="zzDefaultKirby.h">
+      <Filter>04. GameObject\Player\DefaultKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzDefaultSkill.h">
+      <Filter>04. GameObject\Skill\DefaultSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFireKirby.h">
+      <Filter>04. GameObject\Player\FireKirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFireSkill.h">
+      <Filter>04. GameObject\Skill\FireSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzIceSkill.h">
+      <Filter>04. GameObject\Skill\IceSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzMonster.h">
+      <Filter>04. GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTransformEffect.h">
+      <Filter>04. GameObject\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="zzMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="zzKirby.h">
+      <Filter>04. GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSkill.h">
+      <Filter>04. GameObject\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="zzStage1.h">
+      <Filter>04. GameObject\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTexture.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSelectGDI.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTitleScene.h">
+      <Filter>02. Scene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzToolScene.h">
+      <Filter>02. Scene\ToolScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzPlayScene.h">
+      <Filter>02. Scene\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzPauseScene.h">
+      <Filter>02. Scene\PauseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTile.h">
+      <Filter>04. GameObject\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="zzResourceMgr.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="zzTime.h">
+      <Filter>06. Manager\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEventMgr.h">
+      <Filter>06. Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="zzKey.h">
+      <Filter>06. Manager\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Kirby.ico">
+      <Filter>Default</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>Default</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="01.Application">
+      <UniqueIdentifier>{ee3341d3-6b06-4750-8afd-b2963e71cd4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Layer">
+      <UniqueIdentifier>{7c51a39d-2aa0-4efe-84b9-187b0dfcf470}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{51b6e767-30dc-43c6-9a65-169f8c7a1554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene">
+      <UniqueIdentifier>{3fda6c3d-171a-4505-81c9-6a5c09343745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{0a1b5b25-0dbd-41ce-bb24-b93abdb92a55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\PauseScene">
+      <UniqueIdentifier>{fcc24b88-859d-4790-8d74-5def8cda65ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\PlayScene">
+      <UniqueIdentifier>{edad1161-9fc7-4f9a-9549-ece4e24a3488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\ToolScene">
+      <UniqueIdentifier>{5c8587da-1458-4a18-ade7-850ba7e73e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\TitleScene">
+      <UniqueIdentifier>{e9938c8c-f05a-47b0-9df7-0980858b9608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{0011a834-3f3e-4e29-9793-5afd11dc5637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject">
+      <UniqueIdentifier>{cb619500-5733-4415-bdd0-9638592151cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill">
+      <UniqueIdentifier>{aea270b7-e9bb-4856-9865-53107d13bff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\DefaultSkill">
+      <UniqueIdentifier>{20c040b7-a43f-44dc-95fa-bdc3c91d9296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\CutterSkill">
+      <UniqueIdentifier>{7daf8b7c-8f6c-427a-9a56-c265ad2df601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\IceSkill">
+      <UniqueIdentifier>{25e8ca0e-faa0-4d92-9d20-aa4eb126bfc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Skill\FireSkill">
+      <UniqueIdentifier>{4a4b0243-dfcb-4985-ba43-70a39c2987ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Monster">
+      <UniqueIdentifier>{f1d6115e-b23a-497f-b182-ae4c0545a933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Effect">
+      <UniqueIdentifier>{fe69c1e9-f6b8-4ff5-a027-9dc5496aa7b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\BackGround">
+      <UniqueIdentifier>{011ca57c-a3a1-43d8-9e3c-85071034c0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Stage">
+      <UniqueIdentifier>{8b321d3c-6337-49f7-a38f-4fa52bf4d84b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Tile">
+      <UniqueIdentifier>{31c9e720-89c6-45e5-8bd3-483b63bcd09d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component">
+      <UniqueIdentifier>{05b7bcf6-0cd4-45f6-a4b6-f7131a9a9f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Manager">
+      <UniqueIdentifier>{6d9b0821-f4d3-4b7e-8af8-5e6c59e6abf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Manager\Event">
+      <UniqueIdentifier>{29f52f92-1d0b-4f9b-9362-d85f391297bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Manager\Time">
+      <UniqueIdentifier>{086353d9-8445-4d68-bc49-4a43bfad7d27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Manager\Key">
+      <UniqueIdentifier>{542079e7-f165-47e7-aab3-075c90a1ab21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{f90917fb-db11-4e9c-9b51-2477891cb593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player">
+      <UniqueIdentifier>{9552cadf-3454-48d7-acfd-8c470a4891ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\CutterKirby">
+      <UniqueIdentifier>{3c77e2e0-d4f5-4a19-8eaf-66f17bc81a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\IceKirby">
+      <UniqueIdentifier>{32da6c18-889e-4541-b294-7f39918a6a47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\FireKirby">
+      <UniqueIdentifier>{cd4511b0-b070-4605-a0aa-0c47e948349c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\DefaultKirby">
+      <UniqueIdentifier>{a5f3abd8-fc0f-4d25-96e1-22065778ba17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="Kirby.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="zzApplication.cpp">
-      <Filter>01. Application</Filter>
-    </ClCompile>
-    <ClCompile Include="zzMath.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="zzSceneMgr.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="zzScene.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="zzLayer.cpp">
-      <Filter>03. Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="zzGameObject.cpp">
-      <Filter>04. GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="zzEntity.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="zzPlayScene.cpp">
-      <Filter>02. Scene\SceneType\PlayScene</Filter>
-    </ClCompile>
-    <ClCompile Include="zzKirby.cpp">
-      <Filter>04. GameObject\Player\Kirby</Filter>
-    </ClCompile>
-    <ClCompile Include="zzTime.cpp">
-      <Filter>Manager\Time</Filter>
-    </ClCompile>
-    <ClCompile Include="zzKey.cpp">
-      <Filter>Manager\Key</Filter>
-    </ClCompile>
-    <ClCompile Include="zzComponent.cpp">
-      <Filter>05. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="zzMonster.cpp">
-      <Filter>04. GameObject\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="zzResource.cpp">
-      <Filter>06. Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="zzResourceMgr.cpp">
-      <Filter>06. Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="zzTexture.cpp">
-      <Filter>06. Resource\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="zzBackGround.cpp">
-      <Filter>04. GameObject\BackGorund</Filter>
-    </ClCompile>
-    <ClCompile Include="zzCollider.cpp">
-      <Filter>05. Component\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="zzkirbyComponent.cpp">
-      <Filter>05. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="zzCollisionMgr.cpp">
-      <Filter>Manager\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="zzAnimator.cpp">
-      <Filter>05. Component\Animator</Filter>
-    </ClCompile>
-    <ClCompile Include="zzAnimation.cpp">
-      <Filter>05. Component\Animator\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="zzPauseScene.cpp">
-      <Filter>02. Scene\SceneType\PauseScene</Filter>
-    </ClCompile>
-    <ClCompile Include="zzTitleScene.cpp">
-      <Filter>02. Scene\SceneType\TitleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="zzEventMgr.cpp">
-      <Filter>Manager\Event</Filter>
-    </ClCompile>
-    <ClCompile Include="zzFunction.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="zzTransformEffect.cpp">
-      <Filter>04. GameObject\Effect\TransformEffect</Filter>
-    </ClCompile>
-    <ClCompile Include="zzFireKirby.cpp">
-      <Filter>04. GameObject\Player\Kirby\FireKirby</Filter>
-    </ClCompile>
-    <ClCompile Include="zzIceKirby.cpp">
-      <Filter>04. GameObject\Player\Kirby\IceKirby</Filter>
-    </ClCompile>
-    <ClCompile Include="zzSkill.cpp">
-      <Filter>04. GameObject\Skill</Filter>
-    </ClCompile>
-    <ClCompile Include="zzDefaultKirby.cpp">
-      <Filter>04. GameObject\Player\Kirby\DefaultKirby</Filter>
-    </ClCompile>
-    <ClCompile Include="zzFireSkill.cpp">
-      <Filter>04. GameObject\Skill\FireSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="zzDefaultSkill.cpp">
-      <Filter>04. GameObject\Skill\DefaultSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="zzIceSkill.cpp">
-      <Filter>04. GameObject\Skill\IceSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="zzCutterKirby.cpp">
-      <Filter>04. GameObject\Player\Kirby\CutterKirby</Filter>
-    </ClCompile>
-    <ClCompile Include="zzCutterSkill.cpp">
-      <Filter>04. GameObject\Skill\CutterSkill</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

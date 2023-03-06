@@ -38,7 +38,7 @@ namespace zz
 	{
 		Vector2 vPos = GetPos();
 
-		if (KEY(X, PRESSED))
+		if (KEY(X, DOWN))
 		{
 			vPos = mOwner->GetPos();
 			mDir = mOwner->GetDir();
@@ -46,13 +46,13 @@ namespace zz
 			if (mDir == 1)
 			{
 				vPos += mIntervalPos;
-				mAni->PlayAnimation(L"tornado_Right", false);
+				mAni->PlayAnimation(L"tornado_Right", true);
 			}
 			else
 			{
 				vPos.x -= mIntervalPos.x;
 				vPos.y += mIntervalPos.y;
-				mAni->PlayAnimation(L"tornado_Left", false);
+				mAni->PlayAnimation(L"tornado_Left", true);
 			}
 		}
 

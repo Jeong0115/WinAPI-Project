@@ -40,3 +40,11 @@ void zz::PauseScene::Render(HDC hdc)
 void zz::PauseScene::Release()
 {
 }
+
+void zz::PauseScene::Enter()
+{
+}
+
+void zz::PauseScene::Exit()
+{
+}

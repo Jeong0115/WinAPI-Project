@@ -18,6 +18,12 @@ namespace zz
 			delete pair.second;
 			pair.second = nullptr;
 		}
+
+		for (auto pair : mEvents)
+		{
+			delete pair.second;
+			pair.second = nullptr;
+		}
 	}
 
 	void Animator::Update()
@@ -28,6 +34,11 @@ namespace zz
 
 			if (mbLoop && mCurAnimation->IsFinish())
 			{
+				Animator::Events* events = FindEvents(mCurAnimation->GetName());
+
+				if (events != nullptr)
+					events->mCompleteEvent();
+
 				mCurAnimation->Repeat(0);
 			}
 		}
@@ -43,29 +54,27 @@ namespace zz
 
 	void Animator::Release()
 	{
-		for (auto pair : mAnimations)
-		{
-			delete pair.second;
-			pair.second = nullptr;
-		}
 	}
 
-	void Animator::CreateAnimation(Texture* tex, const std::wstring& key
+	void Animator::CreateAnimation(Texture* tex, const std::wstring& name
 		, Vector2 startPos, Vector2 texSize, Vector2 interval, float delay, UINT texCnt)
 	{
-		if (FindAnimation(key) != nullptr)
+		if (FindAnimation(name) != nullptr)
 			assert(true);
 
 		Animation* ani = new Animation;
-		ani->SetKey(key);
-		mAnimations.insert(std::make_pair(key, ani));
+		ani->SetName(name);
+		mAnimations.insert(std::make_pair(name, ani));
+
+		Events* event = new Events();
+		mEvents.insert(std::make_pair(name, event));
 
 		ani->CreateAnimation(tex, startPos, texSize, interval, delay, texCnt);
 	}
 
-	Animation* Animator::FindAnimation(const std::wstring& key)
+	Animation* Animator::FindAnimation(const std::wstring& name)
 	{
-		std::map<std::wstring, Animation*>::iterator iter = mAnimations.find(key);
+		std::map<std::wstring, Animation*>::iterator iter = mAnimations.find(name);
 	
 		if (iter == mAnimations.end())
 			return nullptr;
@@ -73,17 +82,57 @@ namespace zz
 		return iter->second;
 	}
 
-	void Animator::PlayAnimation(const std::wstring& key, bool loop)
+	void Animator::PlayAnimation(const std::wstring& name, bool loop)
 	{
-		mCurAnimation = FindAnimation(key);
-		mCurAnimation->ResetFnish();
+		if (mCurAnimation != nullptr)
+		{
+			Animator::Events* prevEvents
+				= FindEvents(mCurAnimation->GetName());
+
+			if (prevEvents != nullptr)
+				prevEvents->mEndEvent();
+		}
+
+		mCurAnimation = FindAnimation(name);
+		mCurAnimation->Repeat(0);
 		mbLoop = loop;
+
+		Animator::Events* events
+			= FindEvents(name);
+
+		if (events != nullptr)
+			events->mStartEvent();
 	}
 
-	void Animator::StopAnimation(const std::wstring& key)
+	void Animator::StopAnimation(const std::wstring& name)
 	{
-		mCurAnimation = FindAnimation(key);
+		mCurAnimation = FindAnimation(name);
 		mCurAnimation->SetFinish(true);
 		mbLoop = false;
+	}
+
+	Animator::Events* Animator::FindEvents(const std::wstring& name)
+	{
+		std::map<std::wstring, Events*>::iterator iter = mEvents.find(name);
+
+		if (iter == mEvents.end())
+			return nullptr;
+
+		return iter->second;
+	}
+
+	std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
+	{
+		return FindEvents(name)->mStartEvent.mEvent;
+	}
+
+	std::function<void()>& Animator::GetCompleteEvent(const std::wstring& name)
+	{
+		return FindEvents(name)->mCompleteEvent.mEvent;
+	}
+
+	std::function<void()>& Animator::GetEndEvent(const std::wstring& name)
+	{
+		return FindEvents(name)->mEndEvent.mEvent;
 	}
 }

@@ -8,7 +8,7 @@ namespace zz
 	class Skill : public GameObject
 	{
 	public:
-		Skill();
+		Skill(Kirby* kirby);
 		virtual ~Skill();
 
 	public:
@@ -19,14 +19,11 @@ namespace zz
 
 		int GetDir() { return mDir; }
 
-		Kirby* kirby;
-
-		
-
 	private:
-		int type;
-		int mDir;
-		std::vector<GameObject*> mKirbySkills;
+		int							mType;
+		int							mDir;
+		std::vector<GameObject*>	mKirbySkills;
+		Kirby*						mKirby;
 	};
 
 }

@@ -17,6 +17,20 @@ struct Vector2
 		, y(y)
 	{}
 
+	float Length()
+	{
+		return sqrtf(x * x + y * y);
+	}
+
+	Vector2& Normalize()
+	{
+		float len = Length();
+
+		x /= len;
+		y /= len;
+
+		return *this; 
+	}
 	/*Vector2(int x, int y)
 		: x(x)
 		, y(y)
@@ -75,6 +89,11 @@ struct Vector2
 	Vector2 operator* (int i)
 	{
 		return Vector2(x * (float)i, y * (float)i);
+	}
+
+	Vector2 operator* (float i)
+	{
+		return Vector2(x * i, y * i);
 	}
 
 };

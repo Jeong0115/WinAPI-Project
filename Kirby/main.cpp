@@ -13,7 +13,9 @@
 
 HINSTANCE hInst;                              
 WCHAR szTitle[MAX_LOADSTRING];                
-WCHAR szWindowClass[MAX_LOADSTRING];          
+WCHAR szWindowClass[MAX_LOADSTRING];       
+
+INT_PTR CALLBACK TileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -103,7 +105,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   if (FAILED(zz::Application::Initialize(hWnd, POINT{ 1280,720 })))
+   if (FAILED(zz::Application::Initialize(hWnd, POINT{ 256,384 }))) // 512, 192 // 256, 192
    {
        MessageBox(nullptr, L"core 객체 초기화 실패", L"ERROR", MB_OK);
 
@@ -128,6 +130,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
+            case ID_TILE:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_TILE), hWnd, TileProc);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);

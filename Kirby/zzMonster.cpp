@@ -80,15 +80,14 @@ namespace zz
 				{
 					mDir *= -1;
 					curPos.x += dist * mDir;
-				}
-
-				if (mDir > 0)
-				{
-					mAni->PlayAnimation(L"KingDedede_Right_Walk", true);
-				}
-				else
-				{
-					mAni->PlayAnimation(L"KingDedede_Left_Walk", true);
+					if (mDir > 0)
+					{
+						mAni->PlayAnimation(L"KingDedede_Right_Walk", true);
+					}
+					else
+					{
+						mAni->PlayAnimation(L"KingDedede_Left_Walk", true);
+					}
 				}
 
 				SetPos(curPos);
