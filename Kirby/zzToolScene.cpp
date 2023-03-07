@@ -39,12 +39,12 @@ namespace zz
 	}
 
 	void ToolScene::Exit()
-	{
+		{
 	}
 }
 
 INT_PTR CALLBACK TileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
+			{
 	UNREFERENCED_PARAMETER(lParam);
 	switch (message)
 	{
@@ -72,7 +72,7 @@ INT_PTR CALLBACK TileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		{ 
 			EndDialog(hDlg, LOWORD(wParam));  
 			return (INT_PTR)TRUE;
-		}
+	}
 
 		break;
 	}

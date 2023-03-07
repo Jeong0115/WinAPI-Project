@@ -6,8 +6,6 @@
 #include "zzTime.h"
 #include "zzKey.h"
 
-#include "zzCamera.h"
-
 
 namespace zz
 {	

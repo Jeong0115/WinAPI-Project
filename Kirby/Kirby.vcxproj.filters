@@ -373,6 +373,9 @@
     <Filter Include="04. GameObject\Player\DefaultKirby">
       <UniqueIdentifier>{a5f3abd8-fc0f-4d25-96e1-22065778ba17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{aef4f68d-610a-40ba-93d7-32733669ceea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Kirby.rc">
