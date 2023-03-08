@@ -4,22 +4,12 @@
 
 namespace zz
 {
-	CutterSkill::CutterSkill(Skill* owner)
-		: mOwner(owner)
-		, mAni(nullptr)
+	CutterSkill::CutterSkill(Vector2 pos, int dir)
+		: mAni(nullptr)
 		, mColli(nullptr)
 		, mIntervalPos(Vector2(36.f, 0.f))
-		, mDir(1)
 		, mbPressX(false)
 		, mPassedTime(0.f)
-	{
-	}
-
-	CutterSkill::~CutterSkill()
-	{
-	}
-
-	void CutterSkill::Initialize()
 	{
 		mAni = AddComponent<Animator>();
 		mColli = AddComponent<Collider>();
@@ -30,78 +20,54 @@ namespace zz
 		mAni->CreateAnimation(CutterKirby_Right, L"CutterKirby_Right_X", Vector2(200.f, 411.f), Vector2(42.f, 32.f), Vector2(42.f, 0.f), 0.01f, 4);
 		mAni->CreateAnimation(CutterKirby_Left, L"CutterKirby_Left_X", Vector2(347.f, 411.f), Vector2(42.f, 32.f), Vector2(-42.f, 0.f), 0.01f, 4);
 
-		SetPos(Vector2(-20.f, -20.f));
 		SetScale(Vector2(42.f, 32.f));
 
-		GameObject::Initialize();
-		//temp = new Collider;
-		//SetComponent<Collider>(temp);
+		if (dir == 1)
+		{
+			pos += mIntervalPos;
+			mAni->PlayAnimation(L"CutterKirby_Right_X", true);
+		}
+		else
+		{
+			pos -= mIntervalPos;
+			mAni->PlayAnimation(L"CutterKirby_Left_X", true);
+		}
+		SetPos(pos);
+		SetDir(dir);
+	}
+
+	CutterSkill::~CutterSkill()
+	{
+	}
+
+	void CutterSkill::Initialize()
+	{
 	}
 
 	void CutterSkill::Update()
 	{
 		Vector2 vPos = GetPos();
+		int dir = GetDir();
 
-	
+		mPassedTime += (float)Time::DeltaTime();
 
-		if(mbPressX)
+		if (mPassedTime <= 0.4f)
 		{
-			mPassedTime += (float)Time::DeltaTime();
-
-			if (mPassedTime >= 0.23f)
-			{
-				if(x)
-				{
-					vPos = mOwner->GetPos();
-					mDir = mOwner->GetDir();
-
-					if (mDir == 1)
-					{
-						vPos += mIntervalPos;
-						mAni->PlayAnimation(L"CutterKirby_Right_X", true);
-					}
-					else
-					{
-						vPos -= mIntervalPos;
-						mAni->PlayAnimation(L"CutterKirby_Left_X", true);
-					}
-					x = false;
-				}
-			}
-	
-			if (mPassedTime <= 0.6f && mPassedTime >= 0.2f)
-			{
-				vPos.x += (float)(200.f * Time::DeltaTime()) * mDir;
-				vPos.y -= (float)(50.f * Time::DeltaTime());
-			}
-			else if (mPassedTime <= 1.f)
-			{
-				vPos.x -= (float)(500.f * Time::DeltaTime()) * mDir;
-				vPos.y -= (float)(50.f * Time::DeltaTime());
-			}
-			else
-			{
-				mPassedTime = 0.f;
-				mbPressX = false;
-				mAni->StopAnimation(L"CutterKirby_Right_X");
-				mAni->StopAnimation(L"CutterKirby_Left_X");
-				vPos = Vector2(-20.f, -20.f);
-			}
-			SetPos(vPos);
-		
+			vPos.x += (float)(200.f * Time::DeltaTime()) * dir;
+			vPos.y -= (float)(50.f * Time::DeltaTime());
 		}
-		else
+		else if (mPassedTime <= 0.8f)
 		{
-			if (KEY(X, DOWN))
-			{
-
-				mbPressX = true;
-				x = true;
-			}
+			vPos.x -= (float)(500.f * Time::DeltaTime()) * dir;
+			vPos.y -= (float)(50.f * Time::DeltaTime());
 		}
-		
-
-
+		else if(!IsDead())
+		{
+			DeleteObject(this, GetLayerType());
+		}
+		SetPos(vPos);
+		SetDir(dir);
+	
 		GameObject::Update();
 	}
 
@@ -111,7 +77,4 @@ namespace zz
 		GameObject::Render(hdc);
 	}
 
-	/*void FireSkill::Release()
-	{
-	}*/
 }

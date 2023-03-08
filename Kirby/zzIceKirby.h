@@ -7,10 +7,10 @@
 
 namespace zz
 {
-	class IceKirby : public GameObject
+	class IceKirby : public Kirby
 	{
 	public:
-		IceKirby(Kirby* owner);
+		IceKirby();
 		virtual ~IceKirby();
 
 	public:
@@ -18,13 +18,14 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-		void Enter();
-		void Exit();
+		virtual void Enter();
+		virtual void Exit();
 
 		enum class eIceKirby
 		{
 			IDLE,
-			MOVE,
+			WALK,
+			RUN,
 			SKILL,
 			DOWN,
 			END
@@ -32,7 +33,8 @@ namespace zz
 
 	private:
 		void idle(int dir);
-		void move(int dir);
+		void walk(int dir);
+		void run(int dir);
 		void skill(int dir);
 		void down(int dir);
 
@@ -40,8 +42,10 @@ namespace zz
 		Texture*	mTex;
 		Collider*	mColli;
 		Animator*	mAni;
-		Kirby*		mOwner;
 		eIceKirby	mState;
+
+		float		mPassedTime;
+		bool		mbRun;
 	};
 
 }

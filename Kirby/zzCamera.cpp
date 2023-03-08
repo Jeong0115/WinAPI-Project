@@ -7,6 +7,8 @@ namespace zz
 {
 	Vector2 Camera::mLookPos = {};
 	Vector2 Camera::mDiffPos = {};
+	Vector2 Camera::mResoultion = {};
+	Vector2 Camera::mCenterPos = {};
 	//Vector2 Camera::mPrevLookPos = {};
 	//Vector2 Camera::mCurLookPos = {0.f , 0.f};
 	//
@@ -23,6 +25,12 @@ namespace zz
 	Camera::~Camera()
 	{
 
+	}
+
+	void Camera::Initialize()
+	{
+		mResoultion = Application::GetResolution();
+		mCenterPos = Vector2(128.f, 145.f);
 	}
 
 	void Camera::Update()
@@ -56,8 +64,7 @@ namespace zz
 			mCurLookPos = mPrevLookPos + dir.Normalize() * dis * (float)Time::DeltaTime();
 		}*/
 
-		Vector2 resoultion = Application::GetResolution();
-		Vector2 centerPos = Vector2(resoultion.x / 2.f, resoultion.y / 2.f - 43);
+		
 
 		if (mLookPos.x > 1460.f)
 		{
@@ -71,7 +78,7 @@ namespace zz
 		//mDiffPos = mCurLookPos - centerPos;
 		//mPrevLookPos = mCurLookPos;
 
-		mDiffPos = mLookPos - centerPos;
+		mDiffPos = mLookPos - mCenterPos;
 		
 	}
 

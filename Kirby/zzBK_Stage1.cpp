@@ -26,7 +26,7 @@ namespace zz
 		Vector2 vPos = GetPos();
 		vPos = Camera::GetRenderPos(vPos);
 		//if ((vPos.x / 6.f) - (int)(vPos.x / 6) )
-		TransparentBlt(hdc, (int)(vPos.x / 6.f) - 2, (int)vPos.y - 8, mTex->GetWidth(), mTex->GetHeight(), mTex->GetHdc()
+		TransparentBlt(hdc, (int)(vPos.x / 6.f ) - 2, (int)vPos.y - 8, mTex->GetWidth(), mTex->GetHeight(), mTex->GetHdc()
 			, 0, 0, mTex->GetWidth(), mTex->GetHeight(), RGB(255, 0, 255));
 	}
 

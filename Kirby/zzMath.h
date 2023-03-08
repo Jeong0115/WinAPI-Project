@@ -56,6 +56,8 @@ struct Vector2
 	{
 		x = (float)pt.x;
 		y = (float)pt.y;
+
+		return *this;
 	}
 
 	Vector2 operator+ (Vector2 other)

@@ -7,10 +7,10 @@
 
 namespace zz
 {
-	class FireKirby : public GameObject
+	class FireKirby : public Kirby
 	{
 	public:
-		FireKirby(Kirby* owner);
+		FireKirby();
 		virtual ~FireKirby();
 
 	public:
@@ -18,30 +18,34 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-		void Enter();
-		void Exit();
+		virtual void Enter();
+		virtual void Exit();
 
 		enum class eFireKirby
 		{
 			IDLE,
-			MOVE,
+			WALK,
+			RUN,
 			SKILL,
+			DASHSKILL,
 			DOWN,
 			END
 		};
 
 	private:
 		void idle(int dir);
-		void move(int dir);
+		void walk(int dir);
+		void run(int dir);
 		void skill(int dir);
+		void dashSkill(int dir);
 		void down(int dir);
 
 	private:
-		Texture*	mTex;
-		Collider*	mColli;
 		Animator*	mAni;
-		Kirby*		mOwner;
 		eFireKirby	mState;
+
+		float		mPassedTime;
+		bool		mbRun;
 	};
 
 }

@@ -1,19 +1,21 @@
 #include "zzPlayScene.h"
 
 #include "zzApplication.h"
-
-#include "zzKirby.h"
-#include "zzMonster.h"
-
-#include "zzStage1.h"
 #include "zzCollisionMgr.h"
 #include "zzKey.h"
 #include "zzSceneMgr.h"
+#include "zzCamera.h"
+
+#include "zzDefaultKirby.h"
 #include "zzTransformEffect.h"
 #include "zzSkill.h"
-#include "zzCamera.h"
 #include "zzBK_Stage1.h"
-#include "zzTexture.h"
+#include "zzMonster.h"
+#include "zzStage1.h"
+#include "zzInventory.h"
+#include "zzAbilityUI.h"
+#include "zzHP.h"
+#include "zzKirby.h"
 
 namespace zz
 {
@@ -49,16 +51,24 @@ namespace zz
 		AddGameObject(monster, eLayerType::MONSTER);
 
 		TransformEffect* effect = new TransformEffect();
-		effect->obj = kirby;
+		effect->SetObj(kirby);
 		AddGameObject(effect, eLayerType::EFFECT);
 
-		Skill* skill = new Skill(kirby);
-		AddGameObject(skill, eLayerType::SKILL);
+		/*Skill* skill = new Skill(defaultKirby);
+		AddGameObject(skill, eLayerType::SKILL);*/
+
+		Inventory* inven = new Inventory();
+		AddGameObject(inven, eLayerType::INVENTORY);
+
+		AbilityUI* abilityUI = new AbilityUI();
+		AddGameObject(abilityUI, eLayerType::UI);
+
+		HP* hp = new HP();
+		AddGameObject(hp, eLayerType::UI);
 
 		CollisionMgr::CheckCollision(eLayerType::SKILL, eLayerType::MONSTER);
 		CollisionMgr::CheckCollision(eLayerType::MONSTER, eLayerType::PLAYER);
 
-		mTex = ResourceMgr::Load<Texture>(L"Inventory", L"..\\Resources\\Inventory.bmp");
 
 		Scene::Initialize();
 	}
@@ -80,7 +90,6 @@ namespace zz
 	void PlayScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
-		BitBlt(hdc, 0 , 193, mTex->GetWidth(), mTex->GetHeight(), mTex->GetHdc(), 0, 0, SRCCOPY);
 	}
 
 	void PlayScene::Enter()

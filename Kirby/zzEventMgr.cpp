@@ -23,7 +23,6 @@ namespace zz
 			delete mDeactivateList[i];
 		}
 		mDeactivateList.clear();
-
 		for (UINT i = 0; i < mEventsInfo.size(); i++)
 		{
 			Execute(mEventsInfo[i]);
@@ -49,6 +48,8 @@ namespace zz
 			mDeactivateList.push_back(obj);
 		}
 			break;
+
+	
 		case eEventType::SCENE_CHANGE:
 
 			break;

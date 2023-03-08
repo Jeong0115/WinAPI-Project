@@ -12,6 +12,7 @@ namespace zz
 		~Camera();
 
 	public:
+		static void Initialize();
 		static void Update();
 		static void CalDiff();
 
@@ -26,12 +27,15 @@ namespace zz
 		static Vector2 GetRealPos(Vector2 pos) { return pos + mDiffPos; } 
 
 	private:
-		static Vector2 mLookPos;
+		static Vector2		mLookPos;
 		//static Vector2 mPrevLookPos;
 		//static Vector2 mCurLookPos;
 
-		static Vector2 mDiffPos;
-		static GameObject* mTarget;
+		static Vector2		mDiffPos;
+		static GameObject*	mTarget;
+		static Vector2		mResoultion;
+
+		static Vector2		mCenterPos;
 
 		//static float time;
 		//static float dis;

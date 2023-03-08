@@ -38,6 +38,7 @@ namespace zz
 				continue;
 			obj->Update();
 		}
+
 	}
 
 	void Layer::Render(HDC hdc)

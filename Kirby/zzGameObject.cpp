@@ -3,9 +3,10 @@
 namespace zz
 {
 	GameObject::GameObject()
-		: mbDead(true)
+		: mState(eState::ACTIVE)
 		, mLayerType(eLayerType::END)
 		, mPos(Vector2(0.f, 0.f))
+		, mDir(1)
 	{
 		mComponents.resize((UINT)eCompType::END);
 	}

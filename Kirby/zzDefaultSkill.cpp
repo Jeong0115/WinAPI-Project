@@ -2,22 +2,13 @@
 #include "zzTime.h"
 #include "zzKey.h"
 
+
 namespace zz
 {
-	DefaultSkill::DefaultSkill(Skill* owner)
-		: mOwner(owner)
-		, mAni(nullptr)
+	DefaultSkill::DefaultSkill(Vector2 pos, int dir)
+		: mAni(nullptr)
 		, mColli(nullptr)
 		, mIntervalPos(Vector2(30.f, 12.f))
-		, mDir(1)
-	{
-	}
-
-	DefaultSkill::~DefaultSkill()
-	{
-	}
-
-	void DefaultSkill::Initialize()
 	{
 		mAni = AddComponent<Animator>();
 		mColli = AddComponent<Collider>();
@@ -28,42 +19,39 @@ namespace zz
 		mAni->CreateAnimation(tornado_Right, L"tornado_Right", Vector2(0.f, 0.f), Vector2(36.5f, 45.f), Vector2(36.5f, 0.f), 0.05f, 4);
 		mAni->CreateAnimation(tornado_Left, L"tornado_Left", Vector2(109.5f, 0.f), Vector2(36.5f, 45.f), Vector2(-36.5f, 0.f), 0.05f, 4);
 
-		SetPos(Vector2(-20.f, -20.f));
 		SetScale(Vector2(36.5f, 45.f));
 
-		GameObject::Initialize();
+		
+
+		if (dir == 1)
+		{
+			pos += mIntervalPos;
+			mAni->PlayAnimation(L"tornado_Right", true);
+		}
+		else
+		{
+			pos.x -= mIntervalPos.x;
+			pos.y += mIntervalPos.y;
+			mAni->PlayAnimation(L"tornado_Left", true);
+		}
+		SetPos(pos);
+	}
+
+	DefaultSkill::~DefaultSkill()
+	{
+	}
+
+	void DefaultSkill::Initialize()
+	{
 	}
 
 	void DefaultSkill::Update()
 	{
-		Vector2 vPos = GetPos();
-
-		if (KEY(X, DOWN))
-		{
-			vPos = mOwner->GetPos();
-			mDir = mOwner->GetDir();
-
-			if (mDir == 1)
-			{
-				vPos += mIntervalPos;
-				mAni->PlayAnimation(L"tornado_Right", true);
-			}
-			else
-			{
-				vPos.x -= mIntervalPos.x;
-				vPos.y += mIntervalPos.y;
-				mAni->PlayAnimation(L"tornado_Left", true);
-			}
-		}
-
+	
 		if (KEY(X, UP))
 		{
-			mAni->StopAnimation(L"tornado_Right");
-			mAni->StopAnimation(L"tornado_Left");
-			vPos = Vector2(-20.f, -20.f);
+			DeleteObject(this, GetLayerType());
 		}
-
-		SetPos(vPos);
 
 		GameObject::Update();
 	}
@@ -73,7 +61,4 @@ namespace zz
 		GameObject::Render(hdc);
 	}
 
-	/*void DefaultSkill::Release()
-	{
-	}*/
 }

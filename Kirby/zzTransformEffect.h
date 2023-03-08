@@ -17,10 +17,13 @@ namespace zz
 		virtual void Render(HDC hdc);
 		virtual void Release();
 
-		GameObject* obj;
+		void SetObj(GameObject* o) { obj = o; }
+
+		//static 
 
 	private:
 		Animator* mAni;
+		GameObject* obj;
 	};
 
 }

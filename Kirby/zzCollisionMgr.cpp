@@ -6,6 +6,8 @@
 
 namespace zz
 {
+	class Kirby;
+
 	UINT CollisionMgr::mCheck[(UINT)eLayerType::END] = {};
 	std::map<ULONGLONG, bool> CollisionMgr::mCollisionMap = {};
 
@@ -86,7 +88,8 @@ namespace zz
 				{
 					if (iter->second)
 					{
-						if (vecLeft[i]->IsDead() || vecRight[i]->IsDead())
+						/*if (!vecLeft[i]->IsActive() || !vecRight[i]->IsActive())*/
+						if (!(vecLeft[i]->GetState() == eState::ACTIVE) || !(vecRight[i]->GetState() == eState::ACTIVE))
 						{
 							leftCollider->OnCollisionExit(vecRight[j]);
 							rightCollider->OnCollisionExit(vecLeft[i]);
@@ -101,7 +104,8 @@ namespace zz
 					}
 					else
 					{
-						if (!vecLeft[i]->IsDead() || !vecRight[i]->IsDead())
+						/*if (vecLeft[i]->IsActive() && vecRight[i]->IsActive())*/
+						if (vecLeft[i]->GetState() == eState::ACTIVE && (vecRight[i]->GetState() == eState::ACTIVE))
 						{
 							leftCollider->OnCollisionEnter(vecRight[j]);
 							rightCollider->OnCollisionEnter(vecLeft[i]);

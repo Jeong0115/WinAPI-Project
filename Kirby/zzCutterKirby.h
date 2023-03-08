@@ -7,10 +7,10 @@
 
 namespace zz
 {
-	class CutterKirby : public GameObject
+	class CutterKirby : public Kirby
 	{
 	public:
-		CutterKirby(Kirby* owner);
+		CutterKirby();
 		virtual ~CutterKirby();
 
 	public:
@@ -18,14 +18,15 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-		void Enter();
-		void Exit();
+		virtual void Enter();
+		virtual void Exit();
 
 	public:
 		enum class eCutterKirby
 		{
 			IDLE,
-			MOVE,
+			WALK,
+			RUN,
 			SKILL,
 			DOWN,
 			END
@@ -33,19 +34,20 @@ namespace zz
 
 	private:
 		void idle(int dir);
-		void move(int dir);
+		void walk(int dir);
+		void run(int dir);
 		void skill(int dir);
 		void down(int dir);
 
+		void createCutter();
 	private:
-		Collider*		mColli;
 		Animator*		mAni;
-		Kirby*			mOwner;
-
 		eCutterKirby	mState;
 
 		float			mPassedTime;
 		bool			mbPressX;
+		bool			mbRun;
+		bool			mbThrow;
 	};
 }
 

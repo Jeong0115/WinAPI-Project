@@ -5,13 +5,14 @@
 #include "zzAnimator.h"
 #include "zzCollider.h"
 #include "zzGameObject.h"
+#include "zzKirby.h"
 
 namespace zz
 {
 	class CutterSkill : public GameObject
 	{
 	public:
-		CutterSkill(Skill* owner);
+		CutterSkill(Vector2 pos, int dir);
 		virtual ~CutterSkill();
 
 	public:
@@ -21,18 +22,13 @@ namespace zz
 		//virtual void Release();
 
 
-
 	private:
-		Skill*			mOwner;
 		Animator*		mAni;
 		Collider*		mColli;
 		Vector2			mIntervalPos;
 
 		bool			mbPressX;
 		float			mPassedTime;
-		bool			x = false;
-
-		int				mDir;
 	};
 
 }

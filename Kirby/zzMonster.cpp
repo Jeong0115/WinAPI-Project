@@ -1,7 +1,6 @@
 #include "zzMonster.h"
 #include "zzTime.h"
 
-#include "zzFunction.h"
 
 namespace zz
 {
@@ -16,7 +15,7 @@ namespace zz
 		, mHitTime(0.f)
 		, mDeadTime(0.f)
 		, mbCadaver(false)
-		, mHp(3)
+		, mHp(5)
 	{
 	}
 
@@ -26,7 +25,6 @@ namespace zz
 
 	void Monster::Initialize()
 	{
-		GameObject::Initialize();
 		
 		mAni = AddComponent<Animator>();
 		mColli = AddComponent<Collider>();
@@ -50,6 +48,8 @@ namespace zz
 
 
 		SetCenterPos(Vector2(GetPos().x +50, GetPos().y));
+
+		GameObject::Initialize();
 	}
 
 	void Monster::Update()
@@ -100,6 +100,14 @@ namespace zz
 				{
 					mbHit = false;
 					mHitTime = 0.f;
+					if (mDir == 1)
+					{
+						mAni->PlayAnimation(L"KingDedede_Right_Walk", true);
+					}
+					else
+					{
+						mAni->PlayAnimation(L"KingDedede_Left_Walk", true);
+					}
 				}
 			}
 		}
@@ -133,11 +141,11 @@ namespace zz
 			//delete mColli;
 			if (mDir == 1)
 			{
-				mAni->PlayAnimation(L"KingDedede_Right_Dead", false);
+				mAni->PlayAnimation(L"KingDedede_Right_Dead", true);
 			}
 			else
 			{
-				mAni->PlayAnimation(L"KingDedede_Left_Dead", false);
+				mAni->PlayAnimation(L"KingDedede_Left_Dead", true);
 			}
 		}
 	}

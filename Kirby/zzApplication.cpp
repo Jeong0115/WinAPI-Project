@@ -56,6 +56,7 @@ namespace zz
 		Time::Initialize();
 		Key::Initialize();
 		SceneMgr::Initialize();
+		Camera::Initialize();
 
 		return S_OK;
 	}

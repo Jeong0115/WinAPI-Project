@@ -1,6 +1,5 @@
 #pragma once
 
-#include "zzSkill.h"
 #include "zzAnimator.h"
 #include "zzCollider.h"
 #include "zzGameObject.h"
@@ -10,7 +9,7 @@ namespace zz
 	class DefaultSkill : public GameObject
 	{
 	public:
-		DefaultSkill(Skill* owner);
+		DefaultSkill(Vector2 pos, int dir);
 		virtual ~DefaultSkill();
 
 	public:
@@ -22,11 +21,8 @@ namespace zz
 
 
 	private:
-		Skill* mOwner;
 		Animator* mAni;
 		Collider* mColli;
 		Vector2 mIntervalPos;
-
-		int mDir;
 	};
 }

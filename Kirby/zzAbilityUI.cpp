@@ -1,0 +1,38 @@
+#include "zzAbilityUI.h"
+#include "zzTexture.h"
+#include "zzKirby.h"
+
+namespace zz
+{
+	AbilityUI::AbilityUI()
+		: mTex(nullptr)
+		, mType(0)
+	{
+	}
+
+	AbilityUI::~AbilityUI()
+	{
+	}
+
+	void AbilityUI::Initialize()
+	{
+
+		mTex = ResourceMgr::Load<Texture>(L"Ability_UI", L"..\\Resources\\Ability_UI.bmp");
+
+		//GameObject::Initialize();
+	}
+
+	void AbilityUI::Update()
+	{
+		mType = Kirby::GetType();
+		//GameObject::Update();
+	}
+
+	void AbilityUI::Render(HDC hdc)
+	{
+		TransparentBlt(hdc, 0, 150, 40, 40, mTex->GetHdc()
+			, 40 * mType, 0, 40, 40, RGB(255, 0, 255));
+
+		//GameObject::Render(hdc);
+	}
+}

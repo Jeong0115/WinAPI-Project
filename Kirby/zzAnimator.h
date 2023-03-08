@@ -45,18 +45,22 @@ namespace zz
 			, Vector2 startPos, Vector2 texSize, Vector2 interval, float delay, UINT texCnt);
 		Animation* FindAnimation(const std::wstring& key);
 		void PlayAnimation(const std::wstring& name, bool loop);
-		void StopAnimation(const std::wstring& name);
+		void StopAnimation();
+		void SetFix() { mbFix = true; }
 
 		Events* FindEvents(const std::wstring& name);
 		std::function<void()>& GetStartEvent(const std::wstring& name);
 		std::function<void()>& GetCompleteEvent(const std::wstring& name);
 		std::function<void()>& GetEndEvent(const std::wstring& name);
 
+		bool IsComplete() { return mCurAnimation->IsFinish(); }
+
 	private:
 		std::map<std::wstring, Animation*>		mAnimations;
 		std::map<std::wstring, Events*>			mEvents;
 		Animation*								mCurAnimation;
 		bool									mbLoop;
+		bool									mbFix;
 	};
 
 }

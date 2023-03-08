@@ -5,6 +5,7 @@
 
 namespace zz
 {
+	class Collider;
 	class Kirby : public GameObject
 	{
 	public:
@@ -12,22 +13,54 @@ namespace zz
 		virtual ~Kirby();
 
 	public:
-		virtual void Initialize() override;
-		virtual void Update() override;
-		virtual void Render(HDC hdc) override;
-		virtual void Release() override;
+		virtual void Initialize();
+		virtual void Update();
+		virtual void Render(HDC hdc);
+		static void End();
+
+
+		virtual void Enter();
+		virtual void Exit();
+
+		virtual void OnCollisionEnter(GameObject* other);
+		virtual void OnCollision(GameObject* other);
+		virtual void OnCollisionExit(GameObject* other);
+
+		virtual Vector2 GetPos() { return mKirbyPos; }
+		virtual Vector2 GetScale() { return mKirbyScale; }
+		virtual void SetPos(Vector2 pos) { mKirbyPos = pos; }
+		virtual void SetScale(Vector2 scale) { mKirbyScale = scale; }
+		virtual void SetDir(int dir) { mKirbyDir = dir; }
+		virtual int GetDir() { return mKirbyDir; }
+		
+
+		virtual eState GetState() { return mKirbyState; }
+		virtual void SetState(eState state) { mKirbyState = state; } // 수정예정
+
+		static inline Vector2 GetKirbyScale() { return mDefaultScale; }
+
 
 	public:
-		int GetType() { return temp; }
-		int GetDir() { return mDir; }
-		void SetDir(int dir) { mDir = dir; }
+		static int GetType() { return temp; }
+
+		static void KirbyInitialize(Kirby* defaultKirby);
 
 	private:
-		eTransformType	type;
-		int temp;
+		static eTransformType	type;
+		static int temp;
+		static int mKirbyDir;
+		static std::vector<Kirby*> mKirbyAbility;
+
+		static Vector2 mKirbyPos;
+		static Vector2 mKirbyScale;
+		static Vector2 mDefaultScale;
+
+		static eState mKirbyState;
+
 		int prevTemp;
-		int mDir;
-		std::vector<GameObject*> mKirbyTransforms;
+
+	protected:
+		static Collider* mKirbyColli;
 	};	
 }
 

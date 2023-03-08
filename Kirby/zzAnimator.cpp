@@ -8,6 +8,7 @@ namespace zz
 		: Component(eCompType::ANIMATOR)
 		, mCurAnimation(nullptr)
 		, mbLoop(false)
+		, mbFix(false)
 	{
 	}
 
@@ -30,15 +31,24 @@ namespace zz
 	{
 		if(mCurAnimation!=nullptr)
 		{
-			mCurAnimation->Update(GetOwner()->GetPos());
+			if(mbFix)
+			{
+				mCurAnimation->Update(GetOwner()->GetPos());
+			}
+			else
+			{
+				mCurAnimation->Update(Camera::GetRenderPos(GetOwner()->GetPos()));
+			}
 
-			if (mbLoop && mCurAnimation->IsFinish())
+			if (mCurAnimation->IsFinish())
 			{
 				Animator::Events* events = FindEvents(mCurAnimation->GetName());
 
 				if (events != nullptr)
 					events->mCompleteEvent();
-
+			}
+			if (mbLoop && mCurAnimation->IsFinish())
+			{
 				mCurAnimation->Repeat(0);
 			}
 		}
@@ -104,9 +114,8 @@ namespace zz
 			events->mStartEvent();
 	}
 
-	void Animator::StopAnimation(const std::wstring& name)
+	void Animator::StopAnimation()
 	{
-		mCurAnimation = FindAnimation(name);
 		mCurAnimation->SetFinish(true);
 		mbLoop = false;
 	}

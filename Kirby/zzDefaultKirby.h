@@ -7,10 +7,10 @@
 
 namespace zz
 {
-	class DefaultKirby : public GameObject
+	class DefaultKirby : public Kirby
 	{
 	public:
-		DefaultKirby(Kirby* owner);
+		DefaultKirby();
 		virtual ~DefaultKirby();
 
 	public:
@@ -18,35 +18,45 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-		void Enter();
-		void Exit();
+		virtual void Enter();
+		virtual void Exit();
 
 	public:
 		enum class eDefaultKirby
 		{
 			IDLE,
-			MOVE,
+			WALK,
+			RUN,
 			SKILL,
 			DOWN,
+			DAMAGE,
 			END
 		};
 		
 	private:
 		void idle(int dir);
-		void move(int dir);
+		void walk(int dir);
+		void run(int dir);
 		void skill(int dir);
 		void down(int dir);
+		void damage(int dir);
 
-		void jump();
+		void active();
+
+		virtual void OnCollisionEnter(GameObject* other);
+		virtual void OnCollision(GameObject* other);
+		virtual void OnCollisionExit(GameObject* other);
+
 	private:
-		Collider*		mColli;
 		Animator*		mAni;
-		Kirby*			mOwner;
 
 		eDefaultKirby	mState;
 
 		float			mPassedTime;
+		float			mInvincibleTime;
 		bool			mbPressX;
+
+		bool			mbRun;
 
 		int a = 0;
 	};

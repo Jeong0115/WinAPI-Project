@@ -1,16 +1,38 @@
 #include "zzFireSkill.h"
+#include "zzTexture.h"
 #include "zzTime.h"
 #include "zzKey.h"
 
 namespace zz
 {
-	FireSkill::FireSkill(Skill* owner)
-		: mOwner(owner)
-		, mAni(nullptr)
+	FireSkill::FireSkill(Vector2 pos, int dir)
+		: mAni(nullptr)
 		, mColli(nullptr)
-		, mIntervalPos(Vector2(36.f, 0.f))
-		, mDir(1)
+		, mIntervalPos(Vector2(48.f, 7.f))
 	{
+		mAni = AddComponent<Animator>();
+		mColli = AddComponent<Collider>();
+
+		Texture* Fire_Skill_Right = ResourceMgr::Load<Texture>(L"Fire_Skill_Right", L"..\\Resources\\Fire_Skill_Right.bmp");
+		Texture* Fire_Skill_Left = ResourceMgr::Load<Texture>(L"Fire_Skill_Left", L"..\\Resources\\Fire_Skill_Left.bmp");
+
+		mAni->CreateAnimation(Fire_Skill_Right, L"Fire_Skill_Right", Vector2(816.f, 0.f), Vector2(68.f, 39.f), Vector2(-68.f, 0.f), 0.03f, 13);
+		mAni->CreateAnimation(Fire_Skill_Left, L"Fire_Skill_Left", Vector2(0.f, 0.f), Vector2(68.f, 39.f), Vector2(68.f, 0.f), 0.03f, 13);
+
+		SetScale(Vector2(68.f, 39.f));
+
+		pos.y += mIntervalPos.y;
+		if (dir == 1)
+		{
+			pos.x += mIntervalPos.x;
+			mAni->PlayAnimation(L"Fire_Skill_Right", true);
+		}
+		else
+		{
+			pos.x -= mIntervalPos.x;
+			mAni->PlayAnimation(L"Fire_Skill_Left", true);
+		}
+		SetPos(pos);
 	}
 
 	FireSkill::~FireSkill()
@@ -19,52 +41,16 @@ namespace zz
 
 	void FireSkill::Initialize()
 	{
-		mAni = AddComponent<Animator>();
-		mColli = AddComponent<Collider>();
-
-		Texture* mSkillTex = ResourceMgr::Load<Texture>(L"Fire_Skill_Right", L"..\\Resources\\Fire_Skill_Right.bmp");
-		Texture* mSkillTex1 = ResourceMgr::Load<Texture>(L"Fire_Skill_Left", L"..\\Resources\\Fire_Skill_Left.bmp");
-
-		mAni->CreateAnimation(mSkillTex, L"Fire_Skill_Right", Vector2(0.f, 0.f), Vector2(36.928f, 32.f), Vector2(36.928f, 0.f), 0.04f, 14);
-		mAni->CreateAnimation(mSkillTex1, L"Fire_Skill_Left", Vector2(0.f, 0.f), Vector2(36.928f, 32.f), Vector2(36.928f, 0.f), 0.04f, 14);
-
-		SetPos(Vector2(-20.f, -20.f));
-		SetScale(Vector2(36.928f, 32.f));
-
-		GameObject::Initialize();
-		//temp = new Collider;
-		//SetComponent<Collider>(temp);
 	}
 
 	void FireSkill::Update()
 	{
-		Vector2 vPos = GetPos();
-
-		if (KEY(X, DOWN))
-		{
-			vPos = mOwner->GetPos();
-			mDir = mOwner->GetDir();
-
-			if (mDir == 1)
-			{
-				vPos += mIntervalPos;
-				mAni->PlayAnimation(L"Fire_Skill_Right", true);
-			}
-			else
-			{
-				vPos -= mIntervalPos;
-				mAni->PlayAnimation(L"Fire_Skill_Left", true);
-			}
-		}
-
+	
 		if (KEY(X, UP))
 		{
-			mAni->StopAnimation(L"Fire_Skill_Left");
-			mAni->StopAnimation(L"Fire_Skill_Right");
-			vPos = Vector2(-20.f, -20.f);
+			DeleteObject(this, GetLayerType());
 		}
 
-		SetPos(vPos);
 
 		GameObject::Update();
 	}
@@ -75,7 +61,4 @@ namespace zz
 		GameObject::Render(hdc);
 	}
 
-	/*void FireSkill::Release()
-	{
-	}*/
 }

@@ -5,13 +5,15 @@
 #include "define.h"
 #include "zzResourceMgr.h"
 #include "zzCamera.h"
-
+#include "zzFunction.h"
+//#include "zzEngine.h"
 
 namespace zz
 {
 	class GameObject : public Entity
 	{
 	public:
+		
 		GameObject();
 		virtual ~GameObject();
 
@@ -26,21 +28,32 @@ namespace zz
 		virtual void OnCollisionExit(GameObject* other) {}
 
 	public:
-		Vector2 GetPos() { return mPos; }
-		Vector2 GetScale() { return mScale; }
-		void SetPos(Vector2 pos) { mPos = pos; }
-		void SetScale(Vector2 scale) { mScale = scale; }
+		virtual Vector2 GetPos() { return mPos; }
+		virtual Vector2 GetScale() { return mScale; }
+		virtual void SetPos(Vector2 pos) { mPos = pos; }
+		virtual void SetScale(Vector2 scale) { mScale = scale; }
+		virtual void SetDir(int dir) { mDir = dir; }
+		virtual int GetDir() { return mDir; }
+
 		eLayerType GetLayerType() { return mLayerType; }
 		void SetLayerType(eLayerType type) { mLayerType = type; }
 
-		bool IsDead() { return !mbDead; }
+		bool IsDead() { if (mState == eState::DEAD) return true; else return false; }
+		bool IsChagne() { if (mState == eState::CHANGE) return true; else return false; }
+		bool IsActive() { if (mState == eState::ACTIVE) return true; else return false; }
+
+		virtual eState GetState() { return mState; }
+		virtual void SetState(eState state) { mState = state; } //수정예정
 
 	protected:
-		void SetDead() { mbDead = false; }
+		void SetDead() { mState = eState::DEAD; }
 
 		friend class EventMgr;
 
 	public:
+
+	
+
 		template <typename T>
 		T* AddComponent()
 		{
@@ -73,10 +86,11 @@ namespace zz
 
 	private:
 		std::vector<Component*> mComponents;
-		bool					mbDead;
 		Vector2					mPos;
 		Vector2					mScale;
 		eLayerType				mLayerType;
+		eState					mState;
+		int						mDir;
 	};
 }
 

@@ -14,12 +14,12 @@ namespace zz
 
 	void Component::Initialize()
 	{
-		
+
 	}
 
 	void Component::Update()
 	{
-		
+
 	}
 
 	void Component::Render(HDC hdc)

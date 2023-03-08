@@ -10,59 +10,78 @@
 #include "zzDefaultKirby.h"
 #include "zzCutterKirby.h"
 
+#include "zzTransformEffect.h"
+#include "zzStar.h"
+
 namespace zz
 {
+	eTransformType Kirby::type = eTransformType::DEFAULT;
+	int Kirby::temp;
+	int Kirby::mKirbyDir = 1;
+	std::vector<Kirby*> Kirby::mKirbyAbility = {};
+	Vector2 Kirby::mKirbyPos = Vector2(50.f, 145.f);
+	Vector2 Kirby::mKirbyScale = Vector2(24.f, 24.f);
+	Vector2 Kirby::mDefaultScale = Vector2(24.f, 24.f);
+	eState Kirby::mKirbyState = eState::ACTIVE;
+
+	Collider* Kirby::mKirbyColli = nullptr;
+
+	void Kirby::KirbyInitialize(Kirby* defaultKirby)
+	{
+		
+		mKirbyAbility.resize((UINT)eTransformType::END);
+
+		mKirbyAbility[(UINT)eTransformType::DEFAULT] = defaultKirby;
+		mKirbyAbility[(UINT)eTransformType::DEFAULT]->SetName(L"DefaultKirby");
+		mKirbyAbility[(UINT)eTransformType::FIRE] = new FireKirby();
+		mKirbyAbility[(UINT)eTransformType::FIRE]->SetName(L"FireKirby");
+		mKirbyAbility[(UINT)eTransformType::ICE] = new IceKirby();
+		mKirbyAbility[(UINT)eTransformType::ICE]->SetName(L"IceKirby");
+		mKirbyAbility[(UINT)eTransformType::CUTTER] = new CutterKirby();
+		mKirbyAbility[(UINT)eTransformType::CUTTER]->SetName(L"CutterKirby");
+
+		for (UINT i = 1; i < (UINT)eTransformType::END; i++)
+		{
+			mKirbyAbility[i]->Initialize();
+			mKirbyAbility[i]->SetLayerType(eLayerType::PLAYER);
+		}
+	}
+
 	Kirby::Kirby()
-		: type(eTransformType::DEFAULT)
-		, mDir(1)
-		, temp(0)
+		: GameObject()
 		, prevTemp(0)
 	{
 	}
 
 	Kirby::~Kirby()
 	{
-		SceneMgr::GetPlayScene()->ChangeGameObject(mKirbyTransforms[temp], nullptr, eLayerType::PLAYER);
-
-		for (auto kirby : mKirbyTransforms)
-		{
-			delete kirby;
-		}
-
-		/*for (int i = 0; i < mKirbyTransforms.size(); i++)
-		{
-			delete mKirbyTransforms[i];
-			mKirbyTransforms[i] = nullptr;
-		}	*/
 	}
 
 	void Kirby::Initialize()
 	{
-		mKirbyTransforms.resize((UINT)eTransformType::END);
+		
+		//Camera::SetLookPos(Vector2(20.f, 96.f));
+		//Camera::SetLookPos(GetPos());
 
-		mKirbyTransforms[(UINT)eTransformType::DEFAULT] = new DefaultKirby(this);
-		mKirbyTransforms[(UINT)eTransformType::DEFAULT]->SetName(L"DefaultKirby");
-		mKirbyTransforms[(UINT)eTransformType::FIRE] = new FireKirby(this);
-		mKirbyTransforms[(UINT)eTransformType::FIRE]->SetName(L"FireKirby");
-		mKirbyTransforms[(UINT)eTransformType::ICE] = new IceKirby(this);
-		mKirbyTransforms[(UINT)eTransformType::ICE]->SetName(L"IceKirby");
-		mKirbyTransforms[(UINT)eTransformType::CUTTER] = new CutterKirby(this);
-		mKirbyTransforms[(UINT)eTransformType::CUTTER]->SetName(L"CutterKirby");
+		mKirbyAbility.resize((UINT)eTransformType::END);
 
-		SetPos(Vector2(50, 145));
-		SetScale(Vector2(24, 24));
+		mKirbyAbility[(UINT)eTransformType::DEFAULT] = new DefaultKirby();
+		mKirbyAbility[(UINT)eTransformType::DEFAULT]->SetName(L"DefaultKirby");
+		mKirbyAbility[(UINT)eTransformType::FIRE] = new FireKirby();
+		mKirbyAbility[(UINT)eTransformType::FIRE]->SetName(L"FireKirby");
+		mKirbyAbility[(UINT)eTransformType::ICE] = new IceKirby();
+		mKirbyAbility[(UINT)eTransformType::ICE]->SetName(L"IceKirby");
+		mKirbyAbility[(UINT)eTransformType::CUTTER] = new CutterKirby();
+		mKirbyAbility[(UINT)eTransformType::CUTTER]->SetName(L"CutterKirby");
 
 		for (UINT i = 0; i < (UINT)eTransformType::END; i++)
 		{
-			mKirbyTransforms[i]->Initialize();
-			mKirbyTransforms[i]->SetLayerType(eLayerType::PLAYER);
+			mKirbyAbility[i]->Initialize();
+			mKirbyAbility[i]->SetLayerType(eLayerType::PLAYER);
 		}
 
-		//dynamic_cast
-		SceneMgr::GetPlayScene()->AddGameObject(mKirbyTransforms[temp], eLayerType::PLAYER);
-		Camera::SetTarget(mKirbyTransforms[temp]);
-		Camera::SetLookPos(Vector2(20.f, 96.f));
-		//Camera::SetLookPos(GetPos());
+		mKirbyColli = AddComponent<Collider>();
+		Camera::SetTarget(this);
 	}
 
 	void Kirby::Update()
@@ -78,42 +97,86 @@ namespace zz
 
 		if (prevTemp != temp)
 		{
-			SetPos(mKirbyTransforms[prevTemp]->GetPos());
-			mKirbyTransforms[temp]->SetPos(GetPos());
-
 			prevTemp = temp;
 		}
 
-
-		
+		mKirbyAbility[temp]->Update();
 
 		if (KEY(Z, DOWN))
 		{
 			temp++;
 			if (temp >= (UINT)eTransformType::END)
 				temp = 0;
-			SceneMgr::GetCurScene()->ChangeGameObject(mKirbyTransforms[prevTemp], mKirbyTransforms[temp], eLayerType::PLAYER);
-			Camera::SetTarget(mKirbyTransforms[temp]);
-		}
 
-		//mKirbyTransforms[temp]->Update();
+			mKirbyAbility[prevTemp]->Exit();
+
+			//TransformEffect::SetObj(mKirbyAbility[temp]);
+
+
+			//SceneMgr::GetCurScene()->ChangeGameObject(mKirbyAbility[prevTemp], mKirbyAbility[temp], eLayerType::PLAYER);
+			//Camera::SetTarget(mKirbyAbility[temp]);
+			mKirbyAbility[temp]->Enter();
+			mKirbyState = eState::ACTIVE;
+			mKirbyAbility[temp]->SetScale(Kirby::GetKirbyScale());
+		}
+		GameObject::Update();
 	}
 
 	void Kirby::Render(HDC hdc)
 	{
-		//mKirbyTransforms[temp]->Render(hdc);
-
-
+		mKirbyAbility[temp]->Render(hdc);
+		GameObject::Render(hdc);
 	}
 
-	void Kirby::Release()
+	void Kirby::End()
 	{
-		for (auto kirby : mKirbyTransforms)
+		for (int i = 0; i < mKirbyAbility.size(); i++)
 		{
-			delete kirby;
-			kirby = nullptr;
+
+			mKirbyAbility[i]->Release();
+			delete mKirbyAbility[i];
+			mKirbyAbility[i] = nullptr;
 		}
-		GameObject::Release();
+		//delete mKirbyColli;
+	}
+
+	void Kirby::Enter()
+	{
+	}
+
+	void Kirby::Exit()
+	{
+	}
+
+
+	void Kirby::OnCollisionEnter(GameObject* other)
+	{
+		if(other->GetLayerType() == eLayerType::MONSTER)
+		{
+			mKirbyAbility[temp]->Exit();
+
+			if (temp != 0)
+			{
+				Star* star = new Star(GetPos(), GetDir());
+				CreateObject(star, eLayerType::EFFECT);
+			}
+
+			temp = (UINT)eTransformType::DEFAULT;
+			
+
+			mKirbyAbility[temp]->Enter();
+			mKirbyAbility[temp]->Enter();
+			mKirbyAbility[temp]->OnCollisionEnter(other);
+		}
+
+	}
+	void Kirby::OnCollision(GameObject* other)
+	{
+
+	}
+	void Kirby::OnCollisionExit(GameObject* other)
+	{
+
 	}
 
 }

@@ -16,7 +16,7 @@ namespace zz
 
 		mTex = ResourceMgr::Load<Texture>(L"Stage1-1", L"..\\Resources\\Level 1-1 Foreground (2).bmp");
 
-		//SetPos(Vector2(0, 0));
+		SetPos(Vector2(0.f, 0.f));
 		//SetScale(Vector2(100, 100));
 	}
 

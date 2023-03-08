@@ -3,6 +3,7 @@
 
 enum class eSceneType
 {
+	FIRST,
 	TITLE,
 	TOOL,
 	PLAY,
@@ -16,6 +17,7 @@ enum class eLayerType
 	BACKGROUND,
 	STAGE,
 	TILE,
+	INVENTORY,
 	ITEM,
 	MONSTER,
 	PLAYER,
@@ -40,6 +42,7 @@ enum class eEventType
 {
 	CREATE_OBJ,
 	DELETE_OBJ,
+	CHANGE_OBJ,
 	SCENE_CHANGE,
 	END
 };
@@ -51,4 +54,12 @@ enum class eTransformType
 	ICE,
 	CUTTER,
 	END
+};
+
+enum class eState
+{
+	ACTIVE,
+	INVINCIBLE,
+	CHANGE,
+	DEAD,
 };

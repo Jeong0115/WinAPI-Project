@@ -4,6 +4,8 @@
 
 namespace zz
 {
+	
+
 	TransformEffect::TransformEffect()
 		: mAni(nullptr)
 		, obj(nullptr)

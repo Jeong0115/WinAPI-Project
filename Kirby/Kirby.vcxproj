@@ -133,13 +133,16 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="zzAbilityUI.h" />
     <ClInclude Include="zzBK_Stage1.h" />
     <ClInclude Include="zzCamera.h" />
+    <ClInclude Include="zzComponent.h" />
     <ClInclude Include="zzCutterKirby.h" />
     <ClInclude Include="zzCutterSkill.h" />
     <ClInclude Include="zzDefaultKirby.h" />
     <ClInclude Include="zzDefaultSkill.h" />
     <ClInclude Include="zzEventMgr.h" />
+    <ClInclude Include="zzFireDashSkill.h" />
     <ClInclude Include="zzFireKirby.h" />
     <ClInclude Include="zzFireSkill.h" />
     <ClInclude Include="zzAnimation.h" />
@@ -149,10 +152,12 @@
     <ClInclude Include="Kirby.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="zzFirstScene.h" />
+    <ClInclude Include="zzHP.h" />
+    <ClInclude Include="zzInventory.h" />
     <ClInclude Include="zzStage1.h" />
     <ClInclude Include="zzCollider.h" />
     <ClInclude Include="zzCollisionMgr.h" />
-    <ClInclude Include="zzComponent.h" />
     <ClInclude Include="zzEngine.h" />
     <ClInclude Include="zzEntity.h" />
     <ClInclude Include="zzEnum.h" />
@@ -173,6 +178,7 @@
     <ClInclude Include="zzSceneMgr.h" />
     <ClInclude Include="zzSelectGDI.h" />
     <ClInclude Include="zzSkill.h" />
+    <ClInclude Include="zzStar.h" />
     <ClInclude Include="zzTexture.h" />
     <ClInclude Include="zzTile.h" />
     <ClInclude Include="zzTime.h" />
@@ -181,23 +187,28 @@
     <ClInclude Include="zzTransformEffect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="zzAbilityUI.cpp" />
     <ClCompile Include="zzBK_Stage1.cpp" />
     <ClCompile Include="zzCamera.cpp" />
+    <ClCompile Include="zzComponent.cpp" />
     <ClCompile Include="zzCutterKirby.cpp" />
     <ClCompile Include="zzCutterSkill.cpp" />
     <ClCompile Include="zzDefaultKirby.cpp" />
     <ClCompile Include="zzDefaultSkill.cpp" />
     <ClCompile Include="zzEventMgr.cpp" />
+    <ClCompile Include="zzFireDashSkill.cpp" />
     <ClCompile Include="zzFireKirby.cpp" />
     <ClCompile Include="zzFireSkill.cpp" />
     <ClCompile Include="zzAnimation.cpp" />
     <ClCompile Include="zzAnimator.cpp" />
     <ClCompile Include="zzApplication.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="zzFirstScene.cpp" />
+    <ClCompile Include="zzHP.cpp" />
+    <ClCompile Include="zzInventory.cpp" />
     <ClCompile Include="zzStage1.cpp" />
     <ClCompile Include="zzCollider.cpp" />
     <ClCompile Include="zzCollisionMgr.cpp" />
-    <ClCompile Include="zzComponent.cpp" />
     <ClCompile Include="zzEntity.cpp" />
     <ClCompile Include="zzFunction.cpp" />
     <ClCompile Include="zzGameObject.cpp" />
@@ -215,6 +226,7 @@
     <ClCompile Include="zzScene.cpp" />
     <ClCompile Include="zzSceneMgr.cpp" />
     <ClCompile Include="zzSkill.cpp" />
+    <ClCompile Include="zzStar.cpp" />
     <ClCompile Include="zzTexture.cpp" />
     <ClCompile Include="zzTile.cpp" />
     <ClCompile Include="zzTime.cpp" />

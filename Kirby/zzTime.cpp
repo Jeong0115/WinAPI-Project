@@ -31,8 +31,8 @@ namespace zz
 
 			wchar_t szFPS[100] = {};
 			float FPS = 1.f / (float)mDeltaTime;
-			/*swprintf_s(szFPS, 100, L"FPS : %d,    DT : %f", (UINT)FPS, mDeltaTime);
-			SetWindowText(hWnd, szFPS);*/
+			swprintf_s(szFPS, 100, L"FPS : %d,    DT : %f", (UINT)FPS, mDeltaTime);
+			SetWindowText(hWnd, szFPS);
 
 			mSecond = 0.f;
 		}
