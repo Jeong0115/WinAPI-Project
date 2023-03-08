@@ -60,8 +60,8 @@ namespace zz
 
 		if (KEY(X, UP))
 		{
-			mAni->StopAnimation(L"FireSkill1");
-			mAni->StopAnimation(L"FireSkill");
+			mAni->StopAnimation(L"IceSkill_Right_X");
+			mAni->StopAnimation(L"IceSkill_Left_X");
 			vPos = Vector2(-20.f, -20.f);
 		}
 		

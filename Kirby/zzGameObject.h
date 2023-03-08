@@ -26,10 +26,11 @@ namespace zz
 		virtual void OnCollisionExit(GameObject* other) {}
 
 	public:
-		Vector2 GetPos() { return mPos; }
-		Vector2 GetScale() { return mScale; }
-		void SetPos(Vector2 pos) { mPos = pos; }
-		void SetScale(Vector2 scale) { mScale = scale; }
+		virtual Vector2 GetPos() { return mPos; }
+		virtual Vector2 GetScale() { return mScale; }
+		virtual void SetPos(Vector2 pos) { mPos = pos; }
+		virtual void SetScale(Vector2 scale) { mScale = scale; }
+
 		eLayerType GetLayerType() { return mLayerType; }
 		void SetLayerType(eLayerType type) { mLayerType = type; }
 

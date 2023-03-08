@@ -7,10 +7,10 @@
 
 namespace zz
 {
-	class IceKirby : public GameObject
+	class IceKirby : public Kirby
 	{
 	public:
-		IceKirby(Kirby* owner);
+		IceKirby();
 		virtual ~IceKirby();
 
 	public:
@@ -18,8 +18,8 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-		void Enter();
-		void Exit();
+		virtual void Enter();
+		virtual void Exit();
 
 		enum class eIceKirby
 		{

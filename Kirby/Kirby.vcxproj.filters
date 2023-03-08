@@ -10,29 +10,11 @@
     <ClCompile Include="zzSceneMgr.cpp">
       <Filter>02. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="zzAnimation.cpp">
-      <Filter>05. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="zzAnimator.cpp">
-      <Filter>05. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="zzCollider.cpp">
-      <Filter>05. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="zzCollisionMgr.cpp">
-      <Filter>05. Component</Filter>
-    </ClCompile>
     <ClCompile Include="zzComponent.cpp">
       <Filter>05. Component</Filter>
     </ClCompile>
-    <ClCompile Include="zzEntity.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Default</Filter>
-    </ClCompile>
-    <ClCompile Include="zzFunction.cpp">
-      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="zzGameObject.cpp">
       <Filter>04. GameObject</Filter>
@@ -72,9 +54,6 @@
     </ClCompile>
     <ClCompile Include="zzTransformEffect.cpp">
       <Filter>04. GameObject\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="zzMath.cpp">
-      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="zzResource.cpp">
       <Filter>Resource</Filter>
@@ -119,16 +98,34 @@
       <Filter>06. Manager\Key</Filter>
     </ClCompile>
     <ClCompile Include="zzCamera.cpp">
-      <Filter>Camera</Filter>
+      <Filter>06. Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="zzAnimation.cpp">
+      <Filter>05. Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="zzAnimator.cpp">
+      <Filter>05. Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCollider.cpp">
+      <Filter>05. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="zzCollisionMgr.cpp">
+      <Filter>06. Manager\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="zzMath.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="zzEntity.cpp">
+      <Filter>Common\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFunction.cpp">
+      <Filter>Common\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="zzInventory.cpp">
+      <Filter>04. GameObject\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="define.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonInclude.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Default</Filter>
     </ClInclude>
@@ -150,32 +147,8 @@
     <ClInclude Include="zzSceneMgr.h">
       <Filter>02. Scene</Filter>
     </ClInclude>
-    <ClInclude Include="zzAnimation.h">
-      <Filter>05. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="zzAnimator.h">
-      <Filter>05. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="zzCollider.h">
-      <Filter>05. Component</Filter>
-    </ClInclude>
     <ClInclude Include="zzComponent.h">
       <Filter>05. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="zzCollisionMgr.h">
-      <Filter>05. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="zzEntity.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzEnum.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzEngine.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="zzFunction.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="zzGameObject.h">
       <Filter>04. GameObject</Filter>
@@ -216,9 +189,6 @@
     <ClInclude Include="zzTransformEffect.h">
       <Filter>04. GameObject\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="zzMath.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="zzResource.h">
       <Filter>Resource</Filter>
     </ClInclude>
@@ -233,9 +203,6 @@
     </ClInclude>
     <ClInclude Include="zzTexture.h">
       <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="zzSelectGDI.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="zzTitleScene.h">
       <Filter>02. Scene\TitleScene</Filter>
@@ -265,7 +232,46 @@
       <Filter>06. Manager\Key</Filter>
     </ClInclude>
     <ClInclude Include="zzCamera.h">
-      <Filter>Camera</Filter>
+      <Filter>06. Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="zzAnimation.h">
+      <Filter>05. Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="zzAnimator.h">
+      <Filter>05. Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCollider.h">
+      <Filter>05. Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="zzCollisionMgr.h">
+      <Filter>06. Manager\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="zzMath.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEntity.h">
+      <Filter>Common\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFunction.h">
+      <Filter>Common\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEnum.h">
+      <Filter>Common\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonInclude.h">
+      <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="zzEngine.h">
+      <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="zzSelectGDI.h">
+      <Filter>Common\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="zzInventory.h">
+      <Filter>04. GameObject\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -355,8 +361,8 @@
     <Filter Include="06. Manager\Key">
       <UniqueIdentifier>{542079e7-f165-47e7-aab3-075c90a1ab21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Camera">
-      <UniqueIdentifier>{f90917fb-db11-4e9c-9b51-2477891cb593}</UniqueIdentifier>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{aef4f68d-610a-40ba-93d7-32733669ceea}</UniqueIdentifier>
     </Filter>
     <Filter Include="04. GameObject\Player">
       <UniqueIdentifier>{9552cadf-3454-48d7-acfd-8c470a4891ba}</UniqueIdentifier>
@@ -367,14 +373,41 @@
     <Filter Include="04. GameObject\Player\IceKirby">
       <UniqueIdentifier>{32da6c18-889e-4541-b294-7f39918a6a47}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. GameObject\Player\FireKirby">
-      <UniqueIdentifier>{cd4511b0-b070-4605-a0aa-0c47e948349c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. GameObject\Player\DefaultKirby">
       <UniqueIdentifier>{a5f3abd8-fc0f-4d25-96e1-22065778ba17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="NewFilter1">
-      <UniqueIdentifier>{aef4f68d-610a-40ba-93d7-32733669ceea}</UniqueIdentifier>
+    <Filter Include="06. Manager\Camera">
+      <UniqueIdentifier>{f90917fb-db11-4e9c-9b51-2477891cb593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\FireKirby">
+      <UniqueIdentifier>{cd4511b0-b070-4605-a0aa-0c47e948349c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component\Animation">
+      <UniqueIdentifier>{9e90c421-585b-4baa-8041-a8d89cd921e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Component\Collider">
+      <UniqueIdentifier>{07c57f33-78c0-4a3d-b104-bbf379009ab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Manager\Collision">
+      <UniqueIdentifier>{1bc44884-6a3f-496c-8b57-4dfefe4f47cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Math">
+      <UniqueIdentifier>{2d31f0d7-5300-41a0-9a43-df588483fc98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Entity">
+      <UniqueIdentifier>{0398090c-3154-4eaa-856d-457c1bb25c2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Function">
+      <UniqueIdentifier>{cd8ac9f1-beb8-4dd2-aaf0-68981bc24ac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Enum">
+      <UniqueIdentifier>{da7fd980-8d7e-4ec6-8f23-fc581edde4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header">
+      <UniqueIdentifier>{6efcea11-f868-4260-a86b-ae9027a3a749}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Inventory">
+      <UniqueIdentifier>{2a9bc023-3a1e-4780-9734-81974ee1b778}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

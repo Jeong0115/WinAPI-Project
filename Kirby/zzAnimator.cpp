@@ -8,6 +8,7 @@ namespace zz
 		: Component(eCompType::ANIMATOR)
 		, mCurAnimation(nullptr)
 		, mbLoop(false)
+		, mbFix(false)
 	{
 	}
 
@@ -30,7 +31,14 @@ namespace zz
 	{
 		if(mCurAnimation!=nullptr)
 		{
-			mCurAnimation->Update(GetOwner()->GetPos());
+			if(mbFix)
+			{
+				mCurAnimation->Update(GetOwner()->GetPos());
+			}
+			else
+			{
+				mCurAnimation->Update(Camera::GetRenderPos(GetOwner()->GetPos()));
+			}
 
 			if (mbLoop && mCurAnimation->IsFinish())
 			{

@@ -4,12 +4,12 @@
 
 namespace zz
 {
-	FireKirby::FireKirby(Kirby* owner)
-		: mTex(nullptr)
-		, mColli(nullptr)
+	FireKirby::FireKirby()
+		: mColli(nullptr)
 		, mAni(nullptr)
-		, mOwner(owner)
 		, mState(eFireKirby::IDLE)
+		, mPassedTime(0.f)
+		, mbRun(false)
 	{
 	}
 
@@ -34,18 +34,19 @@ namespace zz
 		mAni->CreateAnimation(FireKirby_Right, L"FireKirby_Right_Walk", Vector2(7.f, 292.f), Vector2(25.f, 36.f), Vector2(25.f, 0.f), 0.05f, 20);
 		mAni->CreateAnimation(FireKirby_Left, L"FireKirby_Left_Walk", Vector2(662.f, 292.f), Vector2(25.f, 36.f), Vector2(-25.f, 0.f), 0.05f, 20);
 
+		mAni->CreateAnimation(FireKirby_Right, L"FireKirby_Right_Run", Vector2(0.f, 342.f), Vector2(48.f, 30.f), Vector2(48.f, 0.f), 0.043f, 8);
+		mAni->CreateAnimation(FireKirby_Left, L"FireKirby_Left_Run", Vector2(646.f, 342.f), Vector2(48.f, 30.f), Vector2(-48.f, 0.f), 0.043f, 8);
+
 		mAni->CreateAnimation(FireKirby_Right, L"FireKirby_Right_X", Vector2(187.f, 1109.f), Vector2(31.f, 29.f), Vector2(31.f, 0.f), 0.05f, 4);
 		mAni->CreateAnimation(FireKirby_Left, L"FireKirby_Left_X", Vector2(476.f, 1109.f), Vector2(31.f, 29.f), Vector2(-31.f, 0.f), 0.05f, 4);
 
-		SetPos(mOwner->GetPos());
-		SetScale(mOwner->GetScale());
 
 		GameObject::Initialize();
 	}
 
 	void FireKirby::Update()
 	{
-		int dir = mOwner->GetDir();
+		int dir = GetDir();
 
 		switch (mState)
 		{
@@ -53,8 +54,12 @@ namespace zz
 			idle(dir);
 			break;
 
-		case FireKirby::eFireKirby::MOVE:
-			move(dir);
+		case FireKirby::eFireKirby::WALK:
+			walk(dir);
+			break;
+
+		case FireKirby::eFireKirby::RUN:
+			run(dir);
 			break;
 
 		case FireKirby::eFireKirby::SKILL:
@@ -69,6 +74,7 @@ namespace zz
 			break;
 		}
 
+		Kirby::Update();
 		GameObject::Update();
 	}
 
@@ -79,6 +85,18 @@ namespace zz
 
 	void FireKirby::Enter()
 	{
+		int dir = GetDir();
+
+		mState = eFireKirby::IDLE;
+
+		if (dir == 1)
+		{
+			mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
+		}
+		else
+		{
+			mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
+		}
 	}
 
 	void FireKirby::Exit()
@@ -87,18 +105,40 @@ namespace zz
 
 	void FireKirby::idle(int dir)
 	{
+		if (mbRun)
+		{
+			mPassedTime += (float)Time::DeltaTime();
+
+			if (mPassedTime > 0.2f)
+			{
+				mbRun = false;
+				mPassedTime = 0.f;
+			}
+		}
+
 		if (KEY(LEFT, DOWN) || KEY(RIGHT, DOWN) || KEY(RIGHT, PRESSED) || KEY(LEFT, PRESSED))
 		{
-			mState = eFireKirby::MOVE;
-			if (KEY(LEFT, DOWN) || KEY(LEFT, PRESSED))
+			if ((mbRun && dir == 1) && (KEY(RIGHT, DOWN) || KEY(RIGHT, PRESSED)))
 			{
-				mAni->PlayAnimation(L"FireKirby_Left_Walk", true);
-				dir = -1;
+				mAni->PlayAnimation(L"FireKirby_Right_Run", true);
+				mState = eFireKirby::RUN;
 			}
-			else if (KEY(RIGHT, DOWN) || KEY(RIGHT, PRESSED))
+			else if ((mbRun && dir == -1) && (KEY(LEFT, DOWN) || KEY(LEFT, PRESSED)))
 			{
-				mAni->PlayAnimation(L"FireKirby_Right_Walk", true);
-				dir = 1;
+				mAni->PlayAnimation(L"FireKirby_Left_Run", true);
+				mState = eFireKirby::RUN;
+			}
+			else
+			{
+				if (KEY(LEFT, DOWN) || KEY(LEFT, PRESSED))
+				{
+					mAni->PlayAnimation(L"FireKirby_Left_Walk", true);
+				}
+				else if (KEY(RIGHT, DOWN) || KEY(RIGHT, PRESSED))
+				{
+					mAni->PlayAnimation(L"FireKirby_Right_Walk", true);
+				}
+				mState = eFireKirby::WALK;
 			}
 		}
 
@@ -125,34 +165,32 @@ namespace zz
 
 	}
 
-	void FireKirby::move(int dir)
+	void FireKirby::walk(int dir)
 	{
-		Vector2 vPos = mOwner->GetPos();
-		int prevDir = mOwner->GetDir();
+		Vector2 vPos = GetPos();
 
-		if (KEY(LEFT, PRESSED))
+		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
+		}
+
+		else if (KEY(LEFT, PRESSED))
 		{
 			vPos.x -= (float)(100.f * Time::DeltaTime());
 			dir = -1;
 		}
 
-		if (KEY(RIGHT, PRESSED))
+		else if (KEY(RIGHT, PRESSED))
 		{
 			vPos.x += (float)(100.f * Time::DeltaTime());
 			dir = 1;
 		}
 
-		if (vPos == GetPos())
-		{
-			if (prevDir == 1)
-				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
-			else
-				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
-		}
-		else
-		{
-			mOwner->SetDir(dir);
-		}
+		SetDir(dir);
+		SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -167,6 +205,7 @@ namespace zz
 		if (!(KEY(LEFT, PRESSED)) && !(KEY(RIGHT, PRESSED)))
 		{
 			mState = eFireKirby::IDLE;
+			mbRun = true;
 			if (dir == 1)
 				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
 			else
@@ -183,9 +222,66 @@ namespace zz
 				mAni->PlayAnimation(L"FireKirby_Left_Walk", true);
 			}
 		}
+	}
 
-		mOwner->SetPos(vPos);
+	void FireKirby::run(int dir)
+	{
+		Vector2 vPos = GetPos();
+
+		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
+		}
+
+		else if (KEY(LEFT, PRESSED))
+		{
+			vPos.x -= (float)(150.f * Time::DeltaTime());
+			dir = -1;
+		}
+
+		else if (KEY(RIGHT, PRESSED))
+		{
+			vPos.x += (float)(150.f * Time::DeltaTime());
+			dir = 1;
+		}
+
+		SetDir(dir);
 		SetPos(vPos);
+
+		if (KEY(X, DOWN))
+		{
+			mPassedTime = 0.f;
+			mState = eFireKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"FireKirby_Right_X", true);
+			else
+				mAni->PlayAnimation(L"FireKirby_Left_X", true);
+		}
+
+
+		if (!(KEY(LEFT, PRESSED)) && !(KEY(RIGHT, PRESSED)))
+		{
+			mState = eFireKirby::IDLE;
+			mbRun = true;
+			if (dir == 1)
+				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
+		}
+		else
+		{
+			if (KEY(LEFT, UP))
+			{
+				mAni->PlayAnimation(L"FireKirby_Right_Run", true);
+			}
+			else if (KEY(RIGHT, UP))
+			{
+				mAni->PlayAnimation(L"FireKirby_Left_Run", true);
+			}
+		}
 	}
 
 	void FireKirby::skill(int dir)
@@ -205,7 +301,7 @@ namespace zz
 		if ((KEY(DOWN, UP)))
 		{
 			mState = eFireKirby::IDLE;
-			SetScale(mOwner->GetScale());
+			SetScale(Vector2(24.f, 24.f));
 
 			if (dir == 1)
 				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);

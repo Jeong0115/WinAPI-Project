@@ -4,9 +4,8 @@
 
 namespace zz
 {
-	CutterKirby::CutterKirby(Kirby* owner)
-		: mOwner(owner)
-		, mAni(nullptr)
+	CutterKirby::CutterKirby()
+		: mAni(nullptr)
 		, mColli(nullptr)
 		, mbPressX(false)
 		, mPassedTime(0.f)
@@ -39,15 +38,13 @@ namespace zz
 		mAni->CreateAnimation(CutterKirby_Right, L"CutterKirby_Right_X", Vector2(175.f, 367.f), Vector2(42.f, 29.f), Vector2(42.f, 0.f), 0.08f, 6);
 		mAni->CreateAnimation(CutterKirby_Left, L"CutterKirby_Left_X", Vector2(372.f, 367.f), Vector2(42.f, 29.f), Vector2(-42.f, 0.f), 0.08f, 6);
 
-		SetPos(mOwner->GetPos());
-		SetScale(mOwner->GetScale());
 
 		GameObject::Initialize();
 	}
 
 	void CutterKirby::Update()
 	{
-		int dir = mOwner->GetDir();
+		int dir = GetDir();
 
 		switch (mState)
 		{
@@ -71,6 +68,7 @@ namespace zz
 			break;
 		}
 
+		Kirby::Update();
 		GameObject::Update();
 	}
 
@@ -81,12 +79,18 @@ namespace zz
 
 	void CutterKirby::Enter()
 	{
-		int dir = mOwner->GetDir();
+		int dir = GetDir();
+
+		mState = eCutterKirby::IDLE;
 
 		if (dir == 1)
+		{
 			mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
+		}
 		else
+		{
 			mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);
+		}
 	}
 
 	void CutterKirby::Exit()
@@ -95,14 +99,22 @@ namespace zz
 
 	void CutterKirby::idle(int dir)
 	{
-		if (dir == 1)
-			mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
-		else
-			mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);
 
-		if (KEY(LEFT, DOWN) || KEY(RIGHT, DOWN))
+		if (KEY(LEFT, DOWN) || KEY(RIGHT, DOWN) || KEY(RIGHT, PRESSED) || KEY(RIGHT, PRESSED))
 		{
 			mState = eCutterKirby::MOVE;
+
+			if (KEY(LEFT, DOWN) || KEY(LEFT, PRESSED))
+			{
+				mAni->PlayAnimation(L"CutterKirby_Left_Walk", true);
+				dir = -1;
+			}
+			else if (KEY(RIGHT, DOWN) || KEY(RIGHT, PRESSED))
+			{
+				mAni->PlayAnimation(L"CutterKirby_Right_Walk", true);
+				dir = 1;
+			}
+			SetDir(dir);
 		}
 
 		if (KEY(X, DOWN))
@@ -115,7 +127,7 @@ namespace zz
 		}
 
 
-		if (KEY(DOWN, PRESSED))
+		if (KEY(DOWN, DOWN))
 		{
 			if (dir == 1)
 				mAni->PlayAnimation(L"CutterKirby_Right_Down", true);
@@ -130,20 +142,18 @@ namespace zz
 
 	void CutterKirby::move(int dir)
 	{
-		Vector2 vPos = mOwner->GetPos();
-		int prevDir = mOwner->GetDir();
+		Vector2 vPos = GetPos();
+		int prevDir = GetDir();
 
 		if (KEY(LEFT, PRESSED))
 		{
 			vPos.x -= (float)(100.f * Time::DeltaTime());
-			mAni->PlayAnimation(L"CutterKirby_Left_Walk", true);
 			dir = -1;
 		}
 
 		if (KEY(RIGHT, PRESSED))
 		{
 			vPos.x += (float)(100.f * Time::DeltaTime());
-			mAni->PlayAnimation(L"CutterKirby_Right_Walk", true);
 			dir = 1;
 		}
 
@@ -156,7 +166,8 @@ namespace zz
 		}
 		else
 		{
-			mOwner->SetDir(dir);
+			SetDir(dir);
+			SetPos(vPos);
 		}
 
 		if (KEY(X, DOWN))
@@ -170,13 +181,24 @@ namespace zz
 
 
 		if (!(KEY(LEFT, PRESSED)) && !(KEY(RIGHT, PRESSED)))
-			//&& !(KEY(LEFT, DOWN)) && !(KEY(RIGHT, DOWN)))
 		{
 			mState = eCutterKirby::IDLE;
+			if (dir == 1)
+				mAni->PlayAnimation(L"CutterKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"CutterKirby_Left_Stay", true);
 		}
-
-		mOwner->SetPos(vPos);
-		SetPos(vPos);
+		else
+		{
+			if (KEY(LEFT, UP))
+			{
+				mAni->PlayAnimation(L"CutterKirby_Right_Walk", true);
+			}
+			else if (KEY(RIGHT, UP))
+			{
+				mAni->PlayAnimation(L"CutterKirby_Left_Walk", true);
+			}
+		}
 	}
 
 	void CutterKirby::skill(int dir)
@@ -194,7 +216,7 @@ namespace zz
 		if ((KEY(DOWN, UP)))
 		{
 			mState = eCutterKirby::IDLE;
-			SetScale(mOwner->GetScale());
+			SetScale(Vector2(24.f, 24.f));
 		}
 	}
 }

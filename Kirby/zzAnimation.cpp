@@ -1,6 +1,5 @@
 #include "zzAnimation.h"
 #include "zzTime.h"
-#include "zzCamera.h"
 
 namespace zz
 {
@@ -21,8 +20,7 @@ namespace zz
 		if (mFinish)
 			return;
 
-		mPos = Camera::GetRenderPos(pos);
-		//mPos = pos;
+		mPos = pos;
 		mTime += Time::DeltaTime();
 
 		if (mFrames[mCurFrame].delay < mTime)

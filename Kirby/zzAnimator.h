@@ -46,6 +46,7 @@ namespace zz
 		Animation* FindAnimation(const std::wstring& key);
 		void PlayAnimation(const std::wstring& name, bool loop);
 		void StopAnimation(const std::wstring& name);
+		void SetFix() { mbFix = true; }
 
 		Events* FindEvents(const std::wstring& name);
 		std::function<void()>& GetStartEvent(const std::wstring& name);
@@ -57,6 +58,7 @@ namespace zz
 		std::map<std::wstring, Events*>			mEvents;
 		Animation*								mCurAnimation;
 		bool									mbLoop;
+		bool									mbFix;
 	};
 
 }

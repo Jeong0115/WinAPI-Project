@@ -7,10 +7,10 @@
 
 namespace zz
 {
-	class CutterKirby : public GameObject
+	class CutterKirby : public Kirby
 	{
 	public:
-		CutterKirby(Kirby* owner);
+		CutterKirby();
 		virtual ~CutterKirby();
 
 	public:
@@ -18,8 +18,8 @@ namespace zz
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-		void Enter();
-		void Exit();
+		virtual void Enter();
+		virtual void Exit();
 
 	public:
 		enum class eCutterKirby

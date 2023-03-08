@@ -16,6 +16,7 @@ enum class eLayerType
 	BACKGROUND,
 	STAGE,
 	TILE,
+	INVENTORY,
 	ITEM,
 	MONSTER,
 	PLAYER,

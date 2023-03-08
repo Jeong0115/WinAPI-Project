@@ -26,7 +26,6 @@ namespace zz
 
 	void Monster::Initialize()
 	{
-		GameObject::Initialize();
 		
 		mAni = AddComponent<Animator>();
 		mColli = AddComponent<Collider>();
@@ -50,6 +49,8 @@ namespace zz
 
 
 		SetCenterPos(Vector2(GetPos().x +50, GetPos().y));
+
+		GameObject::Initialize();
 	}
 
 	void Monster::Update()
