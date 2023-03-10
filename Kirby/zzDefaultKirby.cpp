@@ -96,9 +96,7 @@ namespace zz
 			run(dir);
 			break;
 
-		case DefaultKirby::eDefaultKirby::RUN:
-			run(dir);
-			break;
+
 
 		case DefaultKirby::eDefaultKirby::SKILL:
 			skill(dir);
@@ -293,37 +291,7 @@ namespace zz
 
 	}
 
-	void DefaultKirby::run(int dir)
-	{
-		Vector2 vPos = GetPos();
-
-		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
-		{
-			if (dir == 1)
-				mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
-			else
-				mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
-		}
-
-		else if (KEY(LEFT, PRESSED))
-		{
-			vPos.x -= (float)(150.f * Time::DeltaTime());
-			dir = -1;
-		}
-
-		else if (KEY(RIGHT, PRESSED))
-		{
-			if (KEY(LEFT, UP))
-			{
-				mAni->PlayAnimation(L"DefaultKirby_Right_Walk", true);
-			}
-			else if (KEY(RIGHT, UP))
-			{
-				mAni->PlayAnimation(L"DefaultKirby_Left_Walk", true);
-			}
-		}
-
-	}
+	
 
 	void DefaultKirby::run(int dir)
 	{

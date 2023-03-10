@@ -64,9 +64,7 @@ namespace zz
 			run(dir);
 			break;
 
-		case FireKirby::eFireKirby::RUN:
-			run(dir);
-			break;
+
 
 		case FireKirby::eFireKirby::SKILL:
 			skill(dir);
@@ -253,36 +251,7 @@ namespace zz
 		}
 	}
 
-	void FireKirby::run(int dir)
-	{
-		Vector2 vPos = GetPos();
-
-		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
-		{
-			if (dir == 1)
-				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
-			else
-				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
-		}
-
-		else if (KEY(LEFT, PRESSED))
-		{
-			vPos.x -= (float)(150.f * Time::DeltaTime());
-			dir = -1;
-		}
-
-		else if (KEY(RIGHT, PRESSED))
-		{
-			if (KEY(LEFT, UP))
-			{
-				mAni->PlayAnimation(L"FireKirby_Right_Walk", true);
-			}
-			else if (KEY(RIGHT, UP))
-			{
-				mAni->PlayAnimation(L"FireKirby_Left_Walk", true);
-			}
-		}
-	}
+	
 
 	void FireKirby::run(int dir)
 	{
