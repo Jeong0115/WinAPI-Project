@@ -14,22 +14,22 @@
       <Filter>04. GameObject\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="zzCutterKirby.cpp">
-      <Filter>04. GameObject\Player\CutterKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\CutterKirby</Filter>
     </ClCompile>
     <ClCompile Include="zzIceKirby.cpp">
-      <Filter>04. GameObject\Player\IceKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\IceKirby</Filter>
     </ClCompile>
     <ClCompile Include="zzCutterSkill.cpp">
       <Filter>04. GameObject\Skill\CutterSkill</Filter>
     </ClCompile>
     <ClCompile Include="zzDefaultKirby.cpp">
-      <Filter>04. GameObject\Player\DefaultKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\DefaultKirby</Filter>
     </ClCompile>
     <ClCompile Include="zzDefaultSkill.cpp">
       <Filter>04. GameObject\Skill\DefaultSkill</Filter>
     </ClCompile>
     <ClCompile Include="zzFireKirby.cpp">
-      <Filter>04. GameObject\Player\FireKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\FireKirby</Filter>
     </ClCompile>
     <ClCompile Include="zzIceSkill.cpp">
       <Filter>04. GameObject\Skill\IceSkill</Filter>
@@ -43,7 +43,7 @@
     <ClCompile Include="zzResource.cpp">
       <Filter>NewFilter1\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="zzKirby.cpp">
+    <ClCompile Include="zzPlayer.cpp">
       <Filter>04. GameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="zzSkill.cpp">
@@ -139,6 +139,15 @@
     <ClCompile Include="zzStar.cpp">
       <Filter>04. GameObject\Effect\star</Filter>
     </ClCompile>
+    <ClCompile Include="zzKirby.cpp">
+      <Filter>04. GameObject\Player\Kirby</Filter>
+    </ClCompile>
+    <ClCompile Include="zzHotHead.cpp">
+      <Filter>04. GameObject\Monster\HotHead</Filter>
+    </ClCompile>
+    <ClCompile Include="zzFireTemp.cpp">
+      <Filter>04. GameObject\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -163,22 +172,22 @@
       <Filter>04. GameObject\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="zzCutterKirby.h">
-      <Filter>04. GameObject\Player\CutterKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\CutterKirby</Filter>
     </ClInclude>
     <ClInclude Include="zzIceKirby.h">
-      <Filter>04. GameObject\Player\IceKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\IceKirby</Filter>
     </ClInclude>
     <ClInclude Include="zzCutterSkill.h">
       <Filter>04. GameObject\Skill\CutterSkill</Filter>
     </ClInclude>
     <ClInclude Include="zzDefaultKirby.h">
-      <Filter>04. GameObject\Player\DefaultKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\DefaultKirby</Filter>
     </ClInclude>
     <ClInclude Include="zzDefaultSkill.h">
       <Filter>04. GameObject\Skill\DefaultSkill</Filter>
     </ClInclude>
     <ClInclude Include="zzFireKirby.h">
-      <Filter>04. GameObject\Player\FireKirby</Filter>
+      <Filter>04. GameObject\Player\Kirby\FireKirby</Filter>
     </ClInclude>
     <ClInclude Include="zzIceSkill.h">
       <Filter>04. GameObject\Skill\IceSkill</Filter>
@@ -192,7 +201,7 @@
     <ClInclude Include="zzResource.h">
       <Filter>NewFilter1\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="zzKirby.h">
+    <ClInclude Include="zzPlayer.h">
       <Filter>04. GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="zzSkill.h">
@@ -303,6 +312,15 @@
     <ClInclude Include="zzStar.h">
       <Filter>04. GameObject\Effect\star</Filter>
     </ClInclude>
+    <ClInclude Include="zzKirby.h">
+      <Filter>04. GameObject\Player\Kirby</Filter>
+    </ClInclude>
+    <ClInclude Include="zzHotHead.h">
+      <Filter>04. GameObject\Monster\HotHead</Filter>
+    </ClInclude>
+    <ClInclude Include="zzFireTemp.h">
+      <Filter>04. GameObject\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Kirby.ico">
@@ -394,20 +412,8 @@
     <Filter Include="04. GameObject\Player">
       <UniqueIdentifier>{9552cadf-3454-48d7-acfd-8c470a4891ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. GameObject\Player\CutterKirby">
-      <UniqueIdentifier>{3c77e2e0-d4f5-4a19-8eaf-66f17bc81a70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\IceKirby">
-      <UniqueIdentifier>{32da6c18-889e-4541-b294-7f39918a6a47}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\DefaultKirby">
-      <UniqueIdentifier>{a5f3abd8-fc0f-4d25-96e1-22065778ba17}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06. Manager\Camera">
       <UniqueIdentifier>{f90917fb-db11-4e9c-9b51-2477891cb593}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. GameObject\Player\FireKirby">
-      <UniqueIdentifier>{cd4511b0-b070-4605-a0aa-0c47e948349c}</UniqueIdentifier>
     </Filter>
     <Filter Include="05. Component\Animation">
       <UniqueIdentifier>{9e90c421-585b-4baa-8041-a8d89cd921e3}</UniqueIdentifier>
@@ -465,6 +471,27 @@
     </Filter>
     <Filter Include="04. GameObject\Effect\star">
       <UniqueIdentifier>{bdb18812-a9e0-4ab8-8ccf-463f0f23dbc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby">
+      <UniqueIdentifier>{6f3bd1af-e832-4c7f-b4d6-c4a9364b7404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\CutterKirby">
+      <UniqueIdentifier>{3c77e2e0-d4f5-4a19-8eaf-66f17bc81a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\DefaultKirby">
+      <UniqueIdentifier>{a5f3abd8-fc0f-4d25-96e1-22065778ba17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\FireKirby">
+      <UniqueIdentifier>{cd4511b0-b070-4605-a0aa-0c47e948349c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Player\Kirby\IceKirby">
+      <UniqueIdentifier>{32da6c18-889e-4541-b294-7f39918a6a47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Monster\HotHead">
+      <UniqueIdentifier>{7f35bb21-4654-4c53-8de9-4da831155b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameObject\Item">
+      <UniqueIdentifier>{871382d1-9c7f-4b2d-a6ab-b58152f89774}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

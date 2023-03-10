@@ -2,12 +2,12 @@
 #include "zzTime.h"
 #include "zzKey.h"
 #include "zzIceSkill.h"
+#include "zzPlayer.h"
 
 namespace zz
 {
-	IceKirby::IceKirby()
-		: mTex(nullptr)
-		, mColli(nullptr)
+	IceKirby::IceKirby(Player* owner)
+		: Kirby(owner)
 		, mAni(nullptr)
 		, mState(eIceKirby::IDLE)
 		, mPassedTime(0.f)
@@ -23,7 +23,7 @@ namespace zz
 	void IceKirby::Initialize()
 	{
 		
-		mAni = AddComponent<Animator>();
+		mAni = GetOwner()->GetAni();
 
 		Texture* IceKirby_Right_Walk = ResourceMgr::Load<Texture>(L"IceKirby_Right_Walk", L"..\\Resources\\IceKirby_Right_Walk.bmp");
 		Texture* IceKirby_Left_Walk = ResourceMgr::Load<Texture>(L"IceKirby_Left_Walk", L"..\\Resources\\IceKirby_Left_Walk.bmp");
@@ -46,14 +46,11 @@ namespace zz
 		mAni->CreateAnimation(IceKirby_Right, L"IceKirby_Right_Down", Vector2(7.f, 41.f), Vector2(25.f, 19.f), Vector2(25.f, 0.f), 0.8f, 2);
 		mAni->CreateAnimation(IceKirby_Left, L"IceKirby_Left_Down", Vector2(565.f, 41.f), Vector2(25.f, 19.f), Vector2(-25.f, 0.f), 0.8f, 2);
 
-		SetScale(Kirby::GetKirbyScale());
-		GameObject::Initialize();
-
 	}
 
 	void IceKirby::Update()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		switch (mState)
 		{
@@ -81,18 +78,13 @@ namespace zz
 			break;
 		}
 
-		//Kirby::Update();
-		GameObject::Update();
+
 	}
 
-	void IceKirby::Render(HDC hdc)
-	{
-		GameObject::Render(hdc);
-	}
 
 	void IceKirby::Enter()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		mState = eIceKirby::IDLE;
 
@@ -159,7 +151,7 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"IceKirby_Left_X", true);
 
-			IceSkill* ice = new IceSkill(GetPos(), GetDir());
+			IceSkill* ice = new IceSkill(GetOwner()->GetPos(), GetOwner()->GetDir());
 			CreateObject(ice, eLayerType::SKILL);
 		}
 
@@ -170,7 +162,7 @@ namespace zz
 				mAni->PlayAnimation(L"IceKirby_Right_Down", true);
 			else
 				mAni->PlayAnimation(L"IceKirby_Left_Down", true);
-			SetScale(Vector2(24.f, 15.f));
+			GetOwner()->SetScale(Vector2(24.f, 15.f));
 
 			mState = eIceKirby::DOWN;
 		}
@@ -179,7 +171,7 @@ namespace zz
 
 	void IceKirby::walk(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -201,8 +193,8 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -212,7 +204,7 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"IceKirby_Left_X", true);
 
-			IceSkill* ice = new IceSkill(GetPos(), GetDir());
+			IceSkill* ice = new IceSkill(vPos, dir);
 			CreateObject(ice, eLayerType::SKILL);
 		}
 
@@ -242,7 +234,7 @@ namespace zz
 
 	void IceKirby::run(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -264,8 +256,8 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -276,7 +268,7 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"IceKirby_Left_X", true);
 
-			IceSkill* ice = new IceSkill(GetPos(), GetDir());
+			IceSkill* ice = new IceSkill(vPos, dir);
 			CreateObject(ice, eLayerType::SKILL);
 		}
 
@@ -320,7 +312,7 @@ namespace zz
 		if ((KEY(DOWN, UP)))
 		{
 			mState = eIceKirby::IDLE;
-			SetScale(Vector2(24.f, 24.f));
+			GetOwner()->SetScale(Vector2(24.f, 24.f));
 
 			if (dir == 1)
 				mAni->PlayAnimation(L"IceKirby_Right_Stay", true);

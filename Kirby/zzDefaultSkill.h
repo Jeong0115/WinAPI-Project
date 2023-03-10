@@ -6,6 +6,7 @@
 
 namespace zz
 {
+	class Player;
 	class DefaultSkill : public GameObject
 	{
 	public:
@@ -18,11 +19,13 @@ namespace zz
 		virtual void Render(HDC hdc) override;
 		//irtual void Release();
 
-
+		void SetOwner(Player* owner) { mOwner = owner; }
+		Player* GetOwner() { return mOwner; }
 
 	private:
 		Animator* mAni;
 		Collider* mColli;
+		Player* mOwner;
 		Vector2 mIntervalPos;
 	};
 }

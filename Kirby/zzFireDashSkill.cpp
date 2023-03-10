@@ -4,6 +4,8 @@
 #include "zzTime.h"
 #include "zzKey.h"
 #include "zzKirby.h"
+
+#include "zzPlayer.h"
 namespace zz
 {
 	FireDashSkill::FireDashSkill(Vector2 pos, int dir)

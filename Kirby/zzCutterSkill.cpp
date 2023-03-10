@@ -1,6 +1,7 @@
 #include "zzCutterSkill.h"
 #include "zzTime.h"
 #include "zzKey.h"
+#include "zzPlayer.h"
 
 namespace zz
 {

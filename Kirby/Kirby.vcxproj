@@ -152,9 +152,12 @@
     <ClInclude Include="Kirby.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="zzFireTemp.h" />
     <ClInclude Include="zzFirstScene.h" />
+    <ClInclude Include="zzHotHead.h" />
     <ClInclude Include="zzHP.h" />
     <ClInclude Include="zzInventory.h" />
+    <ClInclude Include="zzKirby.h" />
     <ClInclude Include="zzStage1.h" />
     <ClInclude Include="zzCollider.h" />
     <ClInclude Include="zzCollisionMgr.h" />
@@ -166,7 +169,7 @@
     <ClInclude Include="zzIceKirby.h" />
     <ClInclude Include="zzIceSkill.h" />
     <ClInclude Include="zzKey.h" />
-    <ClInclude Include="zzKirby.h" />
+    <ClInclude Include="zzPlayer.h" />
     <ClInclude Include="zzLayer.h" />
     <ClInclude Include="zzMath.h" />
     <ClInclude Include="zzMonster.h" />
@@ -203,9 +206,12 @@
     <ClCompile Include="zzAnimator.cpp" />
     <ClCompile Include="zzApplication.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="zzFireTemp.cpp" />
     <ClCompile Include="zzFirstScene.cpp" />
+    <ClCompile Include="zzHotHead.cpp" />
     <ClCompile Include="zzHP.cpp" />
     <ClCompile Include="zzInventory.cpp" />
+    <ClCompile Include="zzKirby.cpp" />
     <ClCompile Include="zzStage1.cpp" />
     <ClCompile Include="zzCollider.cpp" />
     <ClCompile Include="zzCollisionMgr.cpp" />
@@ -215,7 +221,7 @@
     <ClCompile Include="zzIceKirby.cpp" />
     <ClCompile Include="zzIceSkill.cpp" />
     <ClCompile Include="zzKey.cpp" />
-    <ClCompile Include="zzKirby.cpp" />
+    <ClCompile Include="zzPlayer.cpp" />
     <ClCompile Include="zzLayer.cpp" />
     <ClCompile Include="zzMath.cpp" />
     <ClCompile Include="zzMonster.cpp" />

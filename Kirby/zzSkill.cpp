@@ -8,7 +8,7 @@
 //
 //namespace zz
 //{
-//	Skill::Skill(Kirby* kirby)
+//	Skill::Skill(Player* kirby)
 //		: mType(0)
 //		, mDir(1)
 //		, mKirby(kirby)
@@ -29,12 +29,12 @@
 //	{
 //		mKirbySkills.resize(2);
 //
-//		mKirbySkills[(UINT)eTransformType::DEFAULT] = new DefaultSkill(this);
-//		mKirbySkills[(UINT)eTransformType::DEFAULT]->SetName(L"DefaultSkill");
-//		mKirbySkills[(UINT)eTransformType::FIRE] = new FireSkill(this);
-//		mKirbySkills[(UINT)eTransformType::FIRE]->SetName(L"FireSkill");
-//		mKirbySkills[(UINT)eTransformType::ICE] = new IceSkill(this);
-//		mKirbySkills[(UINT)eTransformType::ICE]->SetName(L"IceSkill");
+//		mKirbySkills[(UINT)eAbillityType::DEFAULT] = new DefaultSkill(this);
+//		mKirbySkills[(UINT)eAbillityType::DEFAULT]->SetName(L"DefaultSkill");
+//		mKirbySkills[(UINT)eAbillityType::FIRE] = new FireSkill(this);
+//		mKirbySkills[(UINT)eAbillityType::FIRE]->SetName(L"FireSkill");
+//		mKirbySkills[(UINT)eAbillityType::ICE] = new IceSkill(this);
+//		mKirbySkills[(UINT)eAbillityType::ICE]->SetName(L"IceSkill");
 //
 //
 //
@@ -46,7 +46,7 @@
 //
 //		SetScale(Vector2(20, 18));
 //
-//		SceneMgr::GetPlayScene()->AddGameObject(mKirbySkills[(UINT)eTransformType::DEFAULT], eLayerType::SKILL);
+//		SceneMgr::GetPlayScene()->AddGameObject(mKirbySkills[(UINT)eAbillityType::DEFAULT], eLayerType::SKILL);
 //	}
 //
 //	void Skill::Update()

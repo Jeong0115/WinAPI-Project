@@ -42,7 +42,7 @@ namespace zz
 		mAni->CreateAnimation(KingDedede_Right, L"KingDedede_Right_Dead", Vector2(547.f, 388.f), Vector2(64.f, 58.f), Vector2(-64.f, 0.f), 1.f, 3);
 
 
-		SetPos(Vector2( 500.f, 150.f ));
+		SetPos(Vector2( 700.f, 150.f ));
 		SetScale(Vector2(62.f, 55.f));
 
 
@@ -54,7 +54,6 @@ namespace zz
 
 	void Monster::Update()
 	{
-		GameObject::Update();
 
 		if (mbCadaver)
 		{
@@ -62,7 +61,6 @@ namespace zz
 
 			if (mDeadTime >= 5.f)
 			{
-				SetDead();
 				DeleteObject(this, GetLayerType());
 			}
 		}
@@ -111,6 +109,7 @@ namespace zz
 				}
 			}
 		}
+		GameObject::Update();
 	}
 
 	void Monster::Render(HDC hdc)

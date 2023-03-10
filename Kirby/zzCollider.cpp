@@ -70,6 +70,8 @@ namespace zz
 	void Collider::OnCollisionExit(GameObject* other)
 	{
 		mColliCnt--;
-		GetOwner()->OnCollisionExit(other);
+
+		if(!GetOwner()->IsDead())
+			GetOwner()->OnCollisionExit(other);
 	}
 }

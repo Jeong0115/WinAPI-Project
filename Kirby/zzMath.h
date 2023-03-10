@@ -98,4 +98,8 @@ struct Vector2
 		return Vector2(x * i, y * i);
 	}
 
+	Vector2 operator/ (float i)
+	{
+		return Vector2(x / i, y / i);
+	}
 };

@@ -38,6 +38,20 @@ namespace zz
 				continue;
 			obj->Update();
 		}
+	/*	std::vector<GameObject*>::iterator iter = mGameObjects.begin();
+
+		for (; iter != mGameObjects.end(); )
+		{
+			if ((*iter)->IsDead())
+			{
+				iter++;
+			}
+			else
+			{
+				(*iter)->Update();
+				iter++;
+			}
+		}*/
 
 	}
 
@@ -58,7 +72,12 @@ namespace zz
 			}
 		}
 
-
+		/*for (GameObject* obj : mGameObjects)
+		{
+			if (obj == nullptr)
+				continue;
+			obj->Render(hdc);
+		}*/
 	}
 
 	void Layer::Release()

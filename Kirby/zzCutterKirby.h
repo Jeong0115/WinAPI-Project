@@ -2,21 +2,20 @@
 
 #include "zzCollider.h"
 #include "zzAnimator.h"
-#include "zzGameObject.h"
 #include "zzKirby.h"
 
 namespace zz
 {
+	class Player;
 	class CutterKirby : public Kirby
 	{
 	public:
-		CutterKirby();
+		CutterKirby(Player* owner);
 		virtual ~CutterKirby();
 
 	public:
 		virtual void Initialize() override;
 		virtual void Update() override;
-		virtual void Render(HDC hdc) override;
 
 		virtual void Enter();
 		virtual void Exit();

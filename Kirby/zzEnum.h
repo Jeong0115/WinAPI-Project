@@ -23,6 +23,7 @@ enum class eLayerType
 	PLAYER,
 	FOREGROUND,
 	SKILL,
+	INHALE,
 	EFFECT,
 	UI,
 	END
@@ -47,7 +48,7 @@ enum class eEventType
 	END
 };
 
-enum class eTransformType
+enum class eAbillityType
 {
 	DEFAULT,
 	FIRE,
@@ -61,5 +62,6 @@ enum class eState
 	ACTIVE,
 	INVINCIBLE,
 	CHANGE,
-	DEAD,
+	INHALE,
+	DEAD
 };

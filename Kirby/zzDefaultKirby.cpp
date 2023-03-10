@@ -3,15 +3,20 @@
 #include "zzKey.h"
 #include "zzApplication.h"
 #include "zzDefaultSkill.h"
+#include "zzKirby.h"
+#include "zzPlayer.h"
+#include "zzGameObject.h"
+
 namespace zz
 {
-	DefaultKirby::DefaultKirby()
-		: mAni(nullptr)
+	DefaultKirby::DefaultKirby(Player* owner)
+		: Kirby(owner)
 		, mPassedTime(0.f)
 		, mState(eDefaultKirby::IDLE)
 		, mbPressX(false)
 		, mbRun(false)
 		, mInvincibleTime(0.f)
+		, mAni(nullptr)
 	{
 	}
 
@@ -21,10 +26,8 @@ namespace zz
 
 	void DefaultKirby::Initialize()
 	{
-		
-		mAni = AddComponent<Animator>();
+		mAni = GetOwner()->GetAni();
 
-		SetLayerType(eLayerType::PLAYER);
 
 		Texture* DefaultKirby_Right = ResourceMgr::Load<Texture>(L"DefaultKirby_Right", L"..\\Resources\\DefaultKirby_Right.bmp");
 		Texture* DefaultKirby_Left = ResourceMgr::Load<Texture>(L"DefaultKirby_Left", L"..\\Resources\\DefaultKirby_Left.bmp");
@@ -54,31 +57,20 @@ namespace zz
 
 		mAni->GetCompleteEvent(L"DefaultKirby_Right_Damage") = std::bind(&DefaultKirby::active, this);
 		mAni->GetCompleteEvent(L"DefaultKirby_Left_Damage") = std::bind(&DefaultKirby::active, this);
-
-		SetPos(Vector2(50.f, 145.f));
-		SetScale(Vector2(24.f, 24.f));
-
-		//Camera::SetTarget(this);
-
-		GameObject::Initialize();
-
-		//KirbyInitialize(this);
 	}
 
 	void DefaultKirby::Update()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
-		if (GetState() == eState::INVINCIBLE)
+		if (GetOwner()->GetState() == eState::INVINCIBLE)
 		{
-			SetScale(Vector2(0.f, 0.f));
 			mInvincibleTime += (float)Time::DeltaTime();
 
 			if (mInvincibleTime > 2.2f)
 			{
-				SetState(eState::ACTIVE);
+				GetOwner()->SetState(eState::ACTIVE);
 				mInvincibleTime = 0.f;
-				SetScale(Kirby::GetKirbyScale());
 			}
 		}
 
@@ -90,10 +82,6 @@ namespace zz
 
 		case DefaultKirby::eDefaultKirby::WALK:
 			walk(dir);
-			break;
-
-		case DefaultKirby::eDefaultKirby::RUN:
-			run(dir);
 			break;
 
 		case DefaultKirby::eDefaultKirby::RUN:
@@ -116,18 +104,11 @@ namespace zz
 			break;
 		}
 
-		//Kirby::Update();
-		GameObject::Update();
-	}
-
-	void DefaultKirby::Render(HDC hdc)
-	{
-		GameObject::Render(hdc);
 	}
 
 	void DefaultKirby::Enter()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		mState = eDefaultKirby::IDLE;
 
@@ -198,8 +179,9 @@ namespace zz
 				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
 			mbPressX = true;
 		
-			DefaultSkill* nomarl = new DefaultSkill(GetPos(), GetDir());
-			CreateObject(nomarl, eLayerType::SKILL);
+			DefaultSkill* nomarl = new DefaultSkill(GetOwner()->GetPos(), GetOwner()->GetDir());
+			nomarl->SetOwner(GetOwner());
+			CreateObject(nomarl, eLayerType::INHALE);
 		}
 
 
@@ -209,7 +191,7 @@ namespace zz
 				mAni->PlayAnimation(L"DefaultKirby_Right_Down", true);
 			else
 				mAni->PlayAnimation(L"DefaultKirby_Left_Down", true);
-			SetScale(Vector2(24.f, 15.f));
+			GetOwner()->SetScale(Vector2(24.f, 15.f));
 
 			mState = eDefaultKirby::DOWN;
 		}
@@ -218,7 +200,7 @@ namespace zz
 
 	void DefaultKirby::walk(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -240,21 +222,9 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
 
-		if (KEY(X, DOWN))
-		{
-			mPassedTime = 0.f;
-			mState = eDefaultKirby::SKILL;
-			if (dir == 1)
-				mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
-			else
-				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
-		}
-
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -265,8 +235,9 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
 
-			DefaultSkill* nomarl = new DefaultSkill(GetPos(), GetDir());
-			CreateObject(nomarl, eLayerType::SKILL);
+			DefaultSkill* nomarl = new DefaultSkill(vPos, dir);
+			nomarl->SetOwner(GetOwner());
+			CreateObject(nomarl, eLayerType::INHALE);
 		}
 
 
@@ -293,41 +264,11 @@ namespace zz
 
 	}
 
-	void DefaultKirby::run(int dir)
-	{
-		Vector2 vPos = GetPos();
-
-		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
-		{
-			if (dir == 1)
-				mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
-			else
-				mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
-		}
-
-		else if (KEY(LEFT, PRESSED))
-		{
-			vPos.x -= (float)(150.f * Time::DeltaTime());
-			dir = -1;
-		}
-
-		else if (KEY(RIGHT, PRESSED))
-		{
-			if (KEY(LEFT, UP))
-			{
-				mAni->PlayAnimation(L"DefaultKirby_Right_Walk", true);
-			}
-			else if (KEY(RIGHT, UP))
-			{
-				mAni->PlayAnimation(L"DefaultKirby_Left_Walk", true);
-			}
-		}
-
-	}
+	
 
 	void DefaultKirby::run(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -349,8 +290,8 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -361,8 +302,9 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
 
-			DefaultSkill* nomarl = new DefaultSkill(GetPos(), GetDir());
-			CreateObject(nomarl, eLayerType::SKILL);
+			DefaultSkill* nomarl = new DefaultSkill(vPos, dir);
+			nomarl->SetOwner(GetOwner());
+			CreateObject(nomarl, eLayerType::INHALE);
 		}
 
 
@@ -421,7 +363,7 @@ namespace zz
 		if ((KEY(DOWN, UP)))
 		{
 			mState = eDefaultKirby::IDLE;
-			SetScale(Vector2(24.f, 24.f));
+			GetOwner()->SetScale(Vector2(24.f, 24.f));
 
 			if (dir == 1)
 				mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
@@ -432,7 +374,7 @@ namespace zz
 
 	void DefaultKirby::damage(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 		if (dir == 1)
 		{
 			vPos.x -= (float)(150.f * Time::DeltaTime());
@@ -441,12 +383,17 @@ namespace zz
 		{
 			vPos.x += (float)(150.f * Time::DeltaTime());
 		}
-		SetPos(vPos);
+		GetOwner()->SetPos(vPos);
+	}
+
+	void DefaultKirby::inhale(int dir)
+	{
+
 	}
 
 	void DefaultKirby::active()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		if (dir == 1)
 		{
@@ -459,22 +406,17 @@ namespace zz
 		mState = eDefaultKirby::IDLE;
 		//SetState(eState::ACTIVE);
 	}
-	void DefaultKirby::OnCollisionEnter(GameObject* other)
+	void DefaultKirby::OnCollisionEnter()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 		if (dir == 1)
 			mAni->PlayAnimation(L"DefaultKirby_Right_Damage", false);
 		else
 			mAni->PlayAnimation(L"DefaultKirby_Left_Damage", false);
 
 		mState = eDefaultKirby::DAMAGE;
-		SetState(eState::INVINCIBLE);
+		GetOwner()->SetState(eState::INVINCIBLE);
 	}
 
-	void DefaultKirby::OnCollision(GameObject* other)
-	{
-	}
-	void DefaultKirby::OnCollisionExit(GameObject* other)
-	{
-	}
+
 }

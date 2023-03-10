@@ -8,7 +8,7 @@
 //	class Skill : public GameObject
 //	{
 //	public:
-//		Skill(Kirby* kirby);
+//		Skill(Player* kirby);
 //		virtual ~Skill();
 //
 //	public:
@@ -21,7 +21,7 @@
 //	private:
 //		int							mType;
 //		std::vector<GameObject*>	mKirbySkills;
-//		Kirby*						mKirby;
+//		Player*						mKirby;
 //	};
 //
 //}

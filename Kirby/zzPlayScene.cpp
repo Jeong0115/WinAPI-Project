@@ -16,6 +16,7 @@
 #include "zzAbilityUI.h"
 #include "zzHP.h"
 #include "zzKirby.h"
+#include "zzHotHead.h"
 
 namespace zz
 {
@@ -30,10 +31,10 @@ namespace zz
 
 	void PlayScene::Initialize()
 	{
-		DefaultKirby* defaultKirby = new DefaultKirby();
-		defaultKirby->SetName(L"DefaultKirby");
+		Player*  kirby= new Player();
+		kirby->SetName(L"DefaultKirby");
 
-		AddGameObject(defaultKirby, eLayerType::PLAYER);
+		AddGameObject(kirby, eLayerType::PLAYER);
 
 		Stage1* stage1 = new Stage1();
 		stage1->SetName(L"stage1");
@@ -54,22 +55,22 @@ namespace zz
 		effect->SetObj(kirby);
 		AddGameObject(effect, eLayerType::EFFECT);
 
-		/*Skill* skill = new Skill(defaultKirby);
-		AddGameObject(skill, eLayerType::SKILL);*/
-
 		Inventory* inven = new Inventory();
 		AddGameObject(inven, eLayerType::INVENTORY);
 
-		AbilityUI* abilityUI = new AbilityUI();
+		AbilityUI* abilityUI = new AbilityUI(kirby);
 		AddGameObject(abilityUI, eLayerType::UI);
 
 		HP* hp = new HP();
 		AddGameObject(hp, eLayerType::UI);
 
-		Inventory* inven = new Inventory();
-		AddGameObject(inven, eLayerType::INVENTORY);
+		HotHead* hotHead = new HotHead();
+		hotHead->SetName(L"HotHead");
+		AddGameObject(hotHead, eLayerType::MONSTER);
+
 
 		CollisionMgr::CheckCollision(eLayerType::SKILL, eLayerType::MONSTER);
+		CollisionMgr::CheckCollision(eLayerType::INHALE, eLayerType::MONSTER);
 		CollisionMgr::CheckCollision(eLayerType::MONSTER, eLayerType::PLAYER);
 
 

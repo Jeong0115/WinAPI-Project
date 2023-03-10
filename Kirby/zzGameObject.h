@@ -13,7 +13,8 @@ namespace zz
 	class GameObject : public Entity
 	{
 	public:
-		
+
+
 		GameObject();
 		virtual ~GameObject();
 
@@ -28,12 +29,12 @@ namespace zz
 		virtual void OnCollisionExit(GameObject* other) {}
 
 	public:
-		virtual Vector2 GetPos() { return mPos; }
-		virtual Vector2 GetScale() { return mScale; }
-		virtual void SetPos(Vector2 pos) { mPos = pos; }
-		virtual void SetScale(Vector2 scale) { mScale = scale; }
-		virtual void SetDir(int dir) { mDir = dir; }
-		virtual int GetDir() { return mDir; }
+		Vector2 GetPos() { return mPos; }
+		Vector2 GetScale() { return mScale; }
+		void SetPos(Vector2 pos) { mPos = pos; }
+		void SetScale(Vector2 scale) { mScale = scale; }
+		void SetDir(int dir) { mDir = dir; }
+		int GetDir() { return mDir; }
 
 		eLayerType GetLayerType() { return mLayerType; }
 		void SetLayerType(eLayerType type) { mLayerType = type; }
@@ -42,8 +43,11 @@ namespace zz
 		bool IsChagne() { if (mState == eState::CHANGE) return true; else return false; }
 		bool IsActive() { if (mState == eState::ACTIVE) return true; else return false; }
 
-		virtual eState GetState() { return mState; }
-		virtual void SetState(eState state) { mState = state; } //수정예정
+		eState GetState() { return mState; }
+		void SetState(eState state) { mState = state; } //수정예정
+
+		eAbillityType GetType() { return mAbillityType; }
+		void SetType(eAbillityType type) { mAbillityType = type; }
 
 	protected:
 		void SetDead() { mState = eState::DEAD; }
@@ -89,7 +93,9 @@ namespace zz
 		Vector2					mPos;
 		Vector2					mScale;
 		eLayerType				mLayerType;
+		eAbillityType			mAbillityType;
 		eState					mState;
+
 		int						mDir;
 	};
 }

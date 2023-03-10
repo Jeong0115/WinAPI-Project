@@ -4,16 +4,18 @@
 #include "zzCutterSkill.h"
 #include "zzSceneMgr.h"
 #include "zzFunction.h"
+#include "zzPlayer.h"
 
 namespace zz
 {
-	CutterKirby::CutterKirby()
+	CutterKirby::CutterKirby(Player* owner)
 		: mAni(nullptr)
 		, mbPressX(false)
 		, mPassedTime(0.f)       
 		, mState(eCutterKirby::IDLE)
 		, mbRun(false)
 		, mbThrow(false)
+		, Kirby(owner)
 	{
 	}
 
@@ -24,7 +26,7 @@ namespace zz
 	void CutterKirby::Initialize()
 	{
 		
-		mAni = AddComponent<Animator>();
+		mAni = GetOwner()->GetAni();
 
 		Texture* CutterKirby_Right = ResourceMgr::Load<Texture>(L"CutterKirby_Right", L"..\\Resources\\CutterKirby_Right.bmp");
 		Texture* CutterKirby_Left = ResourceMgr::Load<Texture>(L"CutterKirby_Left", L"..\\Resources\\CutterKirby_Left.bmp");
@@ -49,13 +51,11 @@ namespace zz
 		//mAni->GetEndEvent(L"CutterKirby_Right_X") = std::bind(&CutterKirby::createCutter, this);
 		//mAni->GetEndEvent(L"CutterKirby_Left_X") = std::bind(&CutterKirby::createCutter, this);
 
-		SetScale(Kirby::GetKirbyScale());
-		GameObject::Initialize();
 	}
 
 	void CutterKirby::Update()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		switch (mState)
 		{
@@ -83,18 +83,12 @@ namespace zz
 			break;
 		}
 
-		//Kirby::Update();
-		GameObject::Update();
-	}
 
-	void CutterKirby::Render(HDC hdc)
-	{
-		GameObject::Render(hdc);
 	}
 
 	void CutterKirby::Enter()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		mState = eCutterKirby::IDLE;
 
@@ -169,7 +163,7 @@ namespace zz
 				mAni->PlayAnimation(L"CutterKirby_Right_Down", true);
 			else
 				mAni->PlayAnimation(L"CutterKirby_Left_Down", true);
-			SetScale(Vector2(24.f, 15.f));
+			GetOwner()->SetScale(Vector2(24.f, 15.f));
 
 			mState = eCutterKirby::DOWN;
 		}
@@ -178,7 +172,7 @@ namespace zz
 
 	void CutterKirby::walk(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -200,8 +194,8 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -239,7 +233,7 @@ namespace zz
 
 	void CutterKirby::run(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -261,8 +255,8 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -332,13 +326,13 @@ namespace zz
 		if ((KEY(DOWN, UP)))
 		{
 			mState = eCutterKirby::IDLE;
-			SetScale(Vector2(24.f, 24.f));
+			GetOwner()->SetScale(Vector2(24.f, 24.f));
 		}
 	}
 
 	void CutterKirby::createCutter()
 	{
-		CutterSkill* cutter = new CutterSkill(GetPos(), GetDir());
+		CutterSkill* cutter = new CutterSkill(GetOwner()->GetPos(), GetOwner()->GetDir());
 		CreateObject(cutter, eLayerType::SKILL);
 	}
 }

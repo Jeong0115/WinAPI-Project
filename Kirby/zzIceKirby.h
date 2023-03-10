@@ -1,8 +1,6 @@
 #pragma once
 
-#include "zzCollider.h"
 #include "zzAnimator.h"
-#include "zzGameObject.h"
 #include "zzKirby.h"
 
 namespace zz
@@ -10,13 +8,12 @@ namespace zz
 	class IceKirby : public Kirby
 	{
 	public:
-		IceKirby();
+		IceKirby(Player* owner);
 		virtual ~IceKirby();
 
 	public:
 		virtual void Initialize() override;
 		virtual void Update() override;
-		virtual void Render(HDC hdc) override;
 
 		virtual void Enter();
 		virtual void Exit();
@@ -39,8 +36,6 @@ namespace zz
 		void down(int dir);
 
 	private:
-		Texture*	mTex;
-		Collider*	mColli;
 		Animator*	mAni;
 		eIceKirby	mState;
 

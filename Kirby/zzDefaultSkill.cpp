@@ -1,6 +1,7 @@
 #include "zzDefaultSkill.h"
 #include "zzTime.h"
 #include "zzKey.h"
+#include "zzPlayer.h"
 
 
 namespace zz
@@ -8,7 +9,8 @@ namespace zz
 	DefaultSkill::DefaultSkill(Vector2 pos, int dir)
 		: mAni(nullptr)
 		, mColli(nullptr)
-		, mIntervalPos(Vector2(30.f, 12.f))
+		, mIntervalPos(Vector2(36.f, 12.f))
+		, mOwner(nullptr)
 	{
 		mAni = AddComponent<Animator>();
 		mColli = AddComponent<Collider>();
@@ -19,9 +21,7 @@ namespace zz
 		mAni->CreateAnimation(tornado_Right, L"tornado_Right", Vector2(0.f, 0.f), Vector2(36.5f, 45.f), Vector2(36.5f, 0.f), 0.05f, 4);
 		mAni->CreateAnimation(tornado_Left, L"tornado_Left", Vector2(109.5f, 0.f), Vector2(36.5f, 45.f), Vector2(-36.5f, 0.f), 0.05f, 4);
 
-		SetScale(Vector2(36.5f, 45.f));
-
-		
+		SetScale(Vector2(50.f, 45.f));
 
 		if (dir == 1)
 		{

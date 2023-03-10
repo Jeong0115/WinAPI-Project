@@ -5,13 +5,16 @@
 #include "zzFireSkill.h"
 #include "zzFireDashSkill.h"
 
+#include "zzPlayer.h"
+
 namespace zz
 {
-	FireKirby::FireKirby()
+	FireKirby::FireKirby(Player* owner)
 		: mAni(nullptr)
 		, mState(eFireKirby::IDLE)
 		, mPassedTime(0.f)
 		, mbRun(false)
+		, Kirby(owner)
 	{
 	}
 
@@ -21,7 +24,7 @@ namespace zz
 
 	void FireKirby::Initialize()
 	{
-		mAni = AddComponent<Animator>();
+		mAni = GetOwner()->GetAni();
 
 		Texture* FireKirby_Right = ResourceMgr::Load<Texture>(L"FireKirby_Right", L"..\\Resources\\FireKirby_Right.bmp");
 		Texture* FireKirby_Left = ResourceMgr::Load<Texture>(L"FireKirby_Left", L"..\\Resources\\FireKirby_Left.bmp");
@@ -41,14 +44,11 @@ namespace zz
 		mAni->CreateAnimation(FireKirby_Right, L"FireKirby_Right_X", Vector2(187.f, 1109.f), Vector2(31.f, 29.f), Vector2(31.f, 0.f), 0.05f, 4);
 		mAni->CreateAnimation(FireKirby_Left, L"FireKirby_Left_X", Vector2(476.f, 1109.f), Vector2(31.f, 29.f), Vector2(-31.f, 0.f), 0.05f, 4);
 
-
-		SetScale(Kirby::GetKirbyScale());
-		GameObject::Initialize();
 	}
 
 	void FireKirby::Update()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		switch (mState)
 		{
@@ -64,9 +64,7 @@ namespace zz
 			run(dir);
 			break;
 
-		case FireKirby::eFireKirby::RUN:
-			run(dir);
-			break;
+
 
 		case FireKirby::eFireKirby::SKILL:
 			skill(dir);
@@ -84,18 +82,12 @@ namespace zz
 			break;
 		}
 
-		//Kirby::Update();
-		GameObject::Update();
 	}
 
-	void FireKirby::Render(HDC hdc)
-	{
-		GameObject::Render(hdc);
-	}
 
 	void FireKirby::Enter()
 	{
-		int dir = GetDir();
+		int dir = GetOwner()->GetDir();
 
 		mState = eFireKirby::IDLE;
 
@@ -161,7 +153,7 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"FireKirby_Left_X", true);
 		
-			FireSkill* fire = new FireSkill(GetPos(), GetDir());
+			FireSkill* fire = new FireSkill(GetOwner()->GetPos(), GetOwner()->GetDir());
 			CreateObject(fire, eLayerType::SKILL);
 		}
 
@@ -172,7 +164,7 @@ namespace zz
 				mAni->PlayAnimation(L"FireKirby_Right_Down", true);
 			else
 				mAni->PlayAnimation(L"FireKirby_Left_Down", true);
-			SetScale(Vector2(24.f, 15.f));
+			GetOwner()->SetScale(Vector2(24.f, 15.f));
 
 			mState = eFireKirby::DOWN;
 		}
@@ -181,7 +173,7 @@ namespace zz
 
 	void FireKirby::walk(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -203,20 +195,9 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
-		if (KEY(X, DOWN))
-		{
-			mState = eFireKirby::SKILL;
-			if (dir == 1)
-				mAni->PlayAnimation(L"FireKirby_Right_X", true);
-			else
-				mAni->PlayAnimation(L"FireKirby_Left_X", true);
-		}
-
-		SetDir(dir);
-		SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -226,7 +207,7 @@ namespace zz
 			else
 				mAni->PlayAnimation(L"FireKirby_Left_X", true);
 
-			FireSkill* fire = new FireSkill(GetPos(), GetDir());
+			FireSkill* fire = new FireSkill(vPos, dir);
 			CreateObject(fire, eLayerType::SKILL);
 		}
 
@@ -253,40 +234,11 @@ namespace zz
 		}
 	}
 
-	void FireKirby::run(int dir)
-	{
-		Vector2 vPos = GetPos();
-
-		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
-		{
-			if (dir == 1)
-				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
-			else
-				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
-		}
-
-		else if (KEY(LEFT, PRESSED))
-		{
-			vPos.x -= (float)(150.f * Time::DeltaTime());
-			dir = -1;
-		}
-
-		else if (KEY(RIGHT, PRESSED))
-		{
-			if (KEY(LEFT, UP))
-			{
-				mAni->PlayAnimation(L"FireKirby_Right_Walk", true);
-			}
-			else if (KEY(RIGHT, UP))
-			{
-				mAni->PlayAnimation(L"FireKirby_Left_Walk", true);
-			}
-		}
-	}
+	
 
 	void FireKirby::run(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 
 		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
 		{
@@ -308,8 +260,8 @@ namespace zz
 			dir = 1;
 		}
 
-		SetDir(dir);
-		SetPos(vPos);
+		GetOwner()->SetDir(dir);
+		GetOwner()->SetPos(vPos);
 
 		if (KEY(X, DOWN))
 		{
@@ -317,9 +269,9 @@ namespace zz
 			mState = eFireKirby::DASHSKILL;
 			mAni->StopAnimation();
 
-			SetState(eState::INVINCIBLE);
-			FireDashSkill* fire = new FireDashSkill(GetPos(), GetDir());
-			fire->SetOwner(this);
+			GetOwner()->SetState(eState::INVINCIBLE);
+			FireDashSkill* fire = new FireDashSkill(vPos, dir);
+			fire->SetOwner(GetOwner());
 			CreateObject(fire, eLayerType::SKILL);
 		}
 
@@ -360,7 +312,7 @@ namespace zz
 
 	void FireKirby::dashSkill(int dir)
 	{
-		Vector2 vPos = GetPos();
+		Vector2 vPos = GetOwner()->GetPos();
 		mPassedTime += (float)Time::DeltaTime();
 
 		if (mPassedTime > 1.2f)
@@ -372,7 +324,7 @@ namespace zz
 				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
 
 			mPassedTime = 0.f;
-			SetState(eState::ACTIVE);
+			GetOwner()->SetState(eState::ACTIVE);
 		}
 		else
 		{
@@ -386,7 +338,7 @@ namespace zz
 			}
 		}
 
-		SetPos(vPos);
+		GetOwner()->SetPos(vPos);
 	}
 
 	void FireKirby::down(int dir)
@@ -394,7 +346,7 @@ namespace zz
 		if ((KEY(DOWN, UP)))
 		{
 			mState = eFireKirby::IDLE;
-			SetScale(Vector2(24.f, 24.f));
+			GetOwner()->SetScale(Vector2(24.f, 24.f));
 
 			if (dir == 1)
 				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);

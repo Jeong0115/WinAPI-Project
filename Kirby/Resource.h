@@ -1,6 +1,6 @@
 ﻿//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++에서 생성한 포함 파일입니다.
-// Kirby.rc에서 사용되고 있습니다.
+// Player.rc에서 사용되고 있습니다.
 //
 #define IDC_MYICON                      2
 #define IDD_KIRBY_DIALOG                102

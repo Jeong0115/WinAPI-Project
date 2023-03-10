@@ -6,7 +6,7 @@
 
 namespace zz
 {
-	class Kirby;
+	class Player;
 
 	class FireDashSkill : public GameObject
 	{
@@ -20,14 +20,14 @@ namespace zz
 		virtual void Render(HDC hdc) override;
 
 		void Dead() { DeleteObject(this, eLayerType::SKILL); }
-		void SetOwner(Kirby* owner) { mOwner = owner; }
+		void SetOwner(Player* owner) { mOwner = owner; }
 
 	private:
 		Animator*	mAni;
 		Collider*	mColli;
 		Vector2		mIntervalPos;
 		float		mPassedTime;
-		Kirby*		mOwner;
+		Player*		mOwner;
 	};
 
 }

@@ -5,11 +5,11 @@
 
 namespace zz
 {
-
+	class Player;
 	class AbilityUI : public GameObject
 	{
 	public:
-		AbilityUI();
+		AbilityUI(Player* owner);
 		virtual ~AbilityUI();
 
 	public:
@@ -20,6 +20,7 @@ namespace zz
 	private:
 		Texture* mTex;
 		int mType;
+		Player* mOwner;
 	};
 
 }

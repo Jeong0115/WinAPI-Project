@@ -6,7 +6,7 @@
 
 namespace zz
 {
-	class Kirby;
+	class Player;
 
 	UINT CollisionMgr::mCheck[(UINT)eLayerType::END] = {};
 	std::map<ULONGLONG, bool> CollisionMgr::mCollisionMap = {};
@@ -88,8 +88,10 @@ namespace zz
 				{
 					if (iter->second)
 					{
-						/*if (!vecLeft[i]->IsActive() || !vecRight[i]->IsActive())*/
-						if (!(vecLeft[i]->GetState() == eState::ACTIVE) || !(vecRight[i]->GetState() == eState::ACTIVE))
+						
+						//if (!(vecLeft[i]->GetState() == eState::ACTIVE) || !(vecRight[j]->GetState() == eState::ACTIVE))
+						//!vecLeft[i]->IsActive() || !vecRight[j]->IsActive()
+						if (vecLeft[i]->IsDead() || vecRight[j]->IsDead())
 						{
 							leftCollider->OnCollisionExit(vecRight[j]);
 							rightCollider->OnCollisionExit(vecLeft[i]);
@@ -104,8 +106,9 @@ namespace zz
 					}
 					else
 					{
-						/*if (vecLeft[i]->IsActive() && vecRight[i]->IsActive())*/
-						if (vecLeft[i]->GetState() == eState::ACTIVE && (vecRight[i]->GetState() == eState::ACTIVE))
+						//if (vecLeft[i]->GetState() == eState::ACTIVE && (vecRight[j]->GetState() == eState::ACTIVE))
+						//vecLeft[i]->IsActive() && vecRight[j]->IsActive()
+						if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
 						{
 							leftCollider->OnCollisionEnter(vecRight[j]);
 							rightCollider->OnCollisionEnter(vecLeft[i]);

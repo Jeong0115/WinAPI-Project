@@ -1,12 +1,14 @@
 #include "zzAbilityUI.h"
 #include "zzTexture.h"
 #include "zzKirby.h"
+#include "zzPlayer.h"
 
 namespace zz
 {
-	AbilityUI::AbilityUI()
+	AbilityUI::AbilityUI(Player* owner)
 		: mTex(nullptr)
 		, mType(0)
+		, mOwner(owner)
 	{
 	}
 
@@ -24,7 +26,7 @@ namespace zz
 
 	void AbilityUI::Update()
 	{
-		mType = Kirby::GetType();
+		mType = mOwner->GetType();
 		//GameObject::Update();
 	}
 
