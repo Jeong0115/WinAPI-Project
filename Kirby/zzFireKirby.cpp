@@ -64,6 +64,10 @@ namespace zz
 			run(dir);
 			break;
 
+		case FireKirby::eFireKirby::RUN:
+			run(dir);
+			break;
+
 		case FireKirby::eFireKirby::SKILL:
 			skill(dir);
 			break;
@@ -209,6 +213,18 @@ namespace zz
 				mAni->PlayAnimation(L"FireKirby_Right_X", true);
 			else
 				mAni->PlayAnimation(L"FireKirby_Left_X", true);
+		}
+
+		SetDir(dir);
+		SetPos(vPos);
+
+		if (KEY(X, DOWN))
+		{
+			mState = eFireKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"FireKirby_Right_X", true);
+			else
+				mAni->PlayAnimation(L"FireKirby_Left_X", true);
 
 			FireSkill* fire = new FireSkill(GetPos(), GetDir());
 			CreateObject(fire, eLayerType::SKILL);
@@ -225,6 +241,37 @@ namespace zz
 				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
 		}
 		else
+		{
+			if (KEY(LEFT, UP))
+			{
+				mAni->PlayAnimation(L"FireKirby_Right_Walk", true);
+			}
+			else if (KEY(RIGHT, UP))
+			{
+				mAni->PlayAnimation(L"FireKirby_Left_Walk", true);
+			}
+		}
+	}
+
+	void FireKirby::run(int dir)
+	{
+		Vector2 vPos = GetPos();
+
+		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"FireKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"FireKirby_Left_Stay", true);
+		}
+
+		else if (KEY(LEFT, PRESSED))
+		{
+			vPos.x -= (float)(150.f * Time::DeltaTime());
+			dir = -1;
+		}
+
+		else if (KEY(RIGHT, PRESSED))
 		{
 			if (KEY(LEFT, UP))
 			{

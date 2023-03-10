@@ -30,10 +30,10 @@ namespace zz
 
 	void PlayScene::Initialize()
 	{
-		Kirby* kirby = new Kirby();
-		kirby->SetName(L"Kirby");
+		DefaultKirby* defaultKirby = new DefaultKirby();
+		defaultKirby->SetName(L"DefaultKirby");
 
-		AddGameObject(kirby, eLayerType::PLAYER);
+		AddGameObject(defaultKirby, eLayerType::PLAYER);
 
 		Stage1* stage1 = new Stage1();
 		stage1->SetName(L"stage1");
@@ -65,6 +65,9 @@ namespace zz
 
 		HP* hp = new HP();
 		AddGameObject(hp, eLayerType::UI);
+
+		Inventory* inven = new Inventory();
+		AddGameObject(inven, eLayerType::INVENTORY);
 
 		CollisionMgr::CheckCollision(eLayerType::SKILL, eLayerType::MONSTER);
 		CollisionMgr::CheckCollision(eLayerType::MONSTER, eLayerType::PLAYER);

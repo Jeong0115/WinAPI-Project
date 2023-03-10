@@ -32,7 +32,7 @@ namespace zz
 	{
 		GameObject::Update();
 	}
-	
+
 	void Inventory::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);

@@ -96,6 +96,10 @@ namespace zz
 			run(dir);
 			break;
 
+		case DefaultKirby::eDefaultKirby::RUN:
+			run(dir);
+			break;
+
 		case DefaultKirby::eDefaultKirby::SKILL:
 			skill(dir);
 			break;
@@ -247,6 +251,19 @@ namespace zz
 				mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
 			else
 				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
+		}
+
+		SetDir(dir);
+		SetPos(vPos);
+
+		if (KEY(X, DOWN))
+		{
+			mPassedTime = 0.f;
+			mState = eDefaultKirby::SKILL;
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_X_1", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_X_1", true);
 
 			DefaultSkill* nomarl = new DefaultSkill(GetPos(), GetDir());
 			CreateObject(nomarl, eLayerType::SKILL);
@@ -263,6 +280,38 @@ namespace zz
 				mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
 		}
 		else
+		{
+			if (KEY(LEFT, UP))
+			{
+				mAni->PlayAnimation(L"DefaultKirby_Right_Walk", true);
+			}
+			else if (KEY(RIGHT, UP))
+			{
+				mAni->PlayAnimation(L"DefaultKirby_Left_Walk", true);
+			}
+		}
+
+	}
+
+	void DefaultKirby::run(int dir)
+	{
+		Vector2 vPos = GetPos();
+
+		if (KEY(LEFT, PRESSED) && KEY(RIGHT, PRESSED))
+		{
+			if (dir == 1)
+				mAni->PlayAnimation(L"DefaultKirby_Right_Stay", true);
+			else
+				mAni->PlayAnimation(L"DefaultKirby_Left_Stay", true);
+		}
+
+		else if (KEY(LEFT, PRESSED))
+		{
+			vPos.x -= (float)(150.f * Time::DeltaTime());
+			dir = -1;
+		}
+
+		else if (KEY(RIGHT, PRESSED))
 		{
 			if (KEY(LEFT, UP))
 			{
